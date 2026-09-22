@@ -1191,7 +1191,13 @@ function isCategoryEnabled(cat) {
 }
 
 function renderBouquetsFromState() {
-  const bouquets = [...rawBouquets].sort((a,b) => (a.code||'').localeCompare(b.code||'','ru'));
+  const bouquets = [...rawBouquets].sort((a,b) => {
+    const ao = a.order, bo = b.order;
+    if (ao != null && bo != null) return ao - bo;
+    if (ao != null) return -1;
+    if (bo != null) return 1;
+    return (a.code||'').localeCompare(b.code||'','ru');
+  });
   const visible = bouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category));
 
   const cats = ['tulips','roses','mixed','premium'];

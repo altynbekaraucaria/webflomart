@@ -793,30 +793,17 @@
       <h2 class="section-title">Выберите<br>свой букет</h2>
     </div>
     <div class="cat-tabs" role="tablist">
-      <button class="cat-tab active" onclick="showTab('tulips', this)" role="tab">Тюльпаны</button>
-      <button class="cat-tab" onclick="showTab('roses', this)" role="tab">Розы</button>
-      <button class="cat-tab" onclick="showTab('mixed', this)" role="tab">Сборные</button>
-      <button class="cat-tab" onclick="showTab('premium', this)" role="tab">Премиум</button>
+      <button class="cat-tab active" onclick="filterBouquets('all', this)" role="tab">Все</button>
+      <button class="cat-tab" onclick="filterBouquets('tulips', this)" role="tab">Тюльпаны</button>
+      <button class="cat-tab" onclick="filterBouquets('roses', this)" role="tab">Розы</button>
+      <button class="cat-tab" onclick="filterBouquets('mixed', this)" role="tab">Сборные</button>
+      <button class="cat-tab" onclick="filterBouquets('premium', this)" role="tab">Премиум</button>
     </div>
   </div>
 
-  <!-- DYNAMIC CATALOG FROM FIRESTORE -->
-    <div id="tab-tulips" class="tab-panel active">
-      <div id="catalog-tulips" class="catalog-loading"><div class="cat-spinner"></div></div>
-      <div id="pagination-tulips" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap;"></div>
-    </div>
-    <div id="tab-roses" class="tab-panel">
-      <div id="catalog-roses" class="catalog-loading"><div class="cat-spinner"></div></div>
-      <div id="pagination-roses" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap;"></div>
-    </div>
-    <div id="tab-mixed" class="tab-panel">
-      <div id="catalog-mixed" class="catalog-loading"><div class="cat-spinner"></div></div>
-      <div id="pagination-mixed" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap;"></div>
-    </div>
-    <div id="tab-premium" class="tab-panel">
-      <div id="catalog-premium" class="catalog-loading"><div class="cat-spinner"></div></div>
-      <div id="pagination-premium" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap;"></div>
-    </div>
+  <!-- DYNAMIC CATALOG FROM FIRESTORE — ALL CATEGORIES MIXED -->
+    <div id="catalog-all" class="catalog-loading"><div class="cat-spinner"></div></div>
+    <div id="pagination-all" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap;"></div>
 
   <p style="margin-top:32px; font-size:12px; color:var(--text-muted); font-weight:300; font-style:italic;">
     * Расцветки цветов на фотографиях могут отличаться или быть заменены на аналогичные варианты в соответствии с наличием
@@ -1216,6 +1203,17 @@ function isCategoryEnabled(cat) {
   return c ? c.enabled !== false : true;
 }
 
+let bqSiteFilter = 'all';
+
+window.filterBouquets = function(cat, btn) {
+  bqSiteFilter = cat;
+  bouquetPages['all'] = 1;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderBouquetsFromState();
+  document.getElementById('catalog-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+};
+
 function renderBouquetsFromState() {
   const bouquets = [...rawBouquets].sort((a,b) => {
     const ao = a.order, bo = b.order;
@@ -1227,35 +1225,25 @@ function renderBouquetsFromState() {
   const visible = bouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category));
 
   const cats = ['tulips','roses','mixed','premium'];
-  let activeCatHidden = false;
-  cats.forEach(cat => {
-    const enabled = isCategoryEnabled(cat);
-    const cards = visible.filter(b => b.category === cat).map(bouquetCard);
-    bouquetCards[cat] = cards;
-    renderGrid('catalog-' + cat, cards);
 
-    const btn = document.querySelector(`.cat-tab[onclick*="'${cat}'"]`);
-    const panel = document.getElementById('tab-' + cat);
-    if (btn) {
-      btn.style.display = enabled ? '' : 'none';
-      if (!enabled && btn.classList.contains('active')) activeCatHidden = true;
-    }
-    if (panel && !enabled) panel.style.display = 'none';
-  });
-
-  // If the currently selected tab just got hidden, jump to the first visible one
-  if (activeCatHidden) {
-    const nextBtn = Array.from(document.querySelectorAll('.cat-tab')).find(b => b.style.display !== 'none');
-    if (nextBtn) {
-      const tab = nextBtn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
-      if (tab) showTab(tab, nextBtn);
-    }
+  // If the category currently filtered on just got disabled, fall back to "Все"
+  if (bqSiteFilter !== 'all' && !isCategoryEnabled(bqSiteFilter)) {
+    bqSiteFilter = 'all';
   }
 
-  // Update tab counts
+  const shown = bqSiteFilter === 'all' ? visible : visible.filter(b => b.category === bqSiteFilter);
+  const cards = shown.map(bouquetCard);
+  bouquetCards['all'] = cards;
+  renderGrid('catalog-all', cards);
+
+  // Show/hide category pills whose category is fully disabled; sync active state + counts
   document.querySelectorAll('.cat-tab').forEach(btn => {
     const tab = btn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
     if (!tab) return;
+    btn.classList.toggle('active', tab === bqSiteFilter);
+    if (tab === 'all') return;
+    const enabled = isCategoryEnabled(tab);
+    btn.style.display = enabled ? '' : 'none';
     const count = visible.filter(b => b.category === tab).length;
     btn.textContent = btn.textContent.replace(/\s*\(\d+\)/, '') + (count ? ` (${count})` : '');
   });

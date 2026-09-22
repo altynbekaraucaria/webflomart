@@ -44,7 +44,16 @@
     background: rgba(253,248,245,0.88);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
+    transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
+
+  nav.scrolled {
+    padding: 10px 48px;
+    background: rgba(253,248,245,0.6);
+    box-shadow: 0 4px 24px rgba(61,43,61,0.06);
+  }
+
+  nav.scrolled .nav-logo img { height: 32px; }
 
   .nav-logo {
     font-family: 'Cormorant Garant', serif;
@@ -57,9 +66,10 @@
     align-items: center;
   }
   .nav-logo img {
-    height: 30px;
+    height: 42px;
     width: auto;
     display: block;
+    transition: height 0.3s ease;
   }
 
   .nav-links {
@@ -1185,11 +1195,30 @@ function renderBouquetsFromState() {
   const visible = bouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category));
 
   const cats = ['tulips','roses','mixed','premium'];
+  let activeCatHidden = false;
   cats.forEach(cat => {
+    const enabled = isCategoryEnabled(cat);
     const cards = visible.filter(b => b.category === cat).map(bouquetCard);
     bouquetCards[cat] = cards;
     renderGrid('catalog-' + cat, cards);
+
+    const btn = document.querySelector(`.cat-tab[onclick*="'${cat}'"]`);
+    const panel = document.getElementById('tab-' + cat);
+    if (btn) {
+      btn.style.display = enabled ? '' : 'none';
+      if (!enabled && btn.classList.contains('active')) activeCatHidden = true;
+    }
+    if (panel && !enabled) panel.style.display = 'none';
   });
+
+  // If the currently selected tab just got hidden, jump to the first visible one
+  if (activeCatHidden) {
+    const nextBtn = Array.from(document.querySelectorAll('.cat-tab')).find(b => b.style.display !== 'none');
+    if (nextBtn) {
+      const tab = nextBtn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
+      if (tab) showTab(tab, nextBtn);
+    }
+  }
 
   // Update tab counts
   document.querySelectorAll('.cat-tab').forEach(btn => {
@@ -1411,6 +1440,17 @@ onSnapshot(collection(db, 'berries'), snap => {
     const links = document.getElementById('nav-links');
     links.classList.remove('open');
   }
+
+  // ── SHRINK/FADE NAV ON SCROLL ────────────────────────────────────────────
+  (function() {
+    const navEl = document.querySelector('nav');
+    if (!navEl) return;
+    function onScroll() {
+      navEl.classList.toggle('scrolled', window.scrollY > 40);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
 
   document.addEventListener('click', function(e) {
     const nav = document.querySelector('nav');

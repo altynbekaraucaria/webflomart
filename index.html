@@ -53,7 +53,6 @@
     box-shadow: 0 4px 24px rgba(61,43,61,0.06);
   }
 
-  nav.scrolled .nav-logo img { height: 32px; }
   nav.scrolled .nav-links:not(.open) { display: none; }
 
   .nav-cat-pills {
@@ -84,22 +83,28 @@
   .nav-pill.active { background: var(--plum); color: var(--cream); }
 
   .nav-logo {
-    font-family: 'Cormorant Garant', serif;
-    font-size: 26px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
+    position: relative;
     color: var(--plum);
     text-decoration: none;
-    display: flex;
-    align-items: center;
+    display: block;
+    height: 42px;
+    width: 175px;
+    transition: height 0.35s ease, width 0.35s ease;
   }
   .nav-logo img {
-    height: 42px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
     width: auto;
     display: block;
-    transition: height 0.3s ease;
+    opacity: 1;
+    transition: opacity 0.35s ease;
   }
-  .nav-logo .logo-icon { display: none; }
+  .nav-logo .logo-icon { opacity: 0; pointer-events: none; }
+  nav.scrolled .nav-logo { height: 32px; width: 133px; }
+  nav.scrolled .nav-logo .logo-full { opacity: 0; pointer-events: none; }
+  nav.scrolled .nav-logo .logo-icon { opacity: 1; pointer-events: auto; }
 
   .nav-links {
     display: flex;
@@ -691,8 +696,7 @@
   @media (max-width: 900px) {
     nav { padding: 16px 24px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
     nav.scrolled { padding: 10px 20px; }
-    nav.scrolled .nav-logo .logo-full { display: none; }
-    nav.scrolled .nav-logo .logo-icon { display: block; height: 30px; width: auto; }
+    nav.scrolled .nav-logo { height: 30px; width: 31px; }
     .nav-links {
       display: none;
       flex-direction: column;
@@ -769,7 +773,7 @@
     <li><a href="#about" onclick="closeMobileMenu()">О нас</a></li>
     <li><a href="#cakes-section" onclick="closeMobileMenu()">Торты</a></li>
     <li><a href="#berry-section" onclick="closeMobileMenu()">Клубника</a></li>
-    <li><a href="https://wa.me/77751596448" target="_blank" rel="noopener" class="nav-cta" onclick="closeMobileMenu()">Заказать</a></li>
+    <li><a href="https://wa.me/77751596448?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D1%83%D1%8E%2C%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%B2%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B1%D1%83%D0%BA%D0%B5%D1%82%20%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2" target="_blank" rel="noopener" class="nav-cta" onclick="closeMobileMenu()">Заказать</a></li>
   </ul>
   <div class="nav-cat-pills" id="nav-cat-pills">
     <a href="#catalog" class="nav-pill active" onclick="filterBouquets('all', this); return false;">Все</a>

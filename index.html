@@ -330,7 +330,30 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 56px;
+    margin-bottom: 24px;
+  }
+
+  .cat-sort-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .cat-sort-row label {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+  .cat-sort-row select {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--plum);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 7px 16px;
+    cursor: pointer;
+    outline: none;
   }
 
   .cat-tabs {
@@ -844,6 +867,15 @@
     </div>
   </div>
 
+  <div class="cat-sort-row">
+    <label for="bq-sort">Сортировать:</label>
+    <select id="bq-sort" onchange="setBqSort(this.value)">
+      <option value="default">По порядку</option>
+      <option value="price-asc">Сначала дешевле</option>
+      <option value="price-desc">Сначала дороже</option>
+    </select>
+  </div>
+
   <!-- DYNAMIC CATALOG FROM FIRESTORE — ALL CATEGORIES MIXED -->
     <div id="catalog-all" class="catalog-loading"><div class="cat-spinner"></div></div>
     <div id="pagination-all" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap;"></div>
@@ -1247,12 +1279,19 @@ function isCategoryEnabled(cat) {
 }
 
 let bqSiteFilter = 'all';
+let bqSortMode = 'default';
 
 window.filterBouquets = function(cat, btn) {
   bqSiteFilter = cat;
   bouquetPages['all'] = 1;
   renderBouquetsFromState();
   document.getElementById('catalog')?.scrollIntoView({behavior:'smooth', block:'start'});
+};
+
+window.setBqSort = function(mode) {
+  bqSortMode = mode;
+  bouquetPages['all'] = 1;
+  renderBouquetsFromState();
 };
 
 function renderBouquetsFromState() {
@@ -1272,7 +1311,9 @@ function renderBouquetsFromState() {
     bqSiteFilter = 'all';
   }
 
-  const shown = bqSiteFilter === 'all' ? visible : visible.filter(b => b.category === bqSiteFilter);
+  let shown = bqSiteFilter === 'all' ? visible : visible.filter(b => b.category === bqSiteFilter);
+  if (bqSortMode === 'price-asc') shown = [...shown].sort((a,b) => (a.price||0) - (b.price||0));
+  else if (bqSortMode === 'price-desc') shown = [...shown].sort((a,b) => (b.price||0) - (a.price||0));
   const cards = shown.map(bouquetCard);
   bouquetCards['all'] = cards;
   renderGrid('catalog-all', cards);
@@ -1312,7 +1353,14 @@ onSnapshot(collection(db, 'bouquets'), snap => {
 let rawCakes = [];
 
 function renderCakesFromState() {
-  const allCakes = rawCakes.filter(c => !isHiddenItem(c));
+  const sortedCakes = [...rawCakes].sort((a,b) => {
+    const ao = a.order, bo = b.order;
+    if (ao != null && bo != null) return ao - bo;
+    if (ao != null) return -1;
+    if (bo != null) return 1;
+    return (a.name||'').localeCompare(b.name||'','ru');
+  });
+  const allCakes = sortedCakes.filter(c => !isHiddenItem(c));
   const cakeGrid = document.getElementById('catalog-cakes');
   const pagination = document.getElementById('cakes-pagination');
   if (!cakeGrid) return;
@@ -1401,7 +1449,14 @@ function berryCard(b) {
 let rawBerries = [];
 
 function renderBerriesFromState() {
-  const allBerries = rawBerries.filter(b => !isHiddenItem(b));
+  const sortedBerries = [...rawBerries].sort((a,b) => {
+    const ao = a.order, bo = b.order;
+    if (ao != null && bo != null) return ao - bo;
+    if (ao != null) return -1;
+    if (bo != null) return 1;
+    return (a.name||'').localeCompare(b.name||'','ru');
+  });
+  const allBerries = sortedBerries.filter(b => !isHiddenItem(b));
   const grid = document.getElementById('catalog-berries');
   const pagination = document.getElementById('berries-pagination');
   if (!grid) return;

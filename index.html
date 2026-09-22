@@ -268,7 +268,8 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.16em;
-    color: rgba(242,196,206,0.75);
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(61,43,61,0.55);
     margin-bottom: 28px;
     text-transform: uppercase;
   }
@@ -285,6 +286,7 @@
   .hero-headline em {
     font-style: italic;
     color: var(--rose);
+    text-shadow: 0 2px 16px rgba(61,43,61,0.5);
   }
 
   .hero-sub {
@@ -928,7 +930,7 @@
     .nav-links li:last-child a { border-bottom: none; margin-top: 8px; text-align: center; }
     .nav-cta { border-radius: 100px; padding: 12px 24px !important; }
     .hamburger { display: block; background: none; border: none; cursor: pointer; padding: 4px; }
-    .lang-switch { margin: 0 6px 0 auto; }
+    .lang-switch { margin: 0 6px 0 0; }
     .lang-btn { padding: 5px 9px; font-size: 10px; }
 
     .hero { min-height: 100svh; }
@@ -1082,7 +1084,7 @@
     <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px; flex-wrap:wrap; gap:24px;">
       <div>
         <p class="section-eyebrow" data-i18n="cakes.eyebrow">Дополните заказ</p>
-        <h2 class="section-title" style="color:var(--plum);" data-i18n="cakes.title">Бенто-торт —<br>маленький, но memorable</h2>
+        <h2 class="section-title" style="color:var(--plum);" data-i18n="cakes.title">Сладкий комплимент,<br>который скажет всё за вас</h2>
         <p style="font-size:15px; color:var(--text-muted); font-weight:300; margin-top:16px; max-width:440px; line-height:1.85;" data-i18n="cakes.desc">
           Авторский торт в стильной коробке — идеальный комплимент к букету. Каждый дизайн нарисован вручную. Начинка <strong style="color:var(--plum);">Вупи Пай</strong> — нежный бисквит, сливочный крем. <br>Весит <strong style="color:var(--plum);">300 г</strong> — в самый раз, чтобы порадовать, не переборщив.
         </p>
@@ -1298,11 +1300,12 @@
 
 <footer>
   <div class="footer-logo">FLOMART</div>
-  <div class="footer-copy" data-i18n="footer.copy">© 2025 FLOMART · Астана, ул. Кенесары 45 · <a href="care.html">Уход за букетом</a></div>
+  <div class="footer-copy" data-i18n="footer.copy">© 2026 FLOMART · Астана, ул. Кенесары 45 · <a href="care.html">Уход за букетом</a></div>
 </footer>
 
 <!-- ── RU / EN LANGUAGE SWITCH ─────────────────────────────────────────── -->
 <script>
+  const currentYear = new Date().getFullYear();
   const I18N = {
     ru: {
       'nav.catalog': 'Каталог',
@@ -1336,8 +1339,8 @@
       'catalog.note': '* Расцветки цветов на фотографиях могут отличаться или быть заменены на аналогичные варианты в соответствии с наличием',
       'cat.all': 'Все',
       'cakes.eyebrow': 'Дополните заказ',
-      'cakes.title': 'Бенто-торт —<br>маленький, но memorable',
-      'cakes.desc': 'Авторский торт в стильной коробке — идеальный комплимент к букету. Каждый дизайн нарисован вручную. Начинка <strong style="color:var(--plum);">Вупи Пай</strong> — нежный бисквит, сливочный крем. <br>Весит <strong style="color:var(--plum);">300 г</strong> — в самый раз, чтобы порадовать, не переборщив.',
+      'cakes.title': 'Сладкий комплимент,<br>который скажет всё за вас',
+      'cakes.desc': 'Загляните в каталог дизайнов: у нас есть торты для романтиков и для тех, кто понимает сарказм. Неизменно только одно — любимый вкус <strong style="color:var(--plum);">«Вупи Пай»</strong> и идеальный размер в <strong style="color:var(--plum);">300 грамм</strong>.',
       'cakes.priceLabel': 'тенге / торт',
       'cakes.follow': 'Следите за новыми дизайнами в <a href="https://instagram.com/flomart.kz" style="color:var(--plum-light);">@flomart.kz</a>',
       'berries.eyebrow': 'Сладкий комплимент',
@@ -1375,7 +1378,7 @@
       'modal.subtitle': 'Свяжитесь с нами для оформления',
       'modal.whatsapp': 'Написать в WhatsApp',
       'modal.call': 'Позвонить:',
-      'footer.copy': '© 2025 FLOMART · Астана, ул. Кенесары 45 · <a href="care.html">Уход за букетом</a>',
+      'footer.copy': `© ${currentYear} FLOMART · Астана, ул. Кенесары 45 · <a href="care.html">Уход за букетом</a>`,
       'js.comingSoon': 'Скоро появятся позиции',
       'js.cakesComingSoon': 'Дизайны скоро появятся — следите в @flomart.kz',
       'js.berriesComingSoon': 'Сеты скоро появятся — следите в @flomart.kz 🍓',
@@ -1401,7 +1404,7 @@
       'nav.care': 'Bouquet care',
       'nav.menu': 'Menu',
       'hero.tag': 'Flower boutique · Astana',
-      'hero.headline': 'Flowers<br><em>that speak</em><br>for you',
+      'hero.headline': 'Flowers<br><em>that speak</em><br>your heart',
       'hero.sub': "Just share your occasion and comfortable budget, and we'll create the perfect bouquet. From stylish minimalism to complex custom arrangements.",
       'hero.cta1': 'View catalog',
       'hero.cta2': 'Contact us',
@@ -1410,12 +1413,12 @@
       'strip.instagram': '@flomart.kz on Instagram',
       'strip.fresh': 'Fresh flowers every day',
       'promo.eyebrow': "Don't miss out",
-      'promo.title': 'Sales<br>&amp; combo offers',
+      'promo.title': 'Special Offers<br>&amp; Combos',
       'promo.sub': 'Discounted bouquets and great combos with cake or strawberries — limited availability',
       'promo.combo': 'Combo',
       'promo.sale': 'Sale',
       'catalog.eyebrow': 'Catalog',
-      'catalog.title': 'Find<br>the perfect bouquet for her',
+      'catalog.title': 'Find<br>your perfect bouquet',
       'catalog.sortLabel': 'Sort:',
       'catalog.sortDefault': 'Featured',
       'catalog.sortAsc': 'Price: low to high',
@@ -1423,12 +1426,12 @@
       'catalog.note': '* Flower colors in photos may vary or be substituted with similar options depending on availability',
       'cat.all': 'All',
       'cakes.eyebrow': 'Add to your order',
-      'cakes.title': 'Bento cake —<br>small but memorable',
-      'cakes.desc': 'A signature cake in a stylish box — the perfect complement to a bouquet. Every design is hand-painted. <strong style="color:var(--plum);">Whoopie Pie</strong> filling — soft sponge, creamy filling. <br>Weighs <strong style="color:var(--plum);">300 g</strong> — just enough to delight, without overdoing it.',
+      'cakes.title': 'A sweet compliment<br>that speaks for you',
+      'cakes.desc': 'Check out our design catalog: we have cakes for romantics and for those who speak fluent sarcasm. The only constant is the beloved <strong style="color:var(--plum);">Whoopie Pie</strong> flavor and the perfect <strong style="color:var(--plum);">300-gram</strong> size.',
       'cakes.priceLabel': 'KZT / cake',
       'cakes.follow': 'Follow new designs on <a href="https://instagram.com/flomart.kz" style="color:var(--plum-light);">@flomart.kz</a>',
       'berries.eyebrow': 'A sweet touch',
-      'berries.title': 'Chocolate-covered strawberries',
+      'berries.title': 'Premium chocolate-covered strawberries',
       'berries.desc': 'A set of chocolate-covered strawberries is an elegant, delicious gift for any occasion. Fresh, juicy berries coated in a thin layer of premium chocolate create the perfect balance of sweet and tart. Chocolate-covered strawberries look elegant and appetizing, pleasing both the eye and the palate. A great choice for a romantic evening, a festive table, or a lovely surprise for someone close to you.',
       'berries.follow': 'Follow new arrivals on <a href="https://instagram.com/flomart.kz" style="color:var(--plum-light);">@flomart.kz</a>',
       'delivery.eyebrow': 'Delivery',
@@ -1462,7 +1465,7 @@
       'modal.subtitle': 'Contact us to complete your order',
       'modal.whatsapp': 'Message on WhatsApp',
       'modal.call': 'Call:',
-      'footer.copy': '© 2025 FLOMART · 45 Kenesary St, Astana · <a href="care.html">Bouquet care</a>',
+      'footer.copy': `© ${currentYear} FLOMART · 45 Kenesary St, Astana · <a href="care.html">Bouquet care</a>`,
       'js.comingSoon': 'New items coming soon',
       'js.cakesComingSoon': 'New designs coming soon — follow @flomart.kz',
       'js.berriesComingSoon': 'New sets coming soon — follow @flomart.kz 🍓',

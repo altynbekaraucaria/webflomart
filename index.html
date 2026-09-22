@@ -75,6 +75,7 @@
     --cream: #FDF8F5;
     --plum: #3D2B3D;
     --plum-light: #6B4E6B;
+    --sale: #D9426B;
     --warm-white: #FAF6F3;
     --soft-pink: #F8E8EC;
     --text: #3D2B3D;
@@ -573,6 +574,98 @@
   }
   .btn-order:hover { background: var(--lavender); }
 
+  /* PROMO / SALE SECTION */
+  .promo-section {
+    background: linear-gradient(135deg,#FDE8EF 0%,#F9F0F8 45%,#F0E8FF 100%);
+  }
+  .promo-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .promo-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 340px;
+    line-height: 1.7;
+  }
+  .promo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .promo-card {
+    background: var(--cream);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--sale);
+    box-shadow: 0 6px 24px rgba(217,66,107,0.18);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    cursor: pointer;
+  }
+  .promo-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(217,66,107,0.26); }
+  .promo-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--sale);
+    color: #fff;
+    border-radius: 100px;
+    padding: 5px 13px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    box-shadow: 0 3px 10px rgba(217,66,107,0.35);
+    z-index: 1;
+  }
+  .promo-combo-text {
+    font-size: 12.5px;
+    color: var(--plum-light);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .promo-price-old {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--sale);
+    text-decoration-thickness: 1.5px;
+    font-weight: 400;
+  }
+  .promo-price-new {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--sale);
+    line-height: 1;
+  }
+  .promo-price-new span {
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: var(--sale);
+    opacity: 0.75;
+  }
+  .promo-price-new.no-discount {
+    color: var(--plum);
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .promo-price-new.no-discount span { color: var(--text-muted); opacity: 1; }
+  @media (max-width: 640px) {
+    .promo-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .promo-price-new { font-size: 22px; }
+    .promo-combo-text { font-size: 10.5px; }
+  }
+
   /* BOUQUET CATEGORY COLORS */
   .bg-tulip { background: linear-gradient(145deg, #FFE8F0 0%, #FFD6E7 100%); }
   .bg-rose { background: linear-gradient(145deg, #FFE0E0 0%, #FFCCD0 100%); }
@@ -943,6 +1036,19 @@
   <div class="strip-item"><div class="strip-dot"></div> <span data-i18n="strip.fresh">Свежие цветы ежедневно</span></div>
 </div>
 
+<section id="promo-section" class="promo-section" style="padding:96px 48px; display:none;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="promo-header">
+      <div>
+        <p class="section-eyebrow" data-i18n="promo.eyebrow">Не пропустите</p>
+        <h2 class="section-title" data-i18n="promo.title">Акции<br>и комбо-предложения</h2>
+      </div>
+      <p class="promo-sub" data-i18n="promo.sub">Букеты со скидкой и выгодные комбо с тортом или клубникой — количество ограничено</p>
+    </div>
+    <div class="promo-grid" id="promo-grid"></div>
+  </div>
+</section>
+
 <section id="catalog" class="categories">
   <div class="cat-header">
     <div>
@@ -1216,6 +1322,11 @@
       'strip.delivery': 'Доставка по всему городу',
       'strip.instagram': '@flomart.kz в Instagram',
       'strip.fresh': 'Свежие цветы ежедневно',
+      'promo.eyebrow': 'Не пропустите',
+      'promo.title': 'Акции<br>и комбо-предложения',
+      'promo.sub': 'Букеты со скидкой и выгодные комбо с тортом или клубникой — количество ограничено',
+      'promo.combo': 'Комбо',
+      'promo.sale': 'Акция',
       'catalog.eyebrow': 'Каталог',
       'catalog.title': 'Выберите<br>свой букет',
       'catalog.sortLabel': 'Сортировать:',
@@ -1298,6 +1409,11 @@
       'strip.delivery': 'Citywide delivery',
       'strip.instagram': '@flomart.kz on Instagram',
       'strip.fresh': 'Fresh flowers every day',
+      'promo.eyebrow': "Don't miss out",
+      'promo.title': 'Sales<br>&amp; combo offers',
+      'promo.sub': 'Discounted bouquets and great combos with cake or strawberries — limited availability',
+      'promo.combo': 'Combo',
+      'promo.sale': 'Sale',
       'catalog.eyebrow': 'Catalog',
       'catalog.title': 'Choose<br>your bouquet',
       'catalog.sortLabel': 'Sort:',
@@ -1471,6 +1587,62 @@ function bouquetCard(b) {
     </div>`;
 }
 
+function promoCard(b) {
+  const price = b.price || 0;
+  const hasSalePrice = b.salePrice && b.salePrice < price;
+  const displayPrice = hasSalePrice ? b.salePrice : price;
+  const priceStr = displayPrice ? displayPrice.toLocaleString('ru') : '—';
+  const name = loc(b, 'name'), desc = loc(b, 'desc');
+  const fr = framing(b);
+  const img = b.photoUrl
+    ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
+  const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
+  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}','${jsq(priceStr)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const badgeText = hasSalePrice && b.comboLabel ? `🏷️🎁 ${window.t('promo.sale')}` : hasSalePrice ? `🏷️ ${window.t('promo.sale')}` : `🎁 ${window.t('promo.combo')}`;
+  const priceHtml = hasSalePrice
+    ? `<div class="promo-price-old">${price.toLocaleString('ru')}</div><div class="promo-price-new">${priceStr} <span>${window.t('js.currency')}</span></div>`
+    : `<div class="promo-price-new no-discount">${priceStr} <span>${window.t('js.currency')}</span></div>`;
+  return `
+    <div class="promo-card" onclick="openViewModal(${viewArgs})">
+      <div class="product-img">
+        ${img}
+        <div class="promo-badge">${badgeText}</div>
+      </div>
+      <div class="product-body">
+        <div class="product-code">${b.code||''}</div>
+        <div class="product-name">${name}</div>
+        ${b.comboLabel ? `<div class="promo-combo-text">🎁 ${b.comboLabel}</div>` : `<div class="product-composition">${desc||''}</div>`}
+        <div class="product-footer">
+          <div>${priceHtml}</div>
+          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderPromoFromState() {
+  const section = document.getElementById('promo-section');
+  const grid = document.getElementById('promo-grid');
+  if (!section || !grid) return;
+  const onSale = (b) => (b.salePrice && b.price && b.salePrice < b.price) || b.comboLabel;
+  const items = rawBouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category) && onSale(b));
+  items.sort((a,b) => {
+    const ao = a.order, bo = b.order;
+    if (ao != null && bo != null) return ao - bo;
+    if (ao != null) return -1;
+    if (bo != null) return 1;
+    return 0;
+  });
+  if (!items.length) {
+    section.style.display = 'none';
+    grid.innerHTML = '';
+    return;
+  }
+  section.style.display = '';
+  grid.innerHTML = items.map(promoCard).join('');
+}
+
 let siteFlowers = [];
 let siteSettings = { berryPrice: 1000, bentoPrice: 5000 };
 
@@ -1479,6 +1651,7 @@ onSnapshot(collection(db, 'flowers'), snap => {
   siteFlowers = snap.docs.map(d => ({id:d.id,...d.data()}));
   if (flowersLoadedOnce) {
     renderBouquetsFromState();
+    renderPromoFromState();
     renderCakesFromState();
     renderBerriesFromState();
   }
@@ -1698,11 +1871,13 @@ onSnapshot(collection(db, 'categories'), snap => {
     return 0;
   });
   renderBouquetsFromState();
+  renderPromoFromState();
 });
 
 onSnapshot(collection(db, 'bouquets'), snap => {
   rawBouquets = snap.docs.map(d => ({id:d.id,...d.data()}));
   renderBouquetsFromState();
+  renderPromoFromState();
 });
 
 let rawCakes = [];
@@ -1865,6 +2040,7 @@ onSnapshot(collection(db, 'berries'), snap => {
 // labels, currency) when the visitor switches the site language.
 window.addEventListener('flomart-lang-change', () => {
   renderBouquetsFromState();
+  renderPromoFromState();
   renderCakesFromState();
   renderBerriesFromState();
 });

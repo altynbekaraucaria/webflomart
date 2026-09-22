@@ -798,13 +798,7 @@
     <li><a href="#berry-section" onclick="closeMobileMenu()">Клубника</a></li>
     <li><a href="https://wa.me/77751596448?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D1%83%D1%8E%2C%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%B2%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B1%D1%83%D0%BA%D0%B5%D1%82%20%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2" target="_blank" rel="noopener" class="nav-cta" onclick="closeMobileMenu()">Заказать</a></li>
   </ul>
-  <div class="nav-cat-pills" id="nav-cat-pills">
-    <a href="#catalog" class="nav-pill active" onclick="filterBouquets('all', this); return false;">Все</a>
-    <a href="#catalog" class="nav-pill" onclick="filterBouquets('tulips', this); return false;">Тюльпаны</a>
-    <a href="#catalog" class="nav-pill" onclick="filterBouquets('roses', this); return false;">Розы</a>
-    <a href="#catalog" class="nav-pill" onclick="filterBouquets('mixed', this); return false;">Сборные</a>
-    <a href="#catalog" class="nav-pill" onclick="filterBouquets('premium', this); return false;">Премиум</a>
-  </div>
+  <div class="nav-cat-pills" id="nav-cat-pills"></div>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Меню" id="hamburger-btn">
     <svg width="22" height="16" fill="none" stroke="#3D2B3D" stroke-width="1.8">
       <line x1="0" y1="2" x2="22" y2="2"/>
@@ -858,13 +852,7 @@
       <p class="section-eyebrow">Каталог</p>
       <h2 class="section-title">Выберите<br>свой букет</h2>
     </div>
-    <div class="cat-tabs" role="tablist">
-      <button class="cat-tab active" onclick="filterBouquets('all', this)" role="tab">Все</button>
-      <button class="cat-tab" onclick="filterBouquets('tulips', this)" role="tab">Тюльпаны</button>
-      <button class="cat-tab" onclick="filterBouquets('roses', this)" role="tab">Розы</button>
-      <button class="cat-tab" onclick="filterBouquets('mixed', this)" role="tab">Сборные</button>
-      <button class="cat-tab" onclick="filterBouquets('premium', this)" role="tab">Премиум</button>
-    </div>
+    <div class="cat-tabs" role="tablist" id="cat-tabs"></div>
   </div>
 
   <div class="cat-sort-row">
@@ -1128,16 +1116,30 @@ const db = getFirestore(app);
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function jsq(s) { return String(s==null?'':s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' '); }
-function catEmoji(c) { return {tulips:'🌷',roses:'🌹',mixed:'💐',premium:'✨'}[c]||'💐'; }
+function catEmoji(c) {
+  const known = {tulips:'🌷',roses:'🌹',mixed:'💐',premium:'✨'}[c];
+  if (known) return known;
+  return siteCategories.find(x => x.key === c)?.emoji || '💐';
+}
 function bgClass(c) { return {tulips:'bg-tulip',roses:'bg-rose',mixed:'bg-mix',premium:'bg-premium'}[c]||'bg-mix'; }
+
+// Photo framing set by the admin (zoom + position), applied consistently to
+// catalog card thumbnails and the quick-view modal image.
+function framing(item) {
+  const zoom = item.photoZoom || 1;
+  const x = item.photoPosX != null ? item.photoPosX : 50;
+  const y = item.photoPosY != null ? item.photoPosY : 50;
+  return { zoom, x, y, css: `object-position:${x}% ${y}%;transform:scale(${zoom});transform-origin:${x}% ${y}%;` };
+}
 
 function bouquetCard(b) {
   const price = b.price ? b.price.toLocaleString('ru') : '—';
+  const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${b.photoUrl}" alt="${b.name}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">`
+    ? `<img src="${b.photoUrl}" alt="${b.name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.code ? b.code + ' — ' : ''}${b.name}, ${price} тг`;
-  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(b.name)}','${jsq(b.desc)}','${jsq(price)}','${jsq(orderText)}'`;
+  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(b.name)}','${jsq(b.desc)}','${jsq(price)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
     <div class="product-card" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -1189,11 +1191,12 @@ function calcAutoPrice(item) {
 
 function cakeCard(c) {
   const price = (c.autoPrice && c.ingredients?.length ? calcAutoPrice(c) : (c.price||siteSettings.bentoPrice)).toLocaleString('ru');
+  const fr = framing(c);
   const img = c.photoUrl
-    ? `<img src="${c.photoUrl}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">`
+    ? `<img src="${c.photoUrl}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FDE8EF,#F5C8DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🎂</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">Фото скоро</div></div>`;
   const orderText = `${c.name}, Вупи Пай, ${price} тг`;
-  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq('Начинка: ' + (c.filling||'Вупи Пай'))}','${jsq(c.name)}','${jsq(c.desc)}','${jsq(price)}','${jsq(orderText)}'`;
+  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq('Начинка: ' + (c.filling||'Вупи Пай'))}','${jsq(c.name)}','${jsq(c.desc)}','${jsq(price)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.85);" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -1294,7 +1297,28 @@ window.setBqSort = function(mode) {
   renderBouquetsFromState();
 };
 
+const DEFAULT_SITE_CATEGORIES = [
+  { key: 'tulips', label: 'Тюльпаны' },
+  { key: 'roses', label: 'Розы' },
+  { key: 'mixed', label: 'Сборные' },
+  { key: 'premium', label: 'Премиум' },
+];
+
+// Rebuild the "Все / <категории>" tabs and nav pills from Firestore categories,
+// so a category added in the admin appears here automatically instead of only
+// the 4 hardcoded defaults.
+function renderCatTabs() {
+  const cats = siteCategories.length ? siteCategories : DEFAULT_SITE_CATEGORIES;
+  const tabsEl = document.getElementById('cat-tabs');
+  const pillsEl = document.getElementById('nav-cat-pills');
+  const tabBtn = (key, label) => `<button class="cat-tab" onclick="filterBouquets('${key}', this)" role="tab">${label}</button>`;
+  const pillLink = (key, label) => `<a href="#catalog" class="nav-pill" onclick="filterBouquets('${key}', this); return false;">${label}</a>`;
+  if (tabsEl) tabsEl.innerHTML = tabBtn('all', 'Все') + cats.map(c => tabBtn(c.key, c.label || c.key)).join('');
+  if (pillsEl) pillsEl.innerHTML = pillLink('all', 'Все') + cats.map(c => pillLink(c.key, c.label || c.key)).join('');
+}
+
 function renderBouquetsFromState() {
+  renderCatTabs();
   const bouquets = [...rawBouquets].sort((a,b) => {
     const ao = a.order, bo = b.order;
     if (ao != null && bo != null) return ao - bo;
@@ -1304,11 +1328,10 @@ function renderBouquetsFromState() {
   });
   const visible = bouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category));
 
-  const cats = ['tulips','roses','mixed','premium'];
-
-  // If the category currently filtered on just got disabled, fall back to "Все"
-  if (bqSiteFilter !== 'all' && !isCategoryEnabled(bqSiteFilter)) {
-    bqSiteFilter = 'all';
+  // If the category currently filtered on was disabled or deleted, fall back to "Все"
+  if (bqSiteFilter !== 'all') {
+    const stillExists = !siteCategories.length || siteCategories.some(c => c.key === bqSiteFilter);
+    if (!stillExists || !isCategoryEnabled(bqSiteFilter)) bqSiteFilter = 'all';
   }
 
   let shown = bqSiteFilter === 'all' ? visible : visible.filter(b => b.category === bqSiteFilter);
@@ -1422,12 +1445,13 @@ onSnapshot(collection(db, 'cakes'), snap => {
 function berryCard(b) {
   const calcPrice = b.autoPrice && b.ingredients?.length ? calcAutoPrice(b) : b.price;
   const price = calcPrice ? calcPrice.toLocaleString('ru') + ' тг' : 'Уточнить цену';
+  const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${b.photoUrl}" alt="${b.name}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">`
+    ? `<img src="${b.photoUrl}" alt="${b.name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FFE8EE,#FFD0DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🍓</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">Фото скоро</div></div>`;
   const orderText = `${b.name}, ${price}`;
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
-  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(b.subtitle || 'Клубника в шоколаде')}','${jsq(b.name)}','${jsq(b.desc)}','${jsq(viewPrice)}','${jsq(orderText)}'`;
+  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(b.subtitle || 'Клубника в шоколаде')}','${jsq(b.name)}','${jsq(b.desc)}','${jsq(viewPrice)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -1534,10 +1558,11 @@ onSnapshot(collection(db, 'berries'), snap => {
   });
 
   // ── PRODUCT VIEW MODAL (gallery/quick view on card click) ──────────────────
-  function openViewModal(img, emoji, code, name, desc, price, orderText) {
+  function openViewModal(img, emoji, code, name, desc, price, orderText, zoom, posX, posY) {
     const imgBox = document.getElementById('view-modal-img');
+    const z = zoom || 1, x = posX != null ? posX : 50, y = posY != null ? posY : 50;
     imgBox.innerHTML = img
-      ? `<img src="${img}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+      ? `<img src="${img}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%;">`
       : `<div class="product-img-bg" style="width:100%;height:100%;background:linear-gradient(145deg,var(--rose),#d8b0c0);">${emoji||'💐'}</div>`;
     document.getElementById('view-modal-code').textContent = code || '';
     document.getElementById('view-modal-name').textContent = name || '';

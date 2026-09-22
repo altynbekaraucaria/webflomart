@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<script>
+  // Some visitors' bookmarked/shared links include a #catalog, #cakes-section
+  // etc. anchor (from clicking a nav link earlier). Without this, the browser
+  // auto-jumps straight to that section on every load/refresh, which looks
+  // like "the page runs away down". Strip the hash before the browser has a
+  // chance to scroll to it, and stop it from restoring a remembered scroll
+  // position too.
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLOMART — Цветы в Астане</title>

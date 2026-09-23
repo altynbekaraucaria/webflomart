@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<!-- Google Analytics (GA4) — replace G-XXXXXXXXXX with your real Measurement ID
+     from analytics.google.com (Admin -> Data Streams -> your site stream).
+     Until you do, this is a harmless no-op. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
+</script>
 <script>
   // Some visitors' bookmarked/shared links include a #catalog, #cakes-section
   // etc. anchor (from clicking a nav link earlier). Without this, the browser
@@ -927,11 +937,16 @@
       color: var(--plum);
       border-bottom: 1px solid var(--border);
     }
-    .nav-links li:last-child a { border-bottom: none; margin-top: 8px; text-align: center; }
+    .nav-links li.nav-cta-item a { border-bottom: none; margin-top: 8px; text-align: center; }
     .nav-cta { border-radius: 100px; padding: 12px 24px !important; }
     .hamburger { display: block; background: none; border: none; cursor: pointer; padding: 4px; }
     .lang-switch { margin: 0 6px 0 0; }
     .lang-btn { padding: 5px 9px; font-size: 10px; }
+    .nav-lang-item { display: none; }
+    nav.scrolled #lang-switch { display: none; }
+    .nav-links .nav-lang-item { display: block; padding-top: 4px; }
+    .nav-links .nav-lang-item .lang-switch { justify-content: center; margin: 0 auto; width: fit-content; background: rgba(61,43,61,0.06); }
+    .nav-links .nav-lang-item .lang-btn { padding: 8px 20px; font-size: 12px; }
 
     .hero { min-height: 100svh; }
     .hero-left { padding: 100px 24px 60px 24px; max-width: 100%; }
@@ -984,7 +999,13 @@
     <li><a href="#cakes-section" data-i18n="nav.cakes" onclick="closeMobileMenu()">Торты</a></li>
     <li><a href="#berry-section" data-i18n="nav.berries" onclick="closeMobileMenu()">Клубника</a></li>
     <li><a href="care.html" data-i18n="nav.care" onclick="closeMobileMenu()">Уход за букетом</a></li>
-    <li><a href="https://wa.me/77751596448?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D1%83%D1%8E%2C%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%B2%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B1%D1%83%D0%BA%D0%B5%D1%82%20%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2" target="_blank" rel="noopener" class="nav-cta" id="nav-cta-link" data-i18n="nav.cta" onclick="closeMobileMenu()">Заказать</a></li>
+    <li class="nav-cta-item"><a href="https://wa.me/77751596448?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D1%83%D1%8E%2C%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%20%D0%B2%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B1%D1%83%D0%BA%D0%B5%D1%82%20%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2" target="_blank" rel="noopener" class="nav-cta" id="nav-cta-link" data-i18n="nav.cta" onclick="closeMobileMenu()">Заказать</a></li>
+    <li class="nav-lang-item">
+      <div class="lang-switch" id="lang-switch-menu">
+        <button class="lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+    </li>
   </ul>
   <div class="lang-switch" id="lang-switch">
     <button class="lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
@@ -1523,7 +1544,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getFirestore, collection, onSnapshot, query, orderBy, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCx-DRwfRk0HReel2_sSKCNjbQ8Qr0OK0Q",
@@ -1536,6 +1557,18 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// ── VISIT TRACKING ───────────────────────────────────────────────────────────
+// Best-effort daily visit counter, written to Firestore so the admin panel can
+// show a simple stats page. Requires the 'analytics' collection to be writable
+// by anyone (no auth) in Firestore security rules — if that's not set up, this
+// silently fails and the rest of the site is unaffected.
+(function trackVisit() {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    setDoc(doc(db, 'analytics', today), { date: today, views: increment(1), home: increment(1) }, { merge: true }).catch(() => {});
+  } catch (e) {}
+})();
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function jsq(s) { return String(s==null?'':s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' '); }

@@ -600,18 +600,19 @@
   }
 
   .btn-order {
-    background: var(--rose);
-    color: var(--plum);
+    background: var(--sale);
+    color: #fff;
     border: none;
     border-radius: 100px;
-    padding: 8px 18px;
+    padding: 9px 20px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 14px rgba(217,66,107,0.35);
   }
-  .btn-order:hover { background: var(--lavender); }
+  .btn-order:hover { background: #c22f5a; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(217,66,107,0.45); }
 
   /* PROMO / SALE SECTION */
   .promo-section {
@@ -1135,7 +1136,7 @@
     <p style="font-size:14px; color:var(--text-muted); font-weight:300; line-height:1.75; margin:0 auto 26px; max-width:480px;" data-i18n="catalog.custom.desc">
       Каталог — это лишь часть возможного. Напишите нам, и мы поможем подобрать готовый вариант или соберём букет специально под ваш повод, вкус и бюджет.
     </p>
-    <a href="https://wa.me/77751596448?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9D%D0%B5%20%D0%BD%D0%B0%D1%88%D0%BB%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B9%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%20%D0%B2%20%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5%20%E2%80%94%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BF%D0%BE%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B8%D0%BB%D0%B8%20%D1%81%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B1%D1%83%D0%BA%D0%B5%D1%82%20%D0%BF%D0%BE%D0%B4%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;" data-i18n="catalog.custom.btn">Написать нам</a>
+    <a href="https://wa.me/77751596448?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9D%D0%B5%20%D0%BD%D0%B0%D1%88%D0%BB%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B9%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%20%D0%B2%20%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5%20%E2%80%94%20%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BF%D0%BE%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B8%D0%BB%D0%B8%20%D1%81%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%B1%D1%83%D0%BA%D0%B5%D1%82%20%D0%BF%D0%BE%D0%B4%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7" target="_blank" rel="noopener" style="display:inline-block; background:var(--sale); color:#fff; padding:16px 40px; border-radius:100px; font-size:14px; font-weight:600; letter-spacing:0.04em; text-decoration:none; box-shadow:0 8px 22px rgba(217,66,107,0.35); transition:background 0.2s, transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.background='#c22f5a';this.style.transform='translateY(-1px)';this.style.boxShadow='0 10px 26px rgba(217,66,107,0.45)';" onmouseout="this.style.background='var(--sale)';this.style.transform='none';this.style.boxShadow='0 8px 22px rgba(217,66,107,0.35)';" data-i18n="catalog.custom.btn">Написать нам</a>
   </div>
 </section>
 

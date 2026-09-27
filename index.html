@@ -1811,26 +1811,34 @@ function framing(item) {
 }
 
 function bouquetCard(b) {
-  const price = b.price ? b.price.toLocaleString('ru') : '—';
+  // A bouquet that's also on sale (promo section) keeps that discounted
+  // price here too, so the number is consistent everywhere it appears.
+  const hasSale = b.salePrice && b.price && b.salePrice < b.price;
+  const displayPrice = hasSale ? b.salePrice : b.price;
+  const price = displayPrice ? displayPrice.toLocaleString('ru') : '—';
   const name = loc(b, 'name'), desc = loc(b, 'desc');
   const fr = framing(b);
   const img = b.photoUrl
     ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
-  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}',${b.price||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const priceHtml = hasSale
+    ? `<span class="promo-price-old" style="display:block;margin-bottom:2px;">${window.priceNumber(b.price)}</span><span style="color:var(--sale)">${window.priceHTML(displayPrice)}</span>`
+    : window.priceHTML(b.price);
   return `
     <div class="product-card" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
         ${img}
         <div class="product-badge">${b.code||''}</div>
+        ${hasSale ? `<div class="promo-badge">🏷️ ${window.t('promo.sale')}</div>` : ''}
       </div>
       <div class="product-body">
         <div class="product-code">${b.code||''}</div>
         <div class="product-name">${name}</div>
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
-          <div class="product-price">${window.priceHTML(b.price)}</div>
+          <div class="product-price">${priceHtml}</div>
           <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
         </div>
       </div>

@@ -1232,6 +1232,13 @@
         <div class="note-text" data-i18n="delivery.note3text">Напишите нам в <a href="https://wa.me/77751596448" target="_blank" style="color:var(--plum);text-decoration:underline;text-underline-offset:3px;">WhatsApp</a> или позвоните — уточним время и адрес доставки.</div>
       </div>
     </div>
+    <div class="delivery-note">
+      <div class="note-icon">💳</div>
+      <div>
+        <div class="note-title" data-i18n="delivery.note4title">Способы оплаты</div>
+        <div class="note-text" data-i18n="delivery.note4text">Наличными, любой картой, Kaspi, Kaspi Red, Western Union, PayPal, переводом на счёт, а также по безналичному расчёту для юридических лиц.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1430,6 +1437,8 @@
       'delivery.note2text': 'Каждый букет упакован во влажную упаковку и защитную обёртку, чтобы цветы доехали свежими и красивыми.',
       'delivery.note3title': 'Оформить заказ',
       'delivery.note3text': 'Напишите нам в <a href="https://wa.me/77751596448" target="_blank" style="color:var(--plum);text-decoration:underline;text-underline-offset:3px;">WhatsApp</a> или позвоните — уточним время и адрес доставки.',
+      'delivery.note4title': 'Способы оплаты',
+      'delivery.note4text': 'Наличными, любой картой, Kaspi, Kaspi Red, Western Union, PayPal, переводом на счёт, а также по безналичному расчёту для юридических лиц.',
       'about.eyebrow': 'Почему FLOMART',
       'about.title': 'Цветы — это<br>язык чувств',
       'about.item1title': 'Свежие цветы каждый день',
@@ -1520,6 +1529,8 @@
       'delivery.note2text': 'Every bouquet is wrapped with a water pack and protective sleeve, so the flowers arrive fresh and beautiful.',
       'delivery.note3title': 'Placing an order',
       'delivery.note3text': 'Message us on <a href="https://wa.me/77751596448" target="_blank" style="color:var(--plum);text-decoration:underline;text-underline-offset:3px;">WhatsApp</a> or call us — we\'ll confirm the time and delivery address.',
+      'delivery.note4title': 'Payment methods',
+      'delivery.note4text': 'Cash, any card, Kaspi, Kaspi Red, Western Union, PayPal, bank transfer, and invoicing for legal entities (B2B).',
       'about.eyebrow': 'Why FLOMART',
       'about.title': 'Flowers are<br>a language of feeling',
       'about.item1title': 'Fresh flowers every day',
@@ -1592,6 +1603,7 @@
     window.currentLang = lang;
     try { localStorage.setItem('flomart_lang', lang); } catch (e) {}
     window.applyI18n();
+    if (window.updateDeliveryNote) window.updateDeliveryNote();
     window.dispatchEvent(new Event('flomart-lang-change'));
   };
 
@@ -1643,6 +1655,25 @@
     }
     return Number(amount).toLocaleString('ru');
   };
+
+  // Delivery pricing note: on the English site, show the USD estimate
+  // (rounded up, from the live rate) alongside the tenge amount — the
+  // generic data-i18n text is only the initial/no-JS fallback here.
+  window.DELIVERY_FROM_KZT = 2000;
+  window.DELIVERY_FREE_THRESHOLD_KZT = 45000;
+  window.updateDeliveryNote = function() {
+    const el = document.querySelector('[data-i18n="delivery.note1text"]');
+    if (!el) return;
+    const from = window.DELIVERY_FROM_KZT, threshold = window.DELIVERY_FREE_THRESHOLD_KZT;
+    if (window.currentLang === 'en') {
+      const fromUsd = Math.ceil(from / window.usdRate);
+      const threshUsd = Math.ceil(threshold / window.usdRate);
+      el.innerHTML = 'Delivery across the city — from <strong>$' + fromUsd + '</strong> (' + from.toLocaleString('en-US') + ' KZT). Free delivery on orders over <strong>$' + threshUsd + '</strong> (' + threshold.toLocaleString('en-US') + ' KZT).';
+    } else {
+      el.innerHTML = 'Доставка по городу — от <strong>' + from.toLocaleString('ru') + ' тг</strong>. При заказе от <strong>' + threshold.toLocaleString('ru') + ' тг</strong> — доставка бесплатно.';
+    }
+  };
+  window.updateDeliveryNote();
 </script>
 
 <script type="module">
@@ -1944,6 +1975,10 @@ const DEFAULT_SITE_CATEGORIES = [
 function catLabel(c) {
   return (window.currentLang === 'en' && c.labelEn) ? c.labelEn : (c.label || c.key);
 }
+function bqCategories(b) {
+  return (b.categories && b.categories.length) ? b.categories : [b.category];
+}
+
 function renderCatTabs() {
   const cats = siteCategories.length ? siteCategories : DEFAULT_SITE_CATEGORIES;
   const tabsEl = document.getElementById('cat-tabs');
@@ -1963,7 +1998,7 @@ function renderBouquetsFromState() {
     if (bo != null) return 1;
     return (a.code||'').localeCompare(b.code||'','ru');
   });
-  const visible = bouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category));
+  const visible = bouquets.filter(b => !isHiddenItem(b) && bqCategories(b).some(isCategoryEnabled));
 
   // If the category currently filtered on was disabled or deleted, fall back to "Все"
   if (bqSiteFilter !== 'all') {
@@ -1971,7 +2006,7 @@ function renderBouquetsFromState() {
     if (!stillExists || !isCategoryEnabled(bqSiteFilter)) bqSiteFilter = 'all';
   }
 
-  let shown = bqSiteFilter === 'all' ? visible : visible.filter(b => b.category === bqSiteFilter);
+  let shown = bqSiteFilter === 'all' ? visible : visible.filter(b => bqCategories(b).includes(bqSiteFilter));
   if (bqSortMode === 'price-asc') shown = [...shown].sort((a,b) => (a.price||0) - (b.price||0));
   else if (bqSortMode === 'price-desc') shown = [...shown].sort((a,b) => (b.price||0) - (a.price||0));
   const cards = shown.map(bouquetCard);
@@ -1986,7 +2021,7 @@ function renderBouquetsFromState() {
     if (tab === 'all') return;
     const enabled = isCategoryEnabled(tab);
     btn.style.display = enabled ? '' : 'none';
-    const count = visible.filter(b => b.category === tab).length;
+    const count = visible.filter(b => bqCategories(b).includes(tab)).length;
     btn.textContent = btn.textContent.replace(/\s*\(\d+\)/, '') + (count ? ` (${count})` : '');
   });
 
@@ -2196,6 +2231,7 @@ window.addEventListener('flomart-rate-ready', () => {
   if (badge && siteSettings && siteSettings.bentoPrice) {
     badge.innerHTML = window.priceHTML(siteSettings.bentoPrice);
   }
+  if (window.updateDeliveryNote) window.updateDeliveryNote();
 });
 </script>
 

@@ -1870,7 +1870,7 @@ function promoCard(b) {
       <div class="product-body">
         <div class="product-code">${b.code||''}</div>
         <div class="product-name">${name}</div>
-        ${b.comboLabel ? `<div class="promo-combo-text">🎁 ${b.comboLabel}</div>` : `<div class="product-composition">${desc||''}</div>`}
+        ${b.comboLabel ? `<div class="promo-combo-text">🎁 ${loc(b,'comboLabel')}</div>` : `<div class="product-composition">${desc||''}</div>`}
         <div class="product-footer">
           <div>${priceHtml}</div>
           <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>

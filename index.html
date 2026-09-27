@@ -600,6 +600,17 @@
     color: var(--text-muted);
   }
 
+  .price-kzt-sub {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 2px;
+    opacity: 0.85;
+  }
+  .promo-price-new .price-kzt-sub { color: inherit; opacity: 0.6; }
+
   .btn-order {
     background: var(--sale);
     color: #fff;
@@ -1585,6 +1596,53 @@
   };
 
   window.applyI18n();
+
+  // ── USD conversion for the English version ─────────────────────────────
+  // Prices are entered in tenge; on the English site we additionally show
+  // an approximate USD price (rounded UP) next to the tenge amount, using
+  // a live exchange rate fetched from a free, no-key API and cached for a
+  // few hours so we don't refetch on every page view.
+  window.usdRate = 450; // sane fallback if the API is unreachable
+  try {
+    const cached = JSON.parse(localStorage.getItem('flomart_usd_rate') || 'null');
+    if (cached && cached.rate && (Date.now() - cached.ts < 6 * 60 * 60 * 1000)) {
+      window.usdRate = cached.rate;
+    }
+  } catch (e) {}
+
+  fetch('https://open.er-api.com/v6/latest/USD')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      const rate = data && data.rates && data.rates.KZT;
+      if (rate) {
+        window.usdRate = rate;
+        try { localStorage.setItem('flomart_usd_rate', JSON.stringify({ rate: rate, ts: Date.now() })); } catch (e) {}
+        window.dispatchEvent(new Event('flomart-rate-ready'));
+      }
+    })
+    .catch(function() {});
+
+  // Full price with currency, e.g. "16 400 тг" (ru) or
+  // "$17 <small>16 400 KZT</small>" (en, USD rounded up from live rate).
+  window.priceHTML = function(amount) {
+    if (amount == null || amount === '') return '';
+    const kztLabel = Number(amount).toLocaleString('ru') + ' ' + window.t('js.currency');
+    if (window.currentLang === 'en') {
+      const usd = Math.ceil(Number(amount) / window.usdRate);
+      return '$' + usd + '<span class="price-kzt-sub">' + kztLabel + '</span>';
+    }
+    return kztLabel;
+  };
+
+  // Bare number only (no currency word), for compact spots like a
+  // crossed-out old price: "16 400" (ru) or "$17" (en).
+  window.priceNumber = function(amount) {
+    if (amount == null || amount === '') return '';
+    if (window.currentLang === 'en') {
+      return '$' + Math.ceil(Number(amount) / window.usdRate);
+    }
+    return Number(amount).toLocaleString('ru');
+  };
 </script>
 
 <script type="module">
@@ -1649,7 +1707,7 @@ function bouquetCard(b) {
     ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
-  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}','${jsq(price)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}',${b.price||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
     <div class="product-card" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -1661,7 +1719,7 @@ function bouquetCard(b) {
         <div class="product-name">${name}</div>
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
-          <div class="product-price">${price} <span>${window.t('js.currency')}</span></div>
+          <div class="product-price">${window.priceHTML(b.price)}</div>
           <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
         </div>
       </div>
@@ -1679,11 +1737,11 @@ function promoCard(b) {
     ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
-  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}','${jsq(priceStr)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(b.photoUrl)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   const badgeText = hasSalePrice && b.comboLabel ? `🏷️🎁 ${window.t('promo.sale')}` : hasSalePrice ? `🏷️ ${window.t('promo.sale')}` : `🎁 ${window.t('promo.combo')}`;
   const priceHtml = hasSalePrice
-    ? `<div class="promo-price-old">${price.toLocaleString('ru')}</div><div class="promo-price-new">${priceStr} <span>${window.t('js.currency')}</span></div>`
-    : `<div class="promo-price-new no-discount">${priceStr} <span>${window.t('js.currency')}</span></div>`;
+    ? `<div class="promo-price-old">${window.priceNumber(price)}</div><div class="promo-price-new">${window.priceHTML(displayPrice)}</div>`
+    : `<div class="promo-price-new no-discount">${window.priceHTML(displayPrice)}</div>`;
   return `
     <div class="promo-card" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -1745,7 +1803,7 @@ onSnapshot(collection(db, 'settings'), snap => {
   siteSettings.berryPrice = merged.berryPrice || 1000;
   siteSettings.bentoPrice = merged.bentoPrice || 5000;
   const badge = document.getElementById('bento-base-price');
-  if (badge) badge.textContent = siteSettings.bentoPrice.toLocaleString('ru');
+  if (badge) badge.innerHTML = window.priceHTML(siteSettings.bentoPrice);
 });
 
 function calcAutoPrice(item) {
@@ -1763,7 +1821,8 @@ function locFilling(f) {
 }
 
 function cakeCard(c) {
-  const price = (c.autoPrice && c.ingredients?.length ? calcAutoPrice(c) : (c.price||siteSettings.bentoPrice)).toLocaleString('ru');
+  const rawPrice = c.autoPrice && c.ingredients?.length ? calcAutoPrice(c) : (c.price||siteSettings.bentoPrice);
+  const price = rawPrice.toLocaleString('ru');
   const name = loc(c, 'name'), desc = loc(c, 'desc');
   const filling = locFilling(c.filling);
   const fr = framing(c);
@@ -1771,7 +1830,7 @@ function cakeCard(c) {
     ? `<img src="${c.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FDE8EF,#F5C8DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🎂</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${filling}, ${price} ${window.t('js.currency')}`;
-  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}','${jsq(price)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.85);" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -1783,7 +1842,7 @@ function cakeCard(c) {
         <div class="product-name">${name}</div>
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
-          <div class="product-price">${price} <span>${window.t('js.currency')}</span></div>
+          <div class="product-price">${window.priceHTML(rawPrice)}</div>
           <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
         </div>
       </div>
@@ -2041,7 +2100,7 @@ function berryCard(b) {
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FFE8EE,#FFD0DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🍓</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${price}`;
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
-  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}','${jsq(viewPrice)}','${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}',${calcPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs})">
       <div class="product-img">
@@ -2053,7 +2112,7 @@ function berryCard(b) {
         <div class="product-name">${name}</div>
         <div class="product-composition">${desc || ''}</div>
         <div class="product-footer">
-          <div class="product-price">${b.price ? b.price.toLocaleString('ru') + ' <span>' + window.t('js.currency') + '</span>' : '<span style="font-size:14px">' + window.t('js.askPrice') + '</span>'}</div>
+          <div class="product-price">${b.price ? window.priceHTML(b.price) : '<span style="font-size:14px">' + window.t('js.askPrice') + '</span>'}</div>
           <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
         </div>
       </div>
@@ -2125,6 +2184,19 @@ window.addEventListener('flomart-lang-change', () => {
   renderCakesFromState();
   renderBerriesFromState();
 });
+
+// Re-render prices once the live USD/KZT exchange rate arrives (the first
+// paint uses a fallback rate so the page isn't blocked on the network).
+window.addEventListener('flomart-rate-ready', () => {
+  renderBouquetsFromState();
+  renderPromoFromState();
+  renderCakesFromState();
+  renderBerriesFromState();
+  const badge = document.getElementById('bento-base-price');
+  if (badge && siteSettings && siteSettings.bentoPrice) {
+    badge.innerHTML = window.priceHTML(siteSettings.bentoPrice);
+  }
+});
 </script>
 
 <script>
@@ -2166,7 +2238,7 @@ window.addEventListener('flomart-lang-change', () => {
     document.getElementById('view-modal-code').textContent = code || '';
     document.getElementById('view-modal-name').textContent = name || '';
     document.getElementById('view-modal-desc').textContent = desc || '';
-    document.getElementById('view-modal-price').innerHTML = price ? `${price} <span style="font-size:13px;font-weight:300;font-family:Inter;color:var(--text-muted)">${window.t('js.currency')}</span>` : '';
+    document.getElementById('view-modal-price').innerHTML = price ? window.priceHTML(price) : '';
     const btn = document.getElementById('view-modal-order-btn');
     btn.onclick = function() { closeViewModal(); orderItem(orderText); };
     document.getElementById('view-modal').style.display = 'flex';

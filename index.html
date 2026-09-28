@@ -1714,14 +1714,30 @@
     })
     .catch(function() {});
 
+  // Small safety margin added on top of the raw converted USD amount, so
+  // exchange-rate swings between the moment a customer sees the price and
+  // the moment we actually get paid don't leave us short. Bigger bouquets
+  // get a bigger cushion. Applied everywhere a KZT amount becomes USD.
+  window.usdBuffer = function(usd) {
+    if (usd < 20) return 2;
+    if (usd < 50) return 3;
+    if (usd < 100) return 5;
+    if (usd < 200) return 7;
+    return 10;
+  };
+  window.toUsd = function(amount) {
+    const usd = Math.ceil(Number(amount) / window.usdRate);
+    return usd + window.usdBuffer(usd);
+  };
+
   // Full price with currency, e.g. "16 400 тг" (ru) or
-  // "$17 <small>16 400 KZT</small>" (en, USD rounded up from live rate).
+  // "$17 <small>16 400 KZT</small>" (en, USD rounded up from live rate,
+  // plus a small safety margin — see window.usdBuffer above).
   window.priceHTML = function(amount) {
     if (amount == null || amount === '') return '';
     const kztLabel = Number(amount).toLocaleString('ru') + ' ' + window.t('js.currency');
     if (window.currentLang === 'en') {
-      const usd = Math.ceil(Number(amount) / window.usdRate);
-      return '$' + usd + '<span class="price-kzt-sub">' + kztLabel + '</span>';
+      return '$' + window.toUsd(amount) + '<span class="price-kzt-sub">' + kztLabel + '</span>';
     }
     return kztLabel;
   };
@@ -1731,7 +1747,7 @@
   window.priceNumber = function(amount) {
     if (amount == null || amount === '') return '';
     if (window.currentLang === 'en') {
-      return '$' + Math.ceil(Number(amount) / window.usdRate);
+      return '$' + window.toUsd(amount);
     }
     return Number(amount).toLocaleString('ru');
   };
@@ -1746,8 +1762,8 @@
     if (!el) return;
     const from = window.DELIVERY_FROM_KZT, threshold = window.DELIVERY_FREE_THRESHOLD_KZT;
     if (window.currentLang === 'en') {
-      const fromUsd = Math.ceil(from / window.usdRate);
-      const threshUsd = Math.ceil(threshold / window.usdRate);
+      const fromUsd = window.toUsd(from);
+      const threshUsd = window.toUsd(threshold);
       el.innerHTML = 'Delivery across the city — from <strong>$' + fromUsd + '</strong> (' + from.toLocaleString('en-US') + ' KZT). Free delivery on orders over <strong>$' + threshUsd + '</strong> (' + threshold.toLocaleString('en-US') + ' KZT).';
     } else {
       el.innerHTML = 'Доставка по городу — от <strong>' + from.toLocaleString('ru') + ' тг</strong>. При заказе от <strong>' + threshold.toLocaleString('ru') + ' тг</strong> — доставка бесплатно.';

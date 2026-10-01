@@ -678,6 +678,30 @@
     height: 100%;
   }
   .promo-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(217,66,107,0.26); }
+  /* Promo cards were leaving a big empty gap between the name/combo-text and the
+     price+button whenever a card's text was shorter than its row-mates (the footer
+     is pinned to the bottom so every card lines up). Tighten the text block and cap
+     the name/description at two lines so that gap stays small and the photo + price
+     stay the visual focus, with everything else compact underneath. */
+  .promo-card .product-body { padding: 16px 18px 18px; }
+  .promo-card .product-code { margin-bottom: 4px; }
+  .promo-card .product-name {
+    font-size: 17px;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .promo-card .promo-combo-text { margin-bottom: 10px; }
+  .promo-card .product-composition {
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .promo-card .product-footer { padding-top: 8px; }
   .promo-badge {
     position: absolute;
     top: 14px;
@@ -730,7 +754,7 @@
   }
   .promo-price-new.no-discount span { color: var(--text-muted); opacity: 1; }
   @media (max-width: 640px) {
-    .promo-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .promo-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
     .promo-price-new { font-size: 22px; }
     .promo-combo-text { font-size: 10.5px; }
   }
@@ -1949,7 +1973,7 @@ function renderPromoFromState() {
   }
   section.style.display = '';
   grid.innerHTML = items.map(promoCard).join('');
-  fitGridColumns(grid, gridMinPx(260, 150));
+  fitGridColumns(grid, gridMinPx(260, 190));
 }
 
 let siteFlowers = [];
@@ -2055,7 +2079,7 @@ window.addEventListener('resize', () => {
   gridReflowTimer = setTimeout(() => {
     document.querySelectorAll('[id^="catalog-"]').forEach(el => fitGridColumns(el, el.id === 'catalog-cakes' || el.id === 'catalog-berries' ? 240 : 260));
     const promo = document.getElementById('promo-grid');
-    if (promo) fitGridColumns(promo, gridMinPx(260, 150));
+    if (promo) fitGridColumns(promo, gridMinPx(260, 190));
   }, 150);
 });
 

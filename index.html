@@ -1415,7 +1415,11 @@
 <div id="view-modal" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(61,43,61,0.55); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:24px;">
   <div style="background:var(--cream); border-radius:24px; overflow:hidden; max-width:480px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
     <button onclick="closeViewModal()" style="position:absolute; top:16px; right:16px; background:rgba(253,248,245,0.85); border:none; cursor:pointer; color:var(--plum); font-size:18px; width:34px; height:34px; border-radius:50%; z-index:2;">✕</button>
-    <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden;"></div>
+    <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden; position:relative;">
+      <div id="view-modal-img-inner" style="width:100%; height:100%;"></div>
+      <button id="view-modal-prev" onclick="event.stopPropagation();window.__viewModalPrev()" aria-label="Previous photo" style="display:none; position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">‹</button>
+      <button id="view-modal-next" onclick="event.stopPropagation();window.__viewModalNext()" aria-label="Next photo" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">›</button>
+    </div>
     <div id="view-modal-thumbs" style="display:none; gap:8px; padding:12px 32px 0; overflow-x:auto;"></div>
     <div style="padding:28px 32px 32px;">
       <div id="view-modal-code" style="font-size:11px; color:var(--text-muted); letter-spacing:0.08em; margin-bottom:6px;"></div>
@@ -2416,17 +2420,21 @@ window.addEventListener('flomart-rate-ready', () => {
   // all of them here instead of just the card's cover photo.
   function openViewModal(photosArg, emoji, code, name, desc, price, orderText, zoom, posX, posY) {
     const photos = String(photosArg || '').split('|||').filter(Boolean);
-    const imgBox = document.getElementById('view-modal-img');
+    const imgInner = document.getElementById('view-modal-img-inner');
     const thumbsEl = document.getElementById('view-modal-thumbs');
+    const prevBtn = document.getElementById('view-modal-prev');
+    const nextBtn = document.getElementById('view-modal-next');
     const z = zoom || 1, x = posX != null ? posX : 50, y = posY != null ? posY : 50;
+    let current = 0;
 
     function renderMain(idx) {
-      const src = photos[idx];
-      imgBox.innerHTML = src
-        ? `<img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${idx === 0 ? `object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%;` : ''}">`
+      current = ((idx % photos.length) + photos.length) % photos.length;
+      const src = photos[current];
+      imgInner.innerHTML = src
+        ? `<img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${current === 0 ? `object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%;` : ''}">`
         : `<div class="product-img-bg" style="width:100%;height:100%;background:linear-gradient(145deg,var(--rose),#d8b0c0);">${emoji||'💐'}</div>`;
       thumbsEl.querySelectorAll('.view-thumb').forEach((t, i) => {
-        t.style.borderColor = i === idx ? 'var(--plum)' : 'transparent';
+        t.style.borderColor = i === current ? 'var(--plum)' : 'transparent';
       });
     }
 
@@ -2435,10 +2443,16 @@ window.addEventListener('flomart-rate-ready', () => {
       thumbsEl.innerHTML = photos.map((src, i) =>
         `<div class="view-thumb" onclick="event.stopPropagation();window.__viewModalGoto(${i})" style="width:56px;height:56px;border-radius:10px;overflow:hidden;flex-shrink:0;cursor:pointer;border:2px solid transparent;"><img src="${src}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>`
       ).join('');
+      prevBtn.style.display = 'flex';
+      nextBtn.style.display = 'flex';
       window.__viewModalGoto = renderMain;
+      window.__viewModalPrev = () => renderMain(current - 1);
+      window.__viewModalNext = () => renderMain(current + 1);
     } else {
       thumbsEl.style.display = 'none';
       thumbsEl.innerHTML = '';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
     }
 
     renderMain(0);

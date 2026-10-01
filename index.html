@@ -2098,7 +2098,20 @@ function fitGridColumns(el, minPx, gap) {
     const twoRow = Math.ceil(count / 2);
     cols = twoRow <= maxFit ? twoRow : maxFit;
   }
-  el.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+  // When a filtered category only has a couple of results, stretching those
+  // 1-2 cards across the full (often very wide, desktop) row with 1fr looked
+  // like a bug — one giant photo filling the whole screen. Cap how wide a
+  // single column is allowed to grow and left-align the row instead of
+  // stretching it edge to edge whenever the row isn't "full" (fewer columns
+  // than would actually fit).
+  if (cols < maxFit) {
+    const maxPx = Math.round(minPx * 1.5);
+    el.style.gridTemplateColumns = `repeat(${cols}, minmax(${minPx}px, ${maxPx}px))`;
+    el.style.justifyContent = 'start';
+  } else {
+    el.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+    el.style.justifyContent = '';
+  }
 }
 window.fitGridColumns = fitGridColumns;
 

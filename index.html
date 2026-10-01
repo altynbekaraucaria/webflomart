@@ -1915,6 +1915,7 @@ function renderPromoFromState() {
   }
   section.style.display = '';
   grid.innerHTML = items.map(promoCard).join('');
+  fitGridColumns(grid, gridMinPx(260, 150));
 }
 
 let siteFlowers = [];
@@ -1987,6 +1988,43 @@ function cakeCard(c) {
 const PER_PAGE = 8;
 const bouquetPages = {}; // current page per category
 
+// Picks a column count so the grid always ends in a full (or near-full) row
+// instead of CSS auto-fill's usual look: a short last row left-aligned with
+// empty space trailing it. A single row's worth of items stretches to fill
+// the width; more than that splits as evenly as possible into two rows;
+// beyond two rows' worth, falls back to the normal max-columns-that-fit
+// behaviour (and just wraps as needed).
+function gridMinPx(desktopPx, mobilePx) {
+  return window.innerWidth <= 640 ? mobilePx : desktopPx;
+}
+function fitGridColumns(el, minPx, gap) {
+  if (!el) return;
+  const count = el.children.length;
+  if (!count) return;
+  gap = gap || 24;
+  const width = el.clientWidth || el.parentElement?.clientWidth || window.innerWidth;
+  const maxFit = Math.max(1, Math.floor((width + gap) / (minPx + gap)));
+  let cols;
+  if (count <= maxFit) {
+    cols = count;
+  } else {
+    const twoRow = Math.ceil(count / 2);
+    cols = twoRow <= maxFit ? twoRow : maxFit;
+  }
+  el.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+}
+window.fitGridColumns = fitGridColumns;
+
+let gridReflowTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(gridReflowTimer);
+  gridReflowTimer = setTimeout(() => {
+    document.querySelectorAll('[id^="catalog-"]').forEach(el => fitGridColumns(el, el.id === 'catalog-cakes' || el.id === 'catalog-berries' ? 240 : 260));
+    const promo = document.getElementById('promo-grid');
+    if (promo) fitGridColumns(promo, gridMinPx(260, 150));
+  }, 150);
+});
+
 function renderGrid(containerId, cards) {
   const el = document.getElementById(containerId);
   if (!el) return;
@@ -2009,8 +2047,8 @@ function renderGrid(containerId, cards) {
 
   el.innerHTML = slice.join('');
   el.style.display = 'grid';
-  el.style.gridTemplateColumns = 'repeat(auto-fill, minmax(260px, 1fr))';
   el.style.gap = '24px';
+  fitGridColumns(el, 260);
 
   if (!paginationEl) return;
   if (totalPages <= 1) { paginationEl.innerHTML = ''; return; }
@@ -2189,9 +2227,9 @@ function renderCakesFromState() {
     const start = (page - 1) * PER_PAGE;
     const slice = allCakes.slice(start, start + PER_PAGE);
     cakeGrid.style.display = 'grid';
-    cakeGrid.style.gridTemplateColumns = 'repeat(auto-fill,minmax(240px,1fr))';
     cakeGrid.style.gap = '24px';
     cakeGrid.innerHTML = slice.map(cakeCard).join('');
+    fitGridColumns(cakeGrid, 240);
 
     // Pagination buttons
     let btns = '';
@@ -2287,9 +2325,9 @@ function renderBerriesFromState() {
     currentPage = page;
     const slice = allBerries.slice((page-1)*PER_PAGE, page*PER_PAGE);
     grid.style.display = 'grid';
-    grid.style.gridTemplateColumns = 'repeat(auto-fill,minmax(240px,1fr))';
     grid.style.gap = '24px';
     grid.innerHTML = slice.map(berryCard).join('');
+    fitGridColumns(grid, 240);
 
     let btns = '';
     btns += `<button onclick="changeBerryPage(${page-1})" style="padding:8px 16px;border-radius:100px;border:1px solid var(--border);background:${page===1?'#eee':'var(--cream)'};color:${page===1?'#bbb':'var(--plum)'};cursor:${page===1?'default':'pointer'};font-family:Inter;font-size:13px;" ${page===1?'disabled':''}>${window.t('js.back')}</button>`;

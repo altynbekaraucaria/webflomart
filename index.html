@@ -1909,6 +1909,13 @@ function renderPromoFromState() {
   const onSale = (b) => (b.salePrice && b.price && b.salePrice < b.price) || b.comboLabel;
   const items = rawBouquets.filter(b => !isHiddenItem(b) && isCategoryEnabled(b.category) && onSale(b));
   items.sort((a,b) => {
+    // The admin's dedicated "Акции на главной" screen lets the order here be
+    // set independently of a bouquet's order inside its regular category —
+    // promoOrder wins when set; otherwise fall back to the general order.
+    const apo = a.promoOrder, bpo = b.promoOrder;
+    if (apo != null && bpo != null) return apo - bpo;
+    if (apo != null) return -1;
+    if (bpo != null) return 1;
     const ao = a.order, bo = b.order;
     if (ao != null && bo != null) return ao - bo;
     if (ao != null) return -1;

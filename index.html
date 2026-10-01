@@ -2098,13 +2098,15 @@ function fitGridColumns(el, minPx, gap) {
     const twoRow = Math.ceil(count / 2);
     cols = twoRow <= maxFit ? twoRow : maxFit;
   }
-  // When a filtered category only has a couple of results, stretching those
-  // 1-2 cards across the full (often very wide, desktop) row with 1fr looked
+  // When a filtered category only has 1-2 results total, stretching those
+  // lone cards across the full (often very wide, desktop) row with 1fr looked
   // like a bug — one giant photo filling the whole screen. Cap how wide a
-  // single column is allowed to grow and left-align the row instead of
-  // stretching it edge to edge whenever the row isn't "full" (fewer columns
-  // than would actually fit).
-  if (cols < maxFit) {
+  // card is allowed to grow and left-align the row in that specific case.
+  // Note: this must key off the actual result count, not "cols < maxFit" —
+  // an earlier version used that and ended up capping (and leaving a gap in)
+  // completely normal 3-4+ card rows too, any time the row didn't happen to
+  // exactly fill every available slot, which is the common case.
+  if (count <= 2) {
     const maxPx = Math.round(minPx * 1.5);
     el.style.gridTemplateColumns = `repeat(${cols}, minmax(${minPx}px, ${maxPx}px))`;
     el.style.justifyContent = 'start';

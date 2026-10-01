@@ -635,6 +635,11 @@
   }
   .btn-order:hover { background: #c22f5a; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(217,66,107,0.45); }
 
+  /* The "Заказать" button inside the bouquet detail (quick-view) modal sits next to a
+     large price and name, so the small catalog-card button size (and its further
+     mobile shrink below) reads as tiny there — give it its own bigger size. */
+  #view-modal-order-btn { padding: 14px 32px; font-size: 15px; white-space: nowrap; }
+
   /* PROMO / SALE SECTION */
   .promo-section {
     background: linear-gradient(135deg,#FDE8EF 0%,#F9F0F8 45%,#F0E8FF 100%);

@@ -1483,7 +1483,7 @@
 <div id="view-modal" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(61,43,61,0.55); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:24px;">
   <div style="background:var(--cream); border-radius:24px; overflow:hidden; max-width:480px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
     <button onclick="closeViewModal()" style="position:absolute; top:16px; right:16px; background:rgba(253,248,245,0.85); border:none; cursor:pointer; color:var(--plum); font-size:18px; width:34px; height:34px; border-radius:50%; z-index:2;">✕</button>
-    <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden; position:relative;">
+    <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden; position:relative; background:var(--warm-white);">
       <div id="view-modal-img-inner" style="width:100%; height:100%;"></div>
       <button id="view-modal-prev" onclick="event.stopPropagation();window.__viewModalPrev()" aria-label="Previous photo" style="display:none; position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">‹</button>
       <button id="view-modal-next" onclick="event.stopPropagation();window.__viewModalNext()" aria-label="Next photo" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">›</button>
@@ -2519,14 +2519,17 @@ window.addEventListener('flomart-rate-ready', () => {
     const thumbsEl = document.getElementById('view-modal-thumbs');
     const prevBtn = document.getElementById('view-modal-prev');
     const nextBtn = document.getElementById('view-modal-next');
-    const z = zoom || 1, x = posX != null ? posX : 50, y = posY != null ? posY : 50;
     let current = 0;
 
     function renderMain(idx) {
       current = ((idx % photos.length) + photos.length) % photos.length;
       const src = photos[current];
+      // Unlike the catalog thumbnail/promo cards, the detail view shows the
+      // whole photo uncropped (object-fit:contain) rather than the admin's
+      // card-crop framing -- that framing is only meant to fill a small
+      // square/portrait preview slot, and here there's room to see it all.
       imgInner.innerHTML = src
-        ? `<img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${current === 0 ? `object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%;` : ''}">`
+        ? `<img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:contain;display:block;">`
         : `<div class="product-img-bg" style="width:100%;height:100%;background:linear-gradient(145deg,var(--rose),#d8b0c0);">${emoji||'💐'}</div>`;
       thumbsEl.querySelectorAll('.view-thumb').forEach((t, i) => {
         t.style.borderColor = i === current ? 'var(--plum)' : 'transparent';

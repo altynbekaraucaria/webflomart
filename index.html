@@ -670,6 +670,7 @@
     overflow-y: auto;
     position: relative;
   }
+  .view-modal-img-box { aspect-ratio: 4/5; }
   .view-modal-info { padding: 28px 32px 32px; }
   @media (min-width: 821px) {
     .view-modal-panel {
@@ -679,13 +680,20 @@
       grid-template-columns: 1.15fr 1fr;
       align-items: stretch;
     }
-    .view-modal-media { position: relative; height: 100%; }
-    .view-modal-media #view-modal-img { height: 100%; aspect-ratio: auto; }
+    /* min-width/min-height:0 override Grid's default "don't shrink past
+       content size" rule -- without it, the photo's own intrinsic size (or
+       the thumbnail strip's natural row width) can blow the image column
+       out far past its 1.15fr share, crushing the details column into a
+       sliver with word-by-word-wrapped text, or even covering the whole
+       modal. Both columns must be allowed to shrink to fit their track. */
+    .view-modal-media { position: relative; height: 100%; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+    .view-modal-media .view-modal-img-box { aspect-ratio: auto; flex: 1; min-height: 0; }
     .view-modal-info {
       padding: 44px 44px 40px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
     .view-modal-info #view-modal-name { font-size: 32px; }
     .view-modal-info #view-modal-desc { font-size: 15px; }
@@ -1536,7 +1544,7 @@
   <div class="view-modal-panel">
     <button onclick="closeViewModal()" style="position:absolute; top:16px; right:16px; background:rgba(253,248,245,0.85); border:none; cursor:pointer; color:var(--plum); font-size:18px; width:34px; height:34px; border-radius:50%; z-index:2;">✕</button>
     <div class="view-modal-media">
-      <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden; position:relative; background:var(--warm-white);">
+      <div id="view-modal-img" class="view-modal-img-box" style="width:100%; overflow:hidden; position:relative; background:var(--warm-white);">
         <div id="view-modal-img-inner" style="width:100%; height:100%;"></div>
         <button id="view-modal-prev" onclick="event.stopPropagation();window.__viewModalPrev()" aria-label="Previous photo" style="display:none; position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">‹</button>
         <button id="view-modal-next" onclick="event.stopPropagation();window.__viewModalNext()" aria-label="Next photo" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">›</button>
@@ -2641,20 +2649,33 @@ window.addEventListener('flomart-rate-ready', () => {
     renderRelatedItems(triggerEl);
   }
 
-  // "You may also like": a handful of random other products pulled straight
-  // out of whatever catalog cards are already rendered on the page (main
-  // grid, cakes, berries, promo) -- reusing the DOM instead of re-fetching
-  // or re-computing prices means every quirk already handled by the real
-  // cards (sale prices, "ask for price", EN translations, auto-priced
-  // berries, etc.) just comes along for free. Clicking a suggestion simply
-  // clicks its real card behind the scenes, which re-opens this same modal
-  // with that product's own details (and its own fresh set of suggestions).
+  // "You may also like": a handful of random cake/berry add-ons (a bento
+  // cake, chocolate-covered strawberries) pulled straight out of whatever
+  // catalog cards are already rendered on the page -- reusing the DOM
+  // instead of re-fetching or re-computing prices means every quirk already
+  // handled by the real cards (sale prices, "ask for price", EN
+  // translations, auto-priced berries, etc.) just comes along for free.
+  // Clicking a suggestion simply clicks its real card behind the scenes,
+  // which re-opens this same modal with that product's own details (and
+  // its own fresh set of suggestions).
+  //
+  // Deliberately scoped to cakes/berries only, not other bouquets: these
+  // are the add-on items a customer is most likely to tack onto an order,
+  // and biased toward the cheaper half of them so the suggestion reads as
+  // an easy add-on rather than a second expensive purchase.
+  function cardPriceValue(el) {
+    const text = el.querySelector('.product-price, .promo-price-new')?.textContent || '';
+    const match = text.match(/\d[\d\s]*/);
+    return match ? parseInt(match[0].replace(/\s/g, ''), 10) : Infinity;
+  }
   function renderRelatedItems(excludeEl) {
     const section = document.getElementById('view-modal-related');
     const grid = document.getElementById('view-modal-related-grid');
     if (!section || !grid) return;
-    const pool = Array.from(document.querySelectorAll('.product-card, .promo-card'))
+    let pool = Array.from(document.querySelectorAll('#catalog-cakes .product-card, #catalog-berries .product-card'))
       .filter(el => el !== excludeEl && el.offsetParent !== null);
+    pool.sort((a, b) => cardPriceValue(a) - cardPriceValue(b));
+    pool = pool.slice(0, Math.max(4, Math.ceil(pool.length / 2))); // the cheaper half (or at least 4)
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pool[i], pool[j]] = [pool[j], pool[i]];

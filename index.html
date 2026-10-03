@@ -656,6 +656,53 @@
      mobile shrink below) reads as tiny there — give it its own bigger size. */
   #view-modal-order-btn { padding: 14px 32px; font-size: 15px; white-space: nowrap; }
 
+  /* Quick-view modal panel: a single scrolling column on phones (where it
+     already read fine), widening into a proper two-column layout — photo on
+     one side, details + "you may also like" on the other — on larger
+     screens, where the old fixed 480px card felt cramped and tiny. */
+  .view-modal-panel {
+    background: var(--cream);
+    border-radius: 24px;
+    overflow: hidden;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .view-modal-info { padding: 28px 32px 32px; }
+  @media (min-width: 821px) {
+    .view-modal-panel {
+      max-width: 960px;
+      max-height: 86vh;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      align-items: stretch;
+    }
+    .view-modal-media { position: relative; height: 100%; }
+    .view-modal-media #view-modal-img { height: 100%; aspect-ratio: auto; }
+    .view-modal-info {
+      padding: 44px 44px 40px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .view-modal-info #view-modal-name { font-size: 32px; }
+    .view-modal-info #view-modal-desc { font-size: 15px; }
+  }
+
+  .view-modal-related { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .view-modal-related-title { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+  .view-modal-related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (min-width: 821px) { .view-modal-related { margin-top: auto; } }
+  .view-related-thumb { cursor: pointer; }
+  .view-related-thumb-img { width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--warm-white); margin-bottom: 7px; transition: opacity 0.15s; }
+  .view-related-thumb:hover .view-related-thumb-img { opacity: 0.85; }
+  .view-related-thumb-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .view-related-thumb-img .product-img-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .view-related-thumb-name { font-size: 12px; color: var(--plum); font-weight: 500; line-height: 1.3; margin-bottom: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .view-related-thumb-price { font-size: 12px; color: var(--text-muted); }
+
   /* PROMO / SALE SECTION */
   .promo-section {
     background: linear-gradient(135deg,#FDE8EF 0%,#F9F0F8 45%,#F0E8FF 100%);
@@ -1486,21 +1533,27 @@
 
 <!-- PRODUCT VIEW MODAL -->
 <div id="view-modal" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(61,43,61,0.55); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:24px;">
-  <div style="background:var(--cream); border-radius:24px; overflow:hidden; max-width:480px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
+  <div class="view-modal-panel">
     <button onclick="closeViewModal()" style="position:absolute; top:16px; right:16px; background:rgba(253,248,245,0.85); border:none; cursor:pointer; color:var(--plum); font-size:18px; width:34px; height:34px; border-radius:50%; z-index:2;">✕</button>
-    <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden; position:relative; background:var(--warm-white);">
-      <div id="view-modal-img-inner" style="width:100%; height:100%;"></div>
-      <button id="view-modal-prev" onclick="event.stopPropagation();window.__viewModalPrev()" aria-label="Previous photo" style="display:none; position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">‹</button>
-      <button id="view-modal-next" onclick="event.stopPropagation();window.__viewModalNext()" aria-label="Next photo" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">›</button>
+    <div class="view-modal-media">
+      <div id="view-modal-img" style="width:100%; aspect-ratio:4/5; overflow:hidden; position:relative; background:var(--warm-white);">
+        <div id="view-modal-img-inner" style="width:100%; height:100%;"></div>
+        <button id="view-modal-prev" onclick="event.stopPropagation();window.__viewModalPrev()" aria-label="Previous photo" style="display:none; position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">‹</button>
+        <button id="view-modal-next" onclick="event.stopPropagation();window.__viewModalNext()" aria-label="Next photo" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">›</button>
+      </div>
+      <div id="view-modal-thumbs" style="display:none; gap:8px; padding:12px 32px 0; overflow-x:auto;"></div>
     </div>
-    <div id="view-modal-thumbs" style="display:none; gap:8px; padding:12px 32px 0; overflow-x:auto;"></div>
-    <div style="padding:28px 32px 32px;">
+    <div class="view-modal-info">
       <div id="view-modal-code" style="font-size:11px; color:var(--text-muted); letter-spacing:0.08em; margin-bottom:6px;"></div>
       <h3 id="view-modal-name" style="font-family:'Cormorant Garant',serif; font-size:28px; font-weight:300; color:var(--plum); margin-bottom:10px;"></h3>
       <p id="view-modal-desc" style="font-size:14px; color:var(--text-muted); line-height:1.7; font-weight:300; margin-bottom:20px;"></p>
       <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
         <div id="view-modal-price" class="product-price" style="font-size:24px;"></div>
         <button class="btn-order" id="view-modal-order-btn" data-i18n="modal.order">Заказать</button>
+      </div>
+      <div id="view-modal-related" class="view-modal-related" style="display:none;">
+        <div class="view-modal-related-title" data-i18n="modal.related">Вам может понравиться</div>
+        <div id="view-modal-related-grid" class="view-modal-related-grid"></div>
       </div>
     </div>
   </div>
@@ -1612,6 +1665,7 @@
       'contact.labelDelivery': 'Доставка',
       'contact.deliveryHours': '09:00 — 00:00, ежедневно',
       'modal.order': 'Заказать',
+      'modal.related': 'Вам может понравиться',
       'modal.title': 'Оформить заказ',
       'modal.subtitle': 'Свяжитесь с нами для оформления',
       'modal.whatsapp': 'Написать в WhatsApp',
@@ -1709,6 +1763,7 @@
       'contact.labelDelivery': 'Delivery hours',
       'contact.deliveryHours': '09:00 — 00:00, daily',
       'modal.order': 'Order',
+      'modal.related': 'You may also like',
       'modal.title': 'Place an order',
       'modal.subtitle': 'Contact us to complete your order',
       'modal.whatsapp': 'Message on WhatsApp',
@@ -1940,7 +1995,7 @@ function bouquetCard(b) {
     ? `<div class="promo-price-old">${window.priceNumber(b.price)}</div><div class="promo-price-new">${window.priceHTML(displayPrice)}</div>`
     : window.priceHTML(b.price);
   return `
-    <div class="product-card" onclick="openViewModal(${viewArgs})">
+    <div class="product-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
         <div class="product-badge">${b.code||''}</div>
@@ -1976,7 +2031,7 @@ function promoCard(b) {
     ? `<div class="promo-price-old">${window.priceNumber(price)}</div><div class="promo-price-new">${window.priceHTML(displayPrice)}</div>`
     : `<div class="promo-price-new no-discount">${window.priceHTML(displayPrice)}</div>`;
   return `
-    <div class="promo-card" onclick="openViewModal(${viewArgs})">
+    <div class="promo-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
         <div class="promo-badge">${badgeText}</div>
@@ -2073,7 +2128,7 @@ function cakeCard(c) {
   const orderText = `${name}, ${filling}, ${price} ${window.t('js.currency')}`;
   const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
-    <div class="product-card" style="background:rgba(255,255,255,0.85);" onclick="openViewModal(${viewArgs})">
+    <div class="product-card" style="background:rgba(255,255,255,0.85);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
         <div class="product-badge">${window.t('js.new')}</div>
@@ -2313,6 +2368,7 @@ onSnapshot(collection(db, 'categories'), snap => {
 
 onSnapshot(collection(db, 'bouquets'), snap => {
   rawBouquets = snap.docs.map(d => ({id:d.id,...d.data()}));
+  window.rawBouquets = rawBouquets; // exposed so the "you may also like" picker (a plain, non-module script) can read the live catalog
   renderBouquetsFromState();
   renderPromoFromState();
 });
@@ -2382,6 +2438,7 @@ function renderCakesFromState() {
 
 onSnapshot(collection(db, 'cakes'), snap => {
   rawCakes = snap.docs.map(d => ({id:d.id,...d.data()}));
+  window.rawCakes = rawCakes;
   renderCakesFromState();
 });
 
@@ -2399,7 +2456,7 @@ function berryCard(b) {
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
   const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}',${calcPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   return `
-    <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs})">
+    <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
         ${b.badge ? `<div class="product-badge">${b.badge}</div>` : `<div class="product-badge">${window.t('js.new')}</div>`}
@@ -2470,6 +2527,7 @@ function renderBerriesFromState() {
 
 onSnapshot(collection(db, 'berries'), snap => {
   rawBerries = snap.docs.map(d => ({id:d.id,...d.data()}));
+  window.rawBerries = rawBerries;
   renderBerriesFromState();
 });
 
@@ -2531,7 +2589,7 @@ window.addEventListener('flomart-rate-ready', () => {
   // strings, like cakes/berries with a single photo, just come through as a
   // one-item list) — this lets a bouquet with several uploaded photos show
   // all of them here instead of just the card's cover photo.
-  function openViewModal(photosArg, emoji, code, name, desc, price, orderText, zoom, posX, posY) {
+  function openViewModal(photosArg, emoji, code, name, desc, price, orderText, zoom, posX, posY, triggerEl) {
     const photos = String(photosArg || '').split('|||').filter(Boolean);
     const imgInner = document.getElementById('view-modal-img-inner');
     const thumbsEl = document.getElementById('view-modal-thumbs');
@@ -2579,6 +2637,46 @@ window.addEventListener('flomart-rate-ready', () => {
     const btn = document.getElementById('view-modal-order-btn');
     btn.onclick = function() { closeViewModal(); orderItem(orderText); };
     document.getElementById('view-modal').style.display = 'flex';
+    document.getElementById('view-modal').scrollTop = 0;
+    renderRelatedItems(triggerEl);
+  }
+
+  // "You may also like": a handful of random other products pulled straight
+  // out of whatever catalog cards are already rendered on the page (main
+  // grid, cakes, berries, promo) -- reusing the DOM instead of re-fetching
+  // or re-computing prices means every quirk already handled by the real
+  // cards (sale prices, "ask for price", EN translations, auto-priced
+  // berries, etc.) just comes along for free. Clicking a suggestion simply
+  // clicks its real card behind the scenes, which re-opens this same modal
+  // with that product's own details (and its own fresh set of suggestions).
+  function renderRelatedItems(excludeEl) {
+    const section = document.getElementById('view-modal-related');
+    const grid = document.getElementById('view-modal-related-grid');
+    if (!section || !grid) return;
+    const pool = Array.from(document.querySelectorAll('.product-card, .promo-card'))
+      .filter(el => el !== excludeEl && el.offsetParent !== null);
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    const picks = pool.slice(0, 4);
+    if (!picks.length) { section.style.display = 'none'; grid.innerHTML = ''; return; }
+    grid.innerHTML = '';
+    picks.forEach(sourceEl => {
+      const imgSrc = sourceEl.querySelector('.product-img img')?.getAttribute('src') || '';
+      const emojiBg = sourceEl.querySelector('.product-img-bg');
+      const name = sourceEl.querySelector('.product-name')?.textContent || '';
+      const priceHtml = sourceEl.querySelector('.product-price, .promo-price-new')?.innerHTML || '';
+      const thumb = document.createElement('div');
+      thumb.className = 'view-related-thumb';
+      thumb.innerHTML = `
+        <div class="view-related-thumb-img">${imgSrc ? `<img src="${imgSrc}" loading="lazy">` : (emojiBg ? emojiBg.outerHTML : '')}</div>
+        <div class="view-related-thumb-name">${name}</div>
+        <div class="view-related-thumb-price">${priceHtml}</div>`;
+      thumb.addEventListener('click', () => sourceEl.click());
+      grid.appendChild(thumb);
+    });
+    section.style.display = '';
   }
 
   function closeViewModal() {

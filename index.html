@@ -2383,6 +2383,52 @@ onSnapshot(collection(db, 'bouquets'), snap => {
 
 let rawCakes = [];
 
+// Each bento-cake "design" (мишка, цветы, с ягодами, etc.) only ever appears
+// as a name inside one dynamically-rendered card on this single page — there
+// is no separate URL per design for Google to index. Giving Google an
+// explicit Product list (name, photo, price) in structured data form, right
+// alongside that same content, makes those individual design names far more
+// likely to surface for long-tail searches ("бенто торт с мишкой Астана" and
+// similar) and makes them eligible for product rich results. This rebuilds
+// automatically from live Firestore data every time the catalog changes, so
+// it never needs manual upkeep when someone adds or renames a design in the
+// admin panel.
+function updateCakesStructuredData(items) {
+  let script = document.getElementById('cakes-structured-data');
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'cakes-structured-data';
+    document.head.appendChild(script);
+  }
+  if (!items || !items.length) {
+    script.textContent = '';
+    return;
+  }
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: window.currentLang === 'en' ? 'Bento cake designs — FLOMART Astana' : 'Дизайны бенто тортов — FLOMART Астана',
+    itemListElement: items.slice(0, 40).map((c, i) => {
+      const itemPrice = c.autoPrice && c.ingredients?.length ? calcAutoPrice(c) : (c.price || siteSettings.bentoPrice);
+      const item = {
+        '@type': 'Product',
+        name: loc(c, 'name'),
+        description: loc(c, 'desc') || undefined,
+        image: c.photoUrl || undefined,
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'KZT',
+          price: itemPrice,
+          availability: 'https://schema.org/InStock'
+        }
+      };
+      return { '@type': 'ListItem', position: i + 1, item };
+    })
+  };
+  script.textContent = JSON.stringify(data);
+}
+
 function renderCakesFromState() {
   const sortedCakes = [...rawCakes].sort((a,b) => {
     const ao = a.order, bo = b.order;
@@ -2392,6 +2438,7 @@ function renderCakesFromState() {
     return (a.name||'').localeCompare(b.name||'','ru');
   });
   const allCakes = sortedCakes.filter(c => !isHiddenItem(c));
+  updateCakesStructuredData(allCakes);
   const cakeGrid = document.getElementById('catalog-cakes');
   const pagination = document.getElementById('cakes-pagination');
   if (!cakeGrid) return;

@@ -631,6 +631,11 @@
     color: var(--plum);
     margin-bottom: 4px;
     line-height: 1.2;
+    min-height: 48px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .product-composition {
@@ -638,6 +643,11 @@
     color: var(--text-muted);
     margin-bottom: 16px;
     line-height: 1.5;
+    min-height: 36px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .product-footer {
@@ -797,6 +807,7 @@
   .promo-card .product-name {
     font-size: 17px;
     margin-bottom: 6px;
+    min-height: 41px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -805,6 +816,7 @@
   .promo-card .promo-combo-text { margin-bottom: 10px; }
   .promo-card .product-composition {
     margin-bottom: 10px;
+    min-height: 36px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1234,10 +1246,19 @@
     }
     .product-body { padding: 12px; }
     .product-code { font-size: 9px; margin-bottom: 3px; }
-    .product-name { font-size: 15px; margin-bottom: 3px; }
+    .product-name {
+      font-size: 15px;
+      margin-bottom: 3px;
+      min-height: 36px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     .product-composition {
       font-size: 10.5px;
       margin-bottom: 10px;
+      min-height: 32px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -2091,7 +2112,6 @@ function bouquetCard(b) {
     <div class="product-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
-        ${window.photoWatermarkHTML()}
         <div class="product-badge">${b.displayCode||''}</div>
         ${hasSale ? `<div class="promo-badge">🏷️ ${window.t('promo.sale')}</div>` : ''}
       </div>
@@ -2128,7 +2148,6 @@ function promoCard(b) {
     <div class="promo-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
-        ${window.photoWatermarkHTML()}
         <div class="promo-badge">${badgeText}</div>
       </div>
       <div class="product-body">
@@ -2626,7 +2645,6 @@ function berryCard(b) {
     <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
-        ${window.photoWatermarkHTML()}
         ${b.badge ? `<div class="product-badge">${b.badge}</div>` : `<div class="product-badge">${window.t('js.new')}</div>`}
       </div>
       <div class="product-body">

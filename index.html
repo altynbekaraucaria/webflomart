@@ -611,7 +611,7 @@
   }
 
   .product-body {
-    padding: 20px;
+    padding: 14px 16px 16px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -621,41 +621,32 @@
     font-size: 11px;
     color: var(--text-muted);
     letter-spacing: 0.08em;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .product-name {
     font-family: 'Cormorant Garant', serif;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 400;
     color: var(--plum);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     line-height: 1.2;
-    min-height: 48px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
   .product-composition {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    line-height: 1.5;
-    min-height: 36px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: none;
   }
 
   .product-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: auto;
-    padding-top: 12px;
+    margin-top: 6px;
+    padding-top: 0;
   }
 
   .product-price {
@@ -797,32 +788,30 @@
     height: 100%;
   }
   .promo-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(217,66,107,0.26); }
-  /* Promo cards were leaving a big empty gap between the name/combo-text and the
-     price+button whenever a card's text was shorter than its row-mates (the footer
-     is pinned to the bottom so every card lines up). Tighten the text block and cap
-     the name/description at two lines so that gap stays small and the photo + price
-     stay the visual focus, with everything else compact underneath. */
-  .promo-card .product-body { padding: 16px 18px 18px; }
-  .promo-card .product-code { margin-bottom: 4px; }
+  /* Photo is the focus here, not the text block underneath -- keep the name to
+     one short line, drop the description entirely (the combo label already says
+     what matters: "Бенто торт в подарок" etc.), and let the footer sit right
+     after the text instead of a fixed-height block, so the card is only ever as
+     tall as it needs to be. */
+  .promo-card .product-body { padding: 14px 16px 16px; }
+  .promo-card .product-code { margin-bottom: 2px; }
   .promo-card .product-name {
-    font-size: 17px;
-    margin-bottom: 6px;
-    min-height: 41px;
+    font-size: 16px;
+    margin-bottom: 2px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .promo-card .promo-combo-text { margin-bottom: 10px; }
-  .promo-card .product-composition {
-    margin-bottom: 10px;
-    min-height: 36px;
+  .promo-card .promo-combo-text {
+    margin-bottom: 4px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .promo-card .product-footer { padding-top: 8px; }
+  .promo-card .product-composition { display: none; }
+  .promo-card .product-footer { padding-top: 0; }
   .promo-badge {
     position: absolute;
     top: 14px;
@@ -1247,24 +1236,15 @@
     .product-body { padding: 12px; }
     .product-code { font-size: 9px; margin-bottom: 3px; }
     .product-name {
-      font-size: 15px;
-      margin-bottom: 3px;
-      min-height: 36px;
+      font-size: 14px;
+      margin-bottom: 2px;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .product-composition {
-      font-size: 10.5px;
-      margin-bottom: 10px;
-      min-height: 32px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .product-footer { flex-wrap: wrap; gap: 6px; }
+    .product-composition { display: none; }
+    .product-footer { flex-wrap: wrap; gap: 6px; margin-top: 4px; }
     .product-price { font-size: 15px; }
     .product-price span { font-size: 9.5px; }
     .btn-order { padding: 6px 12px; font-size: 10.5px; }

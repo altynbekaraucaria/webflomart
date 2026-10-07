@@ -117,11 +117,11 @@
 <link rel="alternate" hreflang="en" href="https://flomart.kz/en/">
 <link rel="alternate" hreflang="x-default" href="https://flomart.kz/">
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -829,15 +829,28 @@
   .view-modal-related-title { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
   .view-modal-related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
   @media (min-width: 821px) { .view-modal-related { margin-top: auto; } }
-  /* On phones the photo (aspect-ratio 4/5) ate most of the screen, pushing
-     "you may also like" far below the fold behind a lot of empty space.
-     Shorten the photo and tighten the surrounding spacing so the related
-     items are reachable with little or no scrolling. */
+  /* Keep the photo at its normal (uncropped, un-letterboxed) proportions —
+     squashing the box to 1:1 earlier just added grey bars on the sides for
+     a portrait photo. The empty space below is tightened separately so
+     "you may also like" stays reachable without needing to shrink the photo. */
+  .view-modal-code-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(253,248,245,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--plum);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .view-modal-code-badge:empty { display: none; }
   @media (max-width: 820px) {
-    .view-modal-img-box { aspect-ratio: 1/1; }
-    .view-modal-info { padding: 18px 20px 22px; }
+    .view-modal-info { padding: 16px 20px 20px; }
     #view-modal-desc:empty { display: none; margin-bottom: 0; }
-    .view-modal-related { margin-top: 16px; padding-top: 16px; }
+    .view-modal-related { margin-top: 10px; padding-top: 12px; }
   }
   .view-related-thumb { cursor: pointer; }
   .view-related-thumb-img { width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--warm-white); margin-bottom: 7px; transition: opacity 0.15s; }
@@ -1178,6 +1191,42 @@
     gap: 24px;
   }
 
+  .contact-award {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(242,196,206,0.25);
+    border-radius: 14px;
+    max-width: 420px;
+  }
+  .contact-award img {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .contact-award strong {
+    display: block;
+    font-family: 'Cormorant Garant', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--rose);
+    margin-bottom: 3px;
+  }
+  .contact-award span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  @media (max-width: 640px) {
+    .contact-award { max-width: 100%; }
+  }
+
   .contact-item {
     display: flex;
     gap: 20px;
@@ -1214,6 +1263,18 @@
   .contact-value a {
     color: var(--cream);
     text-decoration: none;
+  }
+
+  .whatsapp-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+    color: #25D366;
+    vertical-align: middle;
+    transform: translateY(-1px);
   }
 
   .instagram-link {
@@ -1259,6 +1320,8 @@
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+
+
 
   /* HIDDEN TAB PANELS */
   .catalog-loading { display:flex; align-items:center; justify-content:center; min-height:200px; grid-column:1/-1; }
@@ -1619,6 +1682,13 @@
       </svg>
       @flomart.kz
     </a>
+    <div class="contact-award">
+      <img src="/award-2gis-2026.jpg" alt="Номинант 2GIS Awards 2026" loading="lazy">
+      <div>
+        <strong data-i18n="footer.award.title">Номинант 2GIS Awards 2026</strong>
+        <span data-i18n="footer.award.sub">В категории «Салон цветов»</span>
+      </div>
+    </div>
   </div>
 
   <div class="contact-details">
@@ -1643,7 +1713,13 @@
       <div>
         <div class="contact-label" data-i18n="contact.labelPhone">Телефон</div>
         <div class="contact-value">
+          <a href="https://wa.me/77751596448" target="_blank" rel="noopener" class="whatsapp-hint" aria-label="WhatsApp" title="Написать в WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
           <a href="tel:+77751596448">+7 775 159 64 48</a><br>
+          <a href="https://wa.me/77071410609" target="_blank" rel="noopener" class="whatsapp-hint" aria-label="WhatsApp" title="Написать в WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
           <a href="tel:+77071410609">+7 707 141 06 09</a>
         </div>
       </div>
@@ -1683,15 +1759,15 @@
     <div class="view-modal-media">
       <div id="view-modal-img" class="view-modal-img-box" style="width:100%; overflow:hidden; position:relative; background:var(--warm-white);">
         <div id="view-modal-img-inner" style="width:100%; height:100%;"></div>
+        <div id="view-modal-code" class="view-modal-code-badge"></div>
         <button id="view-modal-prev" onclick="event.stopPropagation();window.__viewModalPrev()" aria-label="Previous photo" style="display:none; position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">‹</button>
         <button id="view-modal-next" onclick="event.stopPropagation();window.__viewModalNext()" aria-label="Next photo" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(61,43,61,0.45); border:none; cursor:pointer; color:#fff; width:34px; height:34px; border-radius:50%; z-index:2; align-items:center; justify-content:center; font-size:18px; line-height:1;">›</button>
       </div>
       <div id="view-modal-thumbs" style="display:none; gap:8px; padding:12px 32px 0; overflow-x:auto;"></div>
     </div>
     <div class="view-modal-info">
-      <div id="view-modal-code" style="font-size:11px; color:var(--text-muted); letter-spacing:0.08em; margin-bottom:6px;"></div>
-      <h3 id="view-modal-name" style="font-family:'Cormorant Garant',serif; font-size:28px; font-weight:300; color:var(--plum); margin-bottom:10px;"></h3>
-      <p id="view-modal-desc" style="font-size:14px; color:var(--text-muted); line-height:1.7; font-weight:300; margin-bottom:20px;"></p>
+      <h3 id="view-modal-name" style="font-family:'Cormorant Garant',serif; font-size:28px; font-weight:300; color:var(--plum); margin:0 0 8px; line-height:1.2;"></h3>
+      <p id="view-modal-desc" style="font-size:14px; color:var(--text-muted); line-height:1.7; font-weight:300; margin:0 0 20px;"></p>
       <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
         <div id="view-modal-price" class="product-price" style="font-size:24px;"></div>
         <button class="btn-order" id="view-modal-order-btn" data-i18n="modal.order">Заказать</button>
@@ -1802,7 +1878,7 @@
       'about.item3text': 'Развозим букеты в удобных временных интервалах. Ваш подарок приедет в нужное время — к любому адресу в городе.',
       'contact.eyebrow': 'Контакты',
       'contact.title': 'Мы всегда на связи',
-      'contact.desc': 'Напишите нам — мы подберём букет под ваш случай и бюджет, и доставим его вовремя.',
+      'contact.desc': '<a href="https://wa.me/77751596448" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Напишите нам</a> — мы подберём букет под ваш случай и бюджет, и доставим его вовремя.',
       'contact.labelAddress': 'Адрес',
       'contact.addressValue': 'г. Астана, ул. Кенесары 45',
       'contact.labelPhone': 'Телефон',
@@ -1815,6 +1891,8 @@
       'modal.subtitle': 'Свяжитесь с нами для оформления',
       'modal.whatsapp': 'Написать в WhatsApp',
       'modal.call': 'Позвонить:',
+      'footer.award.title': 'Номинант 2GIS Awards 2026',
+      'footer.award.sub': 'В категории «Салон цветов»',
       'footer.copy': `© ${currentYear} FLOMART · Астана, ул. Кенесары 45 · <a href="/care.html">Уход за букетом</a>`,
       'js.comingSoon': 'Скоро появятся позиции',
       'js.cakesComingSoon': 'Дизайны скоро появятся — следите в @flomart.kz',
@@ -1900,7 +1978,7 @@
       'about.item3text': 'We deliver in convenient time slots. Your gift will arrive right on time — to any address in the city.',
       'contact.eyebrow': 'Contact',
       'contact.title': "We're always happy to help",
-      'contact.desc': 'Message us — we\'ll pick a bouquet to match your occasion and budget, and deliver it on time.',
+      'contact.desc': '<a href="https://wa.me/77751596448" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Message us</a> — we\'ll pick a bouquet to match your occasion and budget, and deliver it on time.',
       'contact.labelAddress': 'Address',
       'contact.addressValue': '45 Kenesary St, Astana',
       'contact.labelPhone': 'Phone',
@@ -1913,6 +1991,8 @@
       'modal.subtitle': 'Contact us to complete your order',
       'modal.whatsapp': 'Message on WhatsApp',
       'modal.call': 'Call:',
+      'footer.award.title': 'Nominee, 2GIS Awards 2026',
+      'footer.award.sub': 'Flower salon category',
       'footer.copy': `© ${currentYear} FLOMART · 45 Kenesary St, Astana · <a href="/care.html">Bouquet care</a>`,
       'js.comingSoon': 'New items coming soon',
       'js.cakesComingSoon': 'New designs coming soon — follow @flomart.kz',

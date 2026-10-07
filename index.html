@@ -528,6 +528,17 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 6px;
+    align-items: start;
+  }
+
+  /* #catalog-all/#catalog-cakes/#catalog-berries are plain divs whose grid
+     display/columns/gap are all set inline by JS (fitGridColumns), not via
+     the .products-grid class above -- align-items has to be set here too,
+     or cards in a row stretch to match whichever sibling has the longest
+     name/description, leaving a big empty gap above the price on the
+     shorter ones. */
+  #catalog-all, #catalog-cakes, #catalog-berries {
+    align-items: start;
   }
 
   .product-card {
@@ -571,6 +582,32 @@
     color: var(--plum);
     font-weight: 500;
     letter-spacing: 0.04em;
+  }
+
+  /* Drawn by the browser on top of the already-cropped/zoomed card photo, so
+     it always sits exactly at the card's own bottom edge no matter how that
+     particular photo is framed in the admin -- unlike a mark baked into the
+     image file itself (used in the quick-view modal), which would drift up
+     or down depending on each photo's crop. Doesn't survive a right-click
+     save of the small card thumbnail, but that's an acceptable trade for a
+     consistent look across the whole catalog grid. */
+  .photo-watermark {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 10px 8px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    background: linear-gradient(to top, rgba(0,0,0,0.32), rgba(0,0,0,0));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .photo-watermark span {
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
   }
 
   .product-body {
@@ -734,6 +771,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 6px;
+    align-items: start;
   }
   .promo-card {
     background: var(--cream);
@@ -1910,11 +1948,15 @@
     let chain = `f_auto,q_auto${w},c_limit`;
     if (opts && opts.watermark) {
       const baseW = width || 800;
-      const fontSize = Math.max(22, Math.round(baseW * 0.11));
+      const fontSize = Math.max(28, Math.round(baseW * 0.17));
       const yOffset = Math.max(10, Math.round(fontSize * 0.35));
       chain += `/l_text:Arial_${fontSize}_bold:FLOMART,co_white,o_45/fl_layer_apply,g_south,y_${yOffset}`;
     }
     return `${before}${chain}/${after}`;
+  };
+
+  window.photoWatermarkHTML = function() {
+    return '<div class="photo-watermark">' + 'FLOMART'.split('').map(ch => `<span>${ch}</span>`).join('') + '</div>';
   };
 
   window.usdBuffer = function(usd) {
@@ -2034,7 +2076,7 @@ function bouquetCard(b) {
   const name = loc(b, 'name'), desc = loc(b, 'desc');
   const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${window.cldUrl(b.photoUrl, 500, {watermark:true})}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.displayCode ? b.displayCode + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
@@ -2049,6 +2091,7 @@ function bouquetCard(b) {
     <div class="product-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         <div class="product-badge">${b.displayCode||''}</div>
         ${hasSale ? `<div class="promo-badge">🏷️ ${window.t('promo.sale')}</div>` : ''}
       </div>
@@ -2072,7 +2115,7 @@ function promoCard(b) {
   const name = loc(b, 'name'), desc = loc(b, 'desc');
   const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${window.cldUrl(b.photoUrl, 500, {watermark:true})}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.displayCode ? b.displayCode + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
@@ -2085,6 +2128,7 @@ function promoCard(b) {
     <div class="promo-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         <div class="promo-badge">${badgeText}</div>
       </div>
       <div class="product-body">
@@ -2573,7 +2617,7 @@ function berryCard(b) {
   const subtitle = loc(b, 'subtitle') || window.t('js.berrySubtitle');
   const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${window.cldUrl(b.photoUrl, 500, {watermark:true})}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FFE8EE,#FFD0DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🍓</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${price}`;
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
@@ -2582,6 +2626,7 @@ function berryCard(b) {
     <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         ${b.badge ? `<div class="product-badge">${b.badge}</div>` : `<div class="product-badge">${window.t('js.new')}</div>`}
       </div>
       <div class="product-body">

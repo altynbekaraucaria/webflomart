@@ -573,6 +573,36 @@
     letter-spacing: 0.04em;
   }
 
+  /* Faint "FLOMART" letters spread edge-to-edge along the bottom of every
+     product photo — a light deterrent against people lifting photos for
+     their own use, without getting in the way of actually looking at the
+     bouquet. */
+  .photo-watermark {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 10px 8px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    background: linear-gradient(to top, rgba(0,0,0,0.30), rgba(0,0,0,0));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .photo-watermark span {
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .photo-watermark.photo-watermark-lg {
+    padding: 18px 16px 15px;
+    gap: 5px;
+  }
+  .photo-watermark.photo-watermark-lg span {
+    font-size: 34px;
+  }
+
   .product-body {
     padding: 20px;
     display: flex;
@@ -1901,6 +1931,11 @@
     return `${before}f_auto,q_auto${w},c_limit/${after}`;
   };
 
+  window.photoWatermarkHTML = function(big) {
+    const cls = big ? 'photo-watermark photo-watermark-lg' : 'photo-watermark';
+    return `<div class="${cls}">` + 'FLOMART'.split('').map(ch => `<span>${ch}</span>`).join('') + `</div>`;
+  };
+
   window.usdBuffer = function(usd) {
     if (usd < 20) return 2;
     if (usd < 50) return 3;
@@ -2033,6 +2068,7 @@ function bouquetCard(b) {
     <div class="product-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         <div class="product-badge">${b.displayCode||''}</div>
         ${hasSale ? `<div class="promo-badge">🏷️ ${window.t('promo.sale')}</div>` : ''}
       </div>
@@ -2069,6 +2105,7 @@ function promoCard(b) {
     <div class="promo-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         <div class="promo-badge">${badgeText}</div>
       </div>
       <div class="product-body">
@@ -2166,6 +2203,7 @@ function cakeCard(c) {
     <div class="product-card" style="background:rgba(255,255,255,0.85);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         <div class="product-badge">${window.t('js.new')}</div>
       </div>
       <div class="product-body">
@@ -2566,6 +2604,7 @@ function berryCard(b) {
     <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
+        ${window.photoWatermarkHTML()}
         ${b.badge ? `<div class="product-badge">${b.badge}</div>` : `<div class="product-badge">${window.t('js.new')}</div>`}
       </div>
       <div class="product-body">
@@ -2712,7 +2751,7 @@ window.addEventListener('flomart-rate-ready', () => {
       // card-crop framing -- that framing is only meant to fill a small
       // square/portrait preview slot, and here there's room to see it all.
       imgInner.innerHTML = src
-        ? `<img src="${window.cldUrl(src, 1000)}" alt="${name}" style="width:100%;height:100%;object-fit:contain;display:block;">`
+        ? `<img src="${window.cldUrl(src, 1000)}" alt="${name}" style="width:100%;height:100%;object-fit:contain;display:block;">${window.photoWatermarkHTML(true)}`
         : `<div class="product-img-bg" style="width:100%;height:100%;background:linear-gradient(145deg,var(--rose),#d8b0c0);">${emoji||'💐'}</div>`;
       thumbsEl.querySelectorAll('.view-thumb').forEach((t, i) => {
         t.style.borderColor = i === current ? 'var(--plum)' : 'transparent';

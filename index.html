@@ -1191,6 +1191,42 @@
     gap: 24px;
   }
 
+  .contact-award {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(242,196,206,0.25);
+    border-radius: 14px;
+    max-width: 420px;
+  }
+  .contact-award img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .contact-award strong {
+    display: block;
+    font-family: 'Cormorant Garant', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--rose);
+    margin-bottom: 3px;
+  }
+  .contact-award span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  @media (max-width: 640px) {
+    .contact-award { max-width: 100%; }
+  }
+
   .contact-item {
     display: flex;
     gap: 20px;
@@ -1273,29 +1309,7 @@
     text-underline-offset: 3px;
   }
 
-  .footer-award {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .footer-award img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-  .footer-award-text {
-    font-size: 12px;
-    line-height: 1.4;
-    color: rgba(255,255,255,0.55);
-    font-weight: 300;
-  }
-  .footer-award-text strong {
-    display: block;
-    color: rgba(242,196,206,0.75);
-    font-weight: 500;
-  }
+
 
   /* HIDDEN TAB PANELS */
   .catalog-loading { display:flex; align-items:center; justify-content:center; min-height:200px; grid-column:1/-1; }
@@ -1656,6 +1670,13 @@
       </svg>
       @flomart.kz
     </a>
+    <div class="contact-award">
+      <img src="award-2gis-2026.jpg" alt="Номинант 2GIS Awards 2026" loading="lazy">
+      <div>
+        <strong data-i18n="footer.award.title">Номинант 2GIS Awards 2026</strong>
+        <span data-i18n="footer.award.sub">В категории «Салон цветов»</span>
+      </div>
+    </div>
   </div>
 
   <div class="contact-details">
@@ -1763,13 +1784,6 @@
 
 <footer id="site-footer">
   <div class="footer-logo">FLOMART</div>
-  <div class="footer-award">
-    <img src="award-2gis-2026.jpg" alt="Номинант 2GIS Awards 2026" loading="lazy">
-    <div class="footer-award-text">
-      <strong data-i18n="footer.award.title">Номинант 2GIS Awards 2026</strong>
-      <span data-i18n="footer.award.sub">В категории «Салон цветов»</span>
-    </div>
-  </div>
   <div class="footer-copy" data-i18n="footer.copy">© 2026 FLOMART · Астана, ул. Кенесары 45 · <a href="care.html">Уход за букетом</a></div>
 </footer>
 

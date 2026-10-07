@@ -527,12 +527,12 @@
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
+    gap: 6px;
   }
 
   .product-card {
     background: var(--cream);
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
     border: 1px solid var(--border);
     transition: transform 0.25s, box-shadow 0.25s;
@@ -733,11 +733,11 @@
   .promo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
+    gap: 6px;
   }
   .promo-card {
     background: var(--cream);
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
     border: 2px solid var(--sale);
     box-shadow: 0 6px 24px rgba(217,66,107,0.18);
@@ -1192,7 +1192,7 @@
     #catalog-cakes, #catalog-berries,
     .promo-grid {
       grid-template-columns: 1fr 1fr !important;
-      gap: 12px !important;
+      gap: 4px !important;
     }
     .product-body { padding: 12px; }
     .product-code { font-size: 9px; margin-bottom: 3px; }
@@ -2212,7 +2212,7 @@ function fitGridColumns(el, minPx, gap) {
   if (!el) return;
   const count = el.children.length;
   if (!count) return;
-  gap = gap || 24;
+  gap = gap || 6;
   const width = el.clientWidth || el.parentElement?.clientWidth || window.innerWidth;
   const maxFit = Math.max(1, Math.floor((width + gap) / (minPx + gap)));
   let cols;
@@ -2273,7 +2273,7 @@ function renderGrid(containerId, cards) {
 
   el.innerHTML = slice.join('');
   el.style.display = 'grid';
-  el.style.gap = '24px';
+  el.style.gap = '6px';
   fitGridColumns(el, 260);
 
   if (!paginationEl) return;
@@ -2526,7 +2526,7 @@ function renderCakesFromState() {
     const start = (page - 1) * PER_PAGE;
     const slice = allCakes.slice(start, start + PER_PAGE);
     cakeGrid.style.display = 'grid';
-    cakeGrid.style.gap = '24px';
+    cakeGrid.style.gap = '6px';
     cakeGrid.innerHTML = slice.map(cakeCard).join('');
     fitGridColumns(cakeGrid, 240);
 
@@ -2625,7 +2625,7 @@ function renderBerriesFromState() {
     currentPage = page;
     const slice = allBerries.slice((page-1)*PER_PAGE, page*PER_PAGE);
     grid.style.display = 'grid';
-    grid.style.gap = '24px';
+    grid.style.gap = '6px';
     grid.innerHTML = slice.map(berryCard).join('');
     fitGridColumns(grid, 240);
 

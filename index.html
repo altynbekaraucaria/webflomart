@@ -2020,9 +2020,9 @@ function bouquetCard(b) {
   const img = b.photoUrl
     ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
-  const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
+  const orderText = `${b.displayCode ? b.displayCode + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
-  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.displayCode)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   // A sale price gets the same bold, enlarged treatment here as it does in
   // the dedicated "Акции" section, so a discount is just as noticeable
   // wherever the bouquet happens to be shown, not just on the promo block.
@@ -2033,11 +2033,11 @@ function bouquetCard(b) {
     <div class="product-card" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
         ${img}
-        <div class="product-badge">${b.code||''}</div>
+        <div class="product-badge">${b.displayCode||''}</div>
         ${hasSale ? `<div class="promo-badge">🏷️ ${window.t('promo.sale')}</div>` : ''}
       </div>
       <div class="product-body">
-        <div class="product-code">${b.code||''}</div>
+        <div class="product-code">${b.displayCode||''}</div>
         <div class="product-name">${name}</div>
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
@@ -2058,9 +2058,9 @@ function promoCard(b) {
   const img = b.photoUrl
     ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
-  const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
+  const orderText = `${b.displayCode ? b.displayCode + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
-  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.code)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
+  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.displayCode)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
   const badgeText = hasSalePrice && b.comboLabel ? `🏷️🎁 ${window.t('promo.sale')}` : hasSalePrice ? `🏷️ ${window.t('promo.sale')}` : `🎁 ${window.t('promo.combo')}`;
   const priceHtml = hasSalePrice
     ? `<div class="promo-price-old">${window.priceNumber(price)}</div><div class="promo-price-new">${window.priceHTML(displayPrice)}</div>`
@@ -2072,7 +2072,7 @@ function promoCard(b) {
         <div class="promo-badge">${badgeText}</div>
       </div>
       <div class="product-body">
-        <div class="product-code">${b.code||''}</div>
+        <div class="product-code">${b.displayCode||''}</div>
         <div class="product-name">${name}</div>
         ${b.comboLabel ? `<div class="promo-combo-text">🎁 ${loc(b,'comboLabel')}</div>` : `<div class="product-composition">${desc||''}</div>`}
         <div class="product-footer">
@@ -2327,6 +2327,21 @@ const DEFAULT_SITE_CATEGORIES = [
 function catLabel(c) {
   return (window.currentLang === 'en' && c.labelEn) ? c.labelEn : (c.label || c.key);
 }
+
+// Short, tidy display numbering for bouquets ("Р1", "Т2", "С3" ...) instead
+// of whatever is in the stored `code` field (some older items carry long raw
+// numbers, which look messy on a product card). Letter = first letter of
+// the bouquet's category name, same convention the admin panel already uses
+// when suggesting a code for a brand-new bouquet. Recomputed from the live,
+// admin-ordered catalog on every update, so it stays short and sequential
+// even as bouquets are added, removed or reordered — no manual renumbering
+// ever needed.
+function catCodeLetter(catKey) {
+  const list = siteCategories.length ? siteCategories : DEFAULT_SITE_CATEGORIES;
+  const c = list.find(x => x.key === catKey);
+  const label = (c?.label || catKey || '').trim();
+  return (label[0] || 'Б').toUpperCase();
+}
 function bqCategories(b) {
   return (b.categories && b.categories.length) ? b.categories : [b.category];
 }
@@ -2349,6 +2364,16 @@ function renderBouquetsFromState() {
     if (ao != null) return -1;
     if (bo != null) return 1;
     return (a.code||'').localeCompare(b.code||'','ru');
+  });
+  // Assign the short display number here, once, on the full catalog-ordered
+  // list, so the number a bouquet shows is identical everywhere it appears
+  // (regular grid, promo section, modal, order message) and stable across a
+  // re-render, regardless of the current category filter or sort mode.
+  const letterSeq = {};
+  bouquets.forEach(b => {
+    const letter = catCodeLetter(bqCategories(b)[0]);
+    letterSeq[letter] = (letterSeq[letter] || 0) + 1;
+    b.displayCode = letter + letterSeq[letter];
   });
   const visible = bouquets.filter(b => !isHiddenItem(b) && bqCategories(b).some(isCategoryEnabled));
 

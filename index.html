@@ -2096,7 +2096,6 @@ function bouquetCard(b) {
         ${hasSale ? `<div class="promo-badge">🏷️ ${window.t('promo.sale')}</div>` : ''}
       </div>
       <div class="product-body">
-        <div class="product-code">${b.displayCode||''}</div>
         <div class="product-name">${name}</div>
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
@@ -2131,7 +2130,6 @@ function promoCard(b) {
         <div class="promo-badge">${badgeText}</div>
       </div>
       <div class="product-body">
-        <div class="product-code">${b.displayCode||''}</div>
         <div class="product-name">${name}</div>
         ${b.comboLabel ? `<div class="promo-combo-text">🎁 ${loc(b,'comboLabel')}</div>` : `<div class="product-composition">${desc||''}</div>`}
         <div class="product-footer">
@@ -2220,7 +2218,7 @@ function cakeCard(c) {
     ? `<img src="${window.cldUrl(c.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FDE8EF,#F5C8DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🎂</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${filling}, ${price} ${window.t('js.currency')}`;
-  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},true`;
+  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.85);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
@@ -2620,7 +2618,7 @@ function berryCard(b) {
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FFE8EE,#FFD0DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🍓</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${price}`;
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
-  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}',${calcPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false`;
+  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}',${calcPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},true`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.9);" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">

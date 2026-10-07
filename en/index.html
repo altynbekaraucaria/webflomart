@@ -1874,6 +1874,33 @@
   // exchange-rate swings between the moment a customer sees the price and
   // the moment we actually get paid don't leave us short. Bigger bouquets
   // get a bigger cushion. Applied everywhere a KZT amount becomes USD.
+  // All product photos are hosted on Cloudinary (uploaded there by the admin
+  // panel), which can resize/compress/convert an image on the fly just by
+  // adding a transformation segment to its URL -- no re-upload needed, works
+  // retroactively on every photo already in the catalog. We ask for:
+  //   f_auto  -> serve WebP/AVIF to browsers that support it (much smaller
+  //              than the original JPEG/PNG), falling back automatically
+  //   q_auto  -> Cloudinary picks the lowest quality that still looks right
+  //   w_<n>   -> never send an image wider than it will ever be displayed at
+  //   c_limit -> only shrinks, never upscales a smaller original
+  // This is the single biggest lever on "фотки долго грузятся": a full-size
+  // original (often 2-5 MB) shown in an 240px card thumbnail was wasting the
+  // vast majority of every photo's bytes on detail nobody could see. Once
+  // transformed, Cloudinary's CDN caches that exact size/format forever, so
+  // every later visitor (and every repeat visit) gets it instantly from
+  // cache -- this is what actually fixes "slow to load", on top of whatever
+  // the browser's own cache does.
+  window.cldUrl = function(url, width) {
+    if (!url) return url;
+    const marker = '/image/upload/';
+    const idx = url.indexOf(marker);
+    if (idx === -1) return url; // not a Cloudinary delivery URL — leave untouched
+    const before = url.slice(0, idx + marker.length);
+    const after = url.slice(idx + marker.length);
+    const w = width ? `,w_${width}` : '';
+    return `${before}f_auto,q_auto${w},c_limit/${after}`;
+  };
+
   window.usdBuffer = function(usd) {
     if (usd < 20) return 2;
     if (usd < 50) return 3;
@@ -1991,7 +2018,7 @@ function bouquetCard(b) {
   const name = loc(b, 'name'), desc = loc(b, 'desc');
   const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
@@ -2029,7 +2056,7 @@ function promoCard(b) {
   const name = loc(b, 'name'), desc = loc(b, 'desc');
   const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.code ? b.code + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
@@ -2131,7 +2158,7 @@ function cakeCard(c) {
   const filling = locFilling(c.filling);
   const fr = framing(c);
   const img = c.photoUrl
-    ? `<img src="${c.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(c.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FDE8EF,#F5C8DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🎂</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${filling}, ${price} ${window.t('js.currency')}`;
   const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y}`;
@@ -2505,7 +2532,7 @@ function berryCard(b) {
   const subtitle = loc(b, 'subtitle') || window.t('js.berrySubtitle');
   const fr = framing(b);
   const img = b.photoUrl
-    ? `<img src="${b.photoUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
+    ? `<img src="${window.cldUrl(b.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FFE8EE,#FFD0DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🍓</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${price}`;
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
@@ -2660,7 +2687,7 @@ window.addEventListener('flomart-rate-ready', () => {
       // card-crop framing -- that framing is only meant to fill a small
       // square/portrait preview slot, and here there's room to see it all.
       imgInner.innerHTML = src
-        ? `<img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:contain;display:block;">`
+        ? `<img src="${window.cldUrl(src, 1000)}" alt="${name}" style="width:100%;height:100%;object-fit:contain;display:block;">`
         : `<div class="product-img-bg" style="width:100%;height:100%;background:linear-gradient(145deg,var(--rose),#d8b0c0);">${emoji||'💐'}</div>`;
       thumbsEl.querySelectorAll('.view-thumb').forEach((t, i) => {
         t.style.borderColor = i === current ? 'var(--plum)' : 'transparent';
@@ -2670,7 +2697,7 @@ window.addEventListener('flomart-rate-ready', () => {
     if (photos.length > 1) {
       thumbsEl.style.display = 'flex';
       thumbsEl.innerHTML = photos.map((src, i) =>
-        `<div class="view-thumb" onclick="event.stopPropagation();window.__viewModalGoto(${i})" style="width:56px;height:56px;border-radius:10px;overflow:hidden;flex-shrink:0;cursor:pointer;border:2px solid transparent;"><img src="${src}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>`
+        `<div class="view-thumb" onclick="event.stopPropagation();window.__viewModalGoto(${i})" style="width:56px;height:56px;border-radius:10px;overflow:hidden;flex-shrink:0;cursor:pointer;border:2px solid transparent;"><img src="${window.cldUrl(src, 120)}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>`
       ).join('');
       prevBtn.style.display = 'flex';
       nextBtn.style.display = 'flex';

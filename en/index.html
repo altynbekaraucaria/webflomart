@@ -2131,7 +2131,7 @@
     if (opts && opts.watermark) {
       const baseW = width || 800;
       const fontSize = Math.max(28, Math.round(baseW * 0.17));
-      const yOffset = Math.max(10, Math.round(fontSize * 0.35));
+      const yOffset = Math.max(24, Math.round(fontSize * 0.9));
       chain += `/l_text:Arial_${fontSize}_bold:FLOMART,co_white,o_45/fl_layer_apply,g_south,y_${yOffset}`;
     }
     return `${before}${chain}/${after}`;

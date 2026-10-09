@@ -2144,9 +2144,20 @@
       const opacity = ss.watermarkOpacity || 45;
       const text = ss.watermarkText || 'FLOMART';
       const fontSize = Math.max(14, Math.round(baseW * sizePct));
-      const yOffset = Math.max(6, Math.round(fontSize * offsetPct));
+      const off = Math.max(6, Math.round(fontSize * offsetPct));
       const encodedText = encodeURIComponent(text);
-      chain += `/l_text:Arial_${fontSize}_bold:${encodedText},co_white,o_${opacity}/fl_layer_apply,g_south,y_${yOffset}`;
+      const position = ss.watermarkPosition || 'south';
+      // Which axes the offset applies to depends on where the mark sits:
+      // corners use both, an edge-center (top/bottom/left/right) uses only
+      // its own axis, and dead-center ignores the offset entirely. Mirrors
+      // the admin panel's preview math exactly — keep both in sync.
+      const axisMap = {
+        north_west: { x: off, y: off }, north: { x: 0, y: off }, north_east: { x: off, y: off },
+        west: { x: off, y: 0 }, center: { x: 0, y: 0 }, east: { x: off, y: 0 },
+        south_west: { x: off, y: off }, south: { x: 0, y: off }, south_east: { x: off, y: off },
+      };
+      const { x, y } = axisMap[position] || axisMap.south;
+      chain += `/l_text:Arial_${fontSize}_bold:${encodedText},co_white,o_${opacity}/fl_layer_apply,g_${position},x_${x},y_${y}`;
     }
     return `${before}${chain}/${after}`;
   };
@@ -2366,7 +2377,7 @@ function renderPromoFromState() {
 }
 
 let siteFlowers = [];
-let siteSettings = { berryPrice: 1000, bentoPrice: 5000, watermarkText: 'FLOMART', watermarkSize: 17, watermarkOffset: 90, watermarkOpacity: 45 };
+let siteSettings = { berryPrice: 1000, bentoPrice: 5000, watermarkText: 'FLOMART', watermarkSize: 17, watermarkOffset: 90, watermarkOpacity: 45, watermarkPosition: 'south' };
 window.siteSettings = siteSettings; // shared across script blocks (see cldUrl above) — same object, so later property updates stay visible through this reference too
 
 let flowersLoadedOnce = false;
@@ -2390,6 +2401,7 @@ onSnapshot(collection(db, 'settings'), snap => {
   siteSettings.watermarkSize = merged.watermarkSize ?? 17;
   siteSettings.watermarkOffset = merged.watermarkOffset ?? 90;
   siteSettings.watermarkOpacity = merged.watermarkOpacity ?? 45;
+  siteSettings.watermarkPosition = merged.watermarkPosition || 'south';
   const badge = document.getElementById('bento-base-price');
   if (badge) badge.innerHTML = window.priceHTML(siteSettings.bentoPrice);
 });

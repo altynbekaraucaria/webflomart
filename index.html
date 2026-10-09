@@ -2129,10 +2129,18 @@
     const w = width ? `,w_${width}` : '';
     let chain = `f_auto,q_auto${w},c_limit`;
     if (opts && opts.watermark) {
+      // Text, size, vertical position and opacity are all adjustable from
+      // the admin panel (Категории → Водяной знак) so no code change is
+      // needed to retune them — this just reads whatever's saved there.
       const baseW = width || 800;
-      const fontSize = Math.max(28, Math.round(baseW * 0.17));
-      const yOffset = Math.max(24, Math.round(fontSize * 0.9));
-      chain += `/l_text:Arial_${fontSize}_bold:FLOMART,co_white,o_45/fl_layer_apply,g_south,y_${yOffset}`;
+      const sizePct = (siteSettings.watermarkSize || 17) / 100;
+      const offsetPct = (siteSettings.watermarkOffset || 90) / 100;
+      const opacity = siteSettings.watermarkOpacity || 45;
+      const text = siteSettings.watermarkText || 'FLOMART';
+      const fontSize = Math.max(14, Math.round(baseW * sizePct));
+      const yOffset = Math.max(6, Math.round(fontSize * offsetPct));
+      const encodedText = encodeURIComponent(text);
+      chain += `/l_text:Arial_${fontSize}_bold:${encodedText},co_white,o_${opacity}/fl_layer_apply,g_south,y_${yOffset}`;
     }
     return `${before}${chain}/${after}`;
   };
@@ -2352,7 +2360,7 @@ function renderPromoFromState() {
 }
 
 let siteFlowers = [];
-let siteSettings = { berryPrice: 1000, bentoPrice: 5000 };
+let siteSettings = { berryPrice: 1000, bentoPrice: 5000, watermarkText: 'FLOMART', watermarkSize: 17, watermarkOffset: 90, watermarkOpacity: 45 };
 
 let flowersLoadedOnce = false;
 onSnapshot(collection(db, 'flowers'), snap => {
@@ -2371,6 +2379,10 @@ onSnapshot(collection(db, 'settings'), snap => {
   snap.docs.forEach(d => Object.assign(merged, d.data()));
   siteSettings.berryPrice = merged.berryPrice || 1000;
   siteSettings.bentoPrice = merged.bentoPrice || 5000;
+  siteSettings.watermarkText = merged.watermarkText || 'FLOMART';
+  siteSettings.watermarkSize = merged.watermarkSize ?? 17;
+  siteSettings.watermarkOffset = merged.watermarkOffset ?? 90;
+  siteSettings.watermarkOpacity = merged.watermarkOpacity ?? 45;
   const badge = document.getElementById('bento-base-price');
   if (badge) badge.innerHTML = window.priceHTML(siteSettings.bentoPrice);
 });

@@ -2133,10 +2133,16 @@
       // the admin panel (Категории → Водяной знак) so no code change is
       // needed to retune them — this just reads whatever's saved there.
       const baseW = width || 800;
-      const sizePct = (siteSettings.watermarkSize || 17) / 100;
-      const offsetPct = (siteSettings.watermarkOffset || 90) / 100;
-      const opacity = siteSettings.watermarkOpacity || 45;
-      const text = siteSettings.watermarkText || 'FLOMART';
+      // siteSettings lives in a <script type="module"> block elsewhere on the
+      // page, which has its own isolated top-level scope — a bare reference
+      // to it here (a different, non-module script) is invisible and throws
+      // "siteSettings is not defined". window.siteSettings is the same
+      // object, shared globally, so read it from there instead.
+      const ss = window.siteSettings || {};
+      const sizePct = (ss.watermarkSize || 17) / 100;
+      const offsetPct = (ss.watermarkOffset || 90) / 100;
+      const opacity = ss.watermarkOpacity || 45;
+      const text = ss.watermarkText || 'FLOMART';
       const fontSize = Math.max(14, Math.round(baseW * sizePct));
       const yOffset = Math.max(6, Math.round(fontSize * offsetPct));
       const encodedText = encodeURIComponent(text);
@@ -2361,6 +2367,7 @@ function renderPromoFromState() {
 
 let siteFlowers = [];
 let siteSettings = { berryPrice: 1000, bentoPrice: 5000, watermarkText: 'FLOMART', watermarkSize: 17, watermarkOffset: 90, watermarkOpacity: 45 };
+window.siteSettings = siteSettings; // shared across script blocks (see cldUrl above) — same object, so later property updates stay visible through this reference too
 
 let flowersLoadedOnce = false;
 onSnapshot(collection(db, 'flowers'), snap => {

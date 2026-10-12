@@ -3035,19 +3035,53 @@ window.addEventListener('flomart-rate-ready', () => {
     const match = text.match(/\d[\d\s]*/);
     return match ? parseInt(match[0].replace(/\s/g, ''), 10) : Infinity;
   }
+  function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+  function pickCheaperHalf(selector, excludeEl, count, extraExclude) {
+    let pool = Array.from(document.querySelectorAll(selector))
+      .filter(el => el !== excludeEl && el.offsetParent !== null && !(extraExclude && extraExclude.has(el)));
+    pool.sort((a, b) => cardPriceValue(a) - cardPriceValue(b));
+    pool = pool.slice(0, Math.max(count, Math.ceil(pool.length / 2))); // the cheaper half (or at least `count`)
+    return shuffleInPlace(pool).slice(0, count);
+  }
+  // One cheap pick + one mid-priced pick, so the two berry suggestions read
+  // as a real choice (an easy add-on vs. a slightly nicer one) instead of
+  // two near-identical cheap sets.
+  function pickCheapAndMid(selector, excludeEl) {
+    let pool = Array.from(document.querySelectorAll(selector))
+      .filter(el => el !== excludeEl && el.offsetParent !== null);
+    pool.sort((a, b) => cardPriceValue(a) - cardPriceValue(b));
+    if (!pool.length) return [];
+    if (pool.length === 1) return [pool[0]];
+    const cheapEnd = Math.max(1, Math.ceil(pool.length / 3));
+    const cheapPick = pool[Math.floor(Math.random() * cheapEnd)];
+    let midPool = pool.slice(cheapEnd).filter(el => el !== cheapPick);
+    if (!midPool.length) midPool = pool.filter(el => el !== cheapPick);
+    const midPick = midPool[Math.floor(Math.random() * midPool.length)];
+    return [cheapPick, midPick];
+  }
   function renderRelatedItems(excludeEl) {
     const section = document.getElementById('view-modal-related');
     const grid = document.getElementById('view-modal-related-grid');
     if (!section || !grid) return;
-    let pool = Array.from(document.querySelectorAll('#catalog-cakes .product-card, #catalog-berries .product-card'))
-      .filter(el => el !== excludeEl && el.offsetParent !== null);
-    pool.sort((a, b) => cardPriceValue(a) - cardPriceValue(b));
-    pool = pool.slice(0, Math.max(4, Math.ceil(pool.length / 2))); // the cheaper half (or at least 4)
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
+    // Two bento-cake suggestions + two strawberry suggestions (one cheap,
+    // one mid-priced), so the add-on grid always offers a real mix.
+    const cakePicks = pickCheaperHalf('#catalog-cakes .product-card', excludeEl, 2);
+    const berryPicks = pickCheapAndMid('#catalog-berries .product-card', excludeEl);
+    let picks = [...cakePicks, ...berryPicks];
+    if (picks.length < 4) {
+      // One of the two categories came up short (e.g. fewer than 2 cards
+      // visible) -- top up from whatever's left across both categories.
+      const already = new Set(picks);
+      const fallback = pickCheaperHalf('#catalog-cakes .product-card, #catalog-berries .product-card', excludeEl, 4 - picks.length, already);
+      picks = picks.concat(fallback);
     }
-    const picks = pool.slice(0, 4);
+    shuffleInPlace(picks);
     if (!picks.length) { section.style.display = 'none'; grid.innerHTML = ''; return; }
     grid.innerHTML = '';
     picks.forEach(sourceEl => {

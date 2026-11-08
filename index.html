@@ -2248,6 +2248,58 @@ const db = getFirestore(app);
   } catch (e) {}
 })();
 
+// ── DEEP LINK: open a specific product from a shared WhatsApp link ─────────
+// Every "Заказать" button now puts a link like ?item=b-<id> (b=bouquet,
+// c=cake, s=berry set) into the WhatsApp message it opens — see orderItem()
+// below — so the manager reading it can open exactly the item the customer
+// meant instead of guessing between similarly-named products. We don't know
+// in advance which catalog collection (bouquets/cakes/berries) will finish
+// loading from Firestore first, so the target id is parked here and retried
+// after every snapshot until it's found (or the page is closed).
+let deepLinkTarget = null;
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get('item');
+  if (!raw) return;
+  const m = /^([bcs])-(.+)$/.exec(raw);
+  if (m) deepLinkTarget = { type: m[1], id: m[2] };
+})();
+
+function tryOpenDeepLinkTarget() {
+  if (!deepLinkTarget) return;
+  const { type, id } = deepLinkTarget;
+  let raw, cardHtml;
+  if (type === 'b') {
+    raw = rawBouquets.find(x => x.id === id);
+    if (raw) cardHtml = bouquetCard(raw);
+  } else if (type === 'c') {
+    raw = rawCakes.find(x => x.id === id);
+    if (raw) cardHtml = cakeCard(raw);
+  } else if (type === 's') {
+    raw = rawBerries.find(x => x.id === id);
+    if (raw) cardHtml = berryCard(raw);
+  }
+  if (!cardHtml) return; // not in this collection, or not loaded yet — retry on the next snapshot
+  deepLinkTarget = null; // found it — stop retrying on later snapshots
+
+  // Reuse the exact same card markup (and its onclick="openViewModal(...)")
+  // that the catalog itself renders, instead of duplicating the pricing/
+  // formatting logic here — briefly attach it off-screen and "click" it.
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
+  wrap.innerHTML = cardHtml;
+  document.body.appendChild(wrap);
+  const cardEl = wrap.firstElementChild;
+  if (cardEl) cardEl.click();
+  wrap.remove();
+
+  // Clean the URL so refreshing the page doesn't keep reopening the modal.
+  const params = new URLSearchParams(window.location.search);
+  params.delete('item');
+  const qs = params.toString();
+  history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function jsq(s) { return String(s==null?'':s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' '); }
 function catEmoji(c) {
@@ -2287,7 +2339,7 @@ function bouquetCard(b) {
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.displayCode ? b.displayCode + ' — ' : ''}${name}, ${price} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
-  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.displayCode)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false`;
+  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.displayCode)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false,'b','${jsq(b.id)}'`;
   // A sale price gets the same bold, enlarged treatment here as it does in
   // the dedicated "Акции" section, so a discount is just as noticeable
   // wherever the bouquet happens to be shown, not just on the promo block.
@@ -2306,7 +2358,7 @@ function bouquetCard(b) {
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
           <div class="${hasSale ? '' : 'product-price'}">${priceHtml}</div>
-          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
+          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}','b','${jsq(b.id)}')">${window.t('modal.order')}</button>
         </div>
       </div>
     </div>`;
@@ -2324,7 +2376,7 @@ function promoCard(b) {
     : `<div class="product-img-bg ${bgClass(b.category)}">${catEmoji(b.category)}</div>`;
   const orderText = `${b.displayCode ? b.displayCode + ' — ' : ''}${name}, ${priceStr} ${window.t('js.currency')}`;
   const photosArg = (b.photos && b.photos.length ? b.photos.map(p => p.url).filter(Boolean) : (b.photoUrl ? [b.photoUrl] : [])).join('|||');
-  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.displayCode)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false`;
+  const viewArgs = `'${jsq(photosArg)}','${jsq(catEmoji(b.category))}','${jsq(b.displayCode)}','${jsq(name)}','${jsq(desc)}',${displayPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false,'b','${jsq(b.id)}'`;
   const badgeText = hasSalePrice && b.comboLabel ? `🏷️🎁 ${window.t('promo.sale')}` : hasSalePrice ? `🏷️ ${window.t('promo.sale')}` : `🎁 ${window.t('promo.combo')}`;
   const priceHtml = hasSalePrice
     ? `<div class="promo-price-old">${window.priceNumber(price)}</div><div class="promo-price-new">${window.priceHTML(displayPrice)}</div>`
@@ -2340,7 +2392,7 @@ function promoCard(b) {
         ${b.comboLabel ? `<div class="promo-combo-text">🎁 ${loc(b,'comboLabel')}</div>` : `<div class="product-composition">${desc||''}</div>`}
         <div class="product-footer">
           <div>${priceHtml}</div>
-          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
+          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}','b','${jsq(b.id)}')">${window.t('modal.order')}</button>
         </div>
       </div>
     </div>`;
@@ -2430,7 +2482,7 @@ function cakeCard(c) {
     ? `<img src="${window.cldUrl(c.photoUrl, 500)}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;${fr.css}" loading="lazy">`
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FDE8EF,#F5C8DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🎂</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${filling}, ${price} ${window.t('js.currency')}`;
-  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false`;
+  const viewArgs = `'${jsq(c.photoUrl)}','🎂','${jsq(window.t('js.filling') + filling)}','${jsq(name)}','${jsq(desc)}',${rawPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},false,'c','${jsq(c.id)}'`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.85);" data-anchor-id="${c.id}" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
@@ -2442,7 +2494,7 @@ function cakeCard(c) {
         <div class="product-composition">${desc||''}</div>
         <div class="product-footer">
           <div class="product-price">${window.priceHTML(rawPrice)}</div>
-          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
+          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}','c','${jsq(c.id)}')">${window.t('modal.order')}</button>
         </div>
       </div>
     </div>`;
@@ -2699,6 +2751,7 @@ onSnapshot(collection(db, 'bouquets'), snap => {
   window.rawBouquets = rawBouquets; // exposed so the "you may also like" picker (a plain, non-module script) can read the live catalog
   renderBouquetsFromState();
   renderPromoFromState();
+  tryOpenDeepLinkTarget();
 });
 
 let rawCakes = [];
@@ -2815,6 +2868,7 @@ onSnapshot(collection(db, 'cakes'), snap => {
   rawCakes = snap.docs.map(d => ({id:d.id,...d.data()}));
   window.rawCakes = rawCakes;
   renderCakesFromState();
+  tryOpenDeepLinkTarget();
 });
 
 // ── BERRIES LISTENER ─────────────────────────────────────────────────────────
@@ -2829,7 +2883,7 @@ function berryCard(b) {
     : `<div class="product-img-bg" style="background:linear-gradient(145deg,#FFE8EE,#FFD0DA);flex-direction:column;gap:8px;"><div style="font-size:52px;">🍓</div><div style="font-size:11px;color:var(--plum-light);font-weight:500;letter-spacing:.08em;text-transform:uppercase;">${window.t('js.photoSoon')}</div></div>`;
   const orderText = `${name}, ${price}`;
   const viewPrice = calcPrice ? calcPrice.toLocaleString('ru') : '';
-  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}',${calcPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},true`;
+  const viewArgs = `'${jsq(b.photoUrl)}','🍓','${jsq(subtitle)}','${jsq(name)}','${jsq(desc)}',${calcPrice||0},'${jsq(orderText)}',${fr.zoom},${fr.x},${fr.y},true,'s','${jsq(b.id)}'`;
   return `
     <div class="product-card" style="background:rgba(255,255,255,0.9);" data-anchor-id="${b.id}" onclick="openViewModal(${viewArgs}, this)">
       <div class="product-img">
@@ -2842,7 +2896,7 @@ function berryCard(b) {
         <div class="product-composition">${desc || ''}</div>
         <div class="product-footer">
           <div class="product-price">${b.price ? window.priceHTML(b.price) : '<span style="font-size:14px">' + window.t('js.askPrice') + '</span>'}</div>
-          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}')">${window.t('modal.order')}</button>
+          <button class="btn-order" onclick="event.stopPropagation();orderItem('${orderText.replace(/'/g,"\\'")}','s','${jsq(b.id)}')">${window.t('modal.order')}</button>
         </div>
       </div>
     </div>`;
@@ -2904,6 +2958,7 @@ onSnapshot(collection(db, 'berries'), snap => {
   rawBerries = snap.docs.map(d => ({id:d.id,...d.data()}));
   window.rawBerries = rawBerries;
   renderBerriesFromState();
+  tryOpenDeepLinkTarget();
 });
 
 // Re-render all dynamic catalog content (names, descriptions, category
@@ -2943,10 +2998,17 @@ window.addEventListener('flomart-rate-ready', () => {
     btn.classList.add('active');
   }
 
-  function orderItem(name) {
+  function orderItem(name, itemType, itemId) {
     const modal = document.getElementById('modal');
     document.getElementById('modal-product').textContent = name;
-    const msg = encodeURIComponent(window.t('js.orderMsg') + name);
+    // Appending a direct link to the item (when we have its id) means the
+    // manager reading this in WhatsApp can open exactly the product the
+    // customer means — no guessing between similarly-named bouquets/cakes.
+    let text = window.t('js.orderMsg') + name;
+    if (itemType && itemId) {
+      text += '\n' + window.location.origin + window.location.pathname + '?item=' + itemType + '-' + itemId;
+    }
+    const msg = encodeURIComponent(text);
     document.getElementById('modal-whatsapp').href = 'https://wa.me/77751596448?text=' + msg;
     modal.style.display = 'flex';
   }
@@ -2964,7 +3026,7 @@ window.addEventListener('flomart-rate-ready', () => {
   // strings, like cakes/berries with a single photo, just come through as a
   // one-item list) — this lets a bouquet with several uploaded photos show
   // all of them here instead of just the card's cover photo.
-  function openViewModal(photosArg, emoji, code, name, desc, price, orderText, zoom, posX, posY, noWatermark, triggerEl) {
+  function openViewModal(photosArg, emoji, code, name, desc, price, orderText, zoom, posX, posY, noWatermark, itemType, itemId, triggerEl) {
     const photos = String(photosArg || '').split('|||').filter(Boolean);
     const imgInner = document.getElementById('view-modal-img-inner');
     const thumbsEl = document.getElementById('view-modal-thumbs');
@@ -3010,7 +3072,7 @@ window.addEventListener('flomart-rate-ready', () => {
     document.getElementById('view-modal-desc').textContent = desc || '';
     document.getElementById('view-modal-price').innerHTML = price ? window.priceHTML(price) : '';
     const btn = document.getElementById('view-modal-order-btn');
-    btn.onclick = function() { closeViewModal(); orderItem(orderText); };
+    btn.onclick = function() { closeViewModal(); orderItem(orderText, itemType, itemId); };
     document.getElementById('view-modal').style.display = 'flex';
     document.getElementById('view-modal').scrollTop = 0;
     renderRelatedItems(triggerEl);

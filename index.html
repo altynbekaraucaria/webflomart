@@ -3006,7 +3006,11 @@ window.addEventListener('flomart-rate-ready', () => {
     // customer means — no guessing between similarly-named bouquets/cakes.
     let text = window.t('js.orderMsg') + name;
     if (itemType && itemId) {
-      text += '\n' + window.location.origin + window.location.pathname + '?item=' + itemType + '-' + itemId;
+      // Product's own address (flomart.kz/buket/<id>/), see assets/flomart-routes.js;
+      // falls back to the older ?item= link if that file didn't load.
+      text += '\n' + window.location.origin + (window.FlomartRoutes
+        ? window.FlomartRoutes.productPath(itemType, itemId)
+        : window.location.pathname + '?item=' + itemType + '-' + itemId);
     }
     const msg = encodeURIComponent(text);
     document.getElementById('modal-whatsapp').href = 'https://wa.me/77751596448?text=' + msg;

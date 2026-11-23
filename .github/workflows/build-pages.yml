@@ -1,8 +1,9 @@
-# Rebuilds the SEO section pages (/rozy/, /piony/ ...) and the per-product
-# pages (/buket/<id>/ ...) from the live Firestore catalog, plus sitemap.xml.
-# Runs every 3 hours, on every push to main that touches the generator, and on
-# demand (Actions → "Build catalog pages" → Run workflow). index.html is never
-# changed by this workflow.
+# Rebuilds the copies of the site at flomart.kz/rozy/, /piony/, /buket/<id>/ …
+# (each with its own title/description for search engines) from the live
+# Firestore catalog, plus sitemap.xml. Runs every 3 hours, whenever index.html
+# or the generator changes, and on demand (Actions → "Build catalog pages" →
+# Run workflow). It only touches index.html to re-add the two route <script>
+# tags if a newly uploaded index.html lacks them.
 name: Build catalog pages
 
 on:
@@ -12,8 +13,10 @@ on:
   push:
     branches: [main]
     paths:
+      - 'index.html'
       - 'tools/**'
       - 'assets/flomart-catalog.js'
+      - 'assets/flomart-routes.js'
       - '.github/workflows/build-pages.yml'
 
 permissions:

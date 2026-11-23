@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>FLOMART — страница не найдена</title>
+<script>
+  // A product added in the admin panel gets its own page (flomart.kz/buket/<id>/)
+  // at the next automatic rebuild, within a few hours. Until then — or if the
+  // product was removed — open the main site, which shows it if it still exists.
+  (function () {
+    var m = /^\/(buket|bento-tort|nabor-klubniki)\/([^\/]+)\/?$/.exec(location.pathname);
+    var t = m && { 'buket': 'b', 'bento-tort': 'c', 'nabor-klubniki': 's' }[m[1]];
+    location.replace(t ? '/?item=' + t + '-' + m[2] : '/');
+  })();
+</script>
+</head>
+<body style="font-family:sans-serif;text-align:center;padding:48px;color:#3D2B3D;background:#FDF8F5">
+  <p>Переходим на <a href="/">flomart.kz</a>…</p>
+</body>
+</html>

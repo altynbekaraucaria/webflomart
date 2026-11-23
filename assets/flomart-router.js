@@ -21,6 +21,9 @@
   var HOME_DESC = (document.querySelector('meta[name="description"]') || {}).content || '';
   var titleEl = document.querySelector('#catalog .section-title');
   var listPath = null;          // address to return to when a product is closed
+  var productOpen = false;      // a product card is open with its own address
+  var closingProduct = false;   // we called history.back() to close a card
+  var spyPaused = false;        // don't follow scrolling while we scroll on landing
   var applyingRoute = false;    // true while we follow the address (no new history entry)
 
   // Categories as the site currently shows them in its tabs: [{key, label}]
@@ -80,6 +83,7 @@
       showCategoryHeading(cat);
       if (applyingRoute) return;
       var path = categoryPath(cat);
+      catalogPath = path;
       go(path);
       if (cat === 'all') setMeta(HOME_TITLE, HOME_DESC);
       else { var c = siteCategories().filter(function (x) { return x.key === cat; })[0] || { key: cat }; var i = R.categoryInfo(c); setMeta(i.title, i.description); }
@@ -99,7 +103,10 @@
       var kind = arguments[11], id = arguments[12];
       if (kind && id && R.KIND_DIRS[kind]) {
         var here = R.parse(location.pathname);
-        if (here.type !== 'product') listPath = location.pathname;
+        // Close returns to where the card was opened: a cake or a strawberry set
+        // belongs to its own block, a bouquet to the current catalog address.
+        if (here.type !== 'product') listPath = kind === 'c' ? '/bento-torty/' : kind === 's' ? '/klubnika-v-shokolade/' : location.pathname;
+        productOpen = true;
         var name = productName(kind, id) || arguments[3];
         if (name) setMeta(String(name).replace(/<[^>]*>/g, '') + ' — купить в Астане с доставкой | FLOMART', document.querySelector('meta[name="description"]').content);
         if (location.pathname !== R.productPath(kind, id)) {
@@ -114,16 +121,17 @@
   if (typeof origClose === 'function') {
     window.closeViewModal = function () {
       var r = origClose.apply(this, arguments);
+      productOpen = false;
       if (R.parse(location.pathname).type === 'product') {
-        if (history.state && history.state.flomartProduct) history.back();
+        if (history.state && history.state.flomartProduct) { closingProduct = true; history.back(); }
         else {
           // Opened straight from a product link: show the product's section.
           history.replaceState(null, '', listPath || '/');
           var back = R.parse(listPath || '/', siteCategories());
           if (back.type === 'category' && typeof origFilter === 'function') {
             applyingRoute = true;
-            try { origFilter(back.key); showCategoryHeading(back.key); } finally { applyingRoute = false; }
-          }
+            try { origFilter(back.key); showCategoryHeading(back.key); catalogPath = listPath; } finally { applyingRoute = false; }
+          } else if (back.type === 'section') scrollToId(back.anchor);
         }
         restoreMetaFor(listPath || '/');
       }
@@ -162,14 +170,55 @@
   window.addEventListener('popstate', function () {
     var r = R.parse(location.pathname, siteCategories());
     var modal = document.getElementById('view-modal');
+    var leavingProduct = closingProduct || productOpen;
+    closingProduct = false;
     if (r.type !== 'product' && modal && modal.style.display !== 'none') origClose();
+    if (r.type !== 'product') productOpen = false;
+    if (leavingProduct && r.type !== 'product') {
+      // A card was closed (✕ or browser "Back"): stay exactly where the visitor
+      // is on the page — no re-filtering, no scrolling — and put the address of
+      // the block they are looking at.
+      if (listPath && location.pathname !== listPath) history.replaceState(null, '', listPath);
+      followScroll();
+      restoreMetaFor(location.pathname);
+      return;
+    }
     applyingRoute = true;
     try {
-      if (r.type === 'category') window.filterBouquets(r.key);
-      else if (r.type === 'home' && typeof origFilter === 'function') { origFilter('all'); showCategoryHeading('all'); }
+      if (r.type === 'category') { window.filterBouquets(r.key); catalogPath = location.pathname; }
+      else if (r.type === 'home' && typeof origFilter === 'function') { origFilter('all'); showCategoryHeading('all'); catalogPath = '/'; }
+      else if (r.type === 'section') scrollToId(r.anchor);
     } finally { applyingRoute = false; }
     restoreMetaFor(location.pathname);
   });
+
+  // ── address follows scrolling ──────────────────────────────────────────
+  // Scrolling down to the cakes / strawberries / delivery blocks shows their
+  // address; anywhere else shows the catalog address (the chosen category or
+  // the home page). Uses replaceState, so it adds nothing to "Back".
+  var catalogPath = '/';
+  var SPY = Object.keys(R.SECTIONS).map(function (slug) { return [R.SECTIONS[slug].anchor, '/' + slug + '/']; });
+  function followScroll() {
+    if (productOpen || applyingRoute || spyPaused) return;
+    if (R.parse(location.pathname).type === 'product') return;
+    var mid = window.innerHeight * 0.4;
+    var path = catalogPath;
+    SPY.forEach(function (s) {
+      var el = document.getElementById(s[0]);
+      if (!el || el.offsetParent === null) return;
+      var rect = el.getBoundingClientRect();
+      if (rect.top <= mid && rect.bottom > mid) path = s[1];
+    });
+    if (path !== location.pathname) {
+      history.replaceState(history.state, '', path);
+      restoreMetaFor(path);
+    }
+  }
+  var spyTimer = null;
+  window.addEventListener('scroll', function () {
+    if (spyTimer) return;
+    spyTimer = setTimeout(function () { spyTimer = null; followScroll(); }, 150);
+  }, { passive: true });
 
   // ── landing directly on an address ─────────────────────────────────────
   function whenCatalogReady(cb) {
@@ -187,7 +236,9 @@
 
   var start = R.parse(location.pathname);
   if (start.type === 'other') start = R.parse(location.pathname, siteCategories());
+  if (start.type === 'category' || start.type === 'section') spyPaused = true;
   if (start.type === 'category') {
+    catalogPath = location.pathname;
     whenCatalogReady(function () {
       var r = R.parse(location.pathname, siteCategories());
       if (r.type !== 'category') return;
@@ -195,10 +246,10 @@
       try { origFilter(r.key); showCategoryHeading(r.key); } finally { applyingRoute = false; }
       // Blocks above the catalog (promotions) finish loading a moment later
       // and push it down — line it up again once they have.
-      setTimeout(function () { scrollToId('catalog'); }, 700);
+      setTimeout(function () { scrollToId('catalog'); spyPaused = false; }, 700);
     });
   } else if (start.type === 'section') {
-    whenCatalogReady(function () { setTimeout(function () { scrollToId(start.anchor); }, 400); });
+    whenCatalogReady(function () { setTimeout(function () { scrollToId(start.anchor); spyPaused = false; }, 400); });
   } else if (start.type === 'product') {
     listPath = null; // closing goes to the product's home page, or "/"
     whenCatalogReady(function () {

@@ -15,7 +15,9 @@
 (function () {
   'use strict';
   var R = window.FlomartRoutes;
-  if (!R || /^\/en(\/|$)/.test(location.pathname)) return;
+  if (!R) return;
+  var LANG = /^\/en(\/|$)/.test(location.pathname) ? 'en' : 'ru';
+  var HOME = R.homePath(LANG);
 
   var HOME_TITLE = document.title;
   var HOME_DESC = (document.querySelector('meta[name="description"]') || {}).content || '';
@@ -36,9 +38,9 @@
     return out;
   }
   function categoryPath(key) {
-    if (key === 'all') return '/';
+    if (key === 'all') return HOME;
     var cat = siteCategories().filter(function (c) { return c.key === key; })[0] || { key: key };
-    return '/' + R.categoryInfo(cat).slug + '/';
+    return R.categoryPath(cat, LANG);
   }
   function setMeta(title, desc) {
     document.title = title;
@@ -57,7 +59,7 @@
       return;
     }
     var cat = siteCategories().filter(function (c) { return c.key === key; })[0] || { key: key };
-    var info = R.categoryInfo(cat);
+    var info = R.categoryInfo(cat, LANG);
     titleEl.textContent = info.h1;
     titleEl.setAttribute('data-route-h', '1');
     if (!intro) {
@@ -86,7 +88,7 @@
       catalogPath = path;
       go(path);
       if (cat === 'all') setMeta(HOME_TITLE, HOME_DESC);
-      else { var c = siteCategories().filter(function (x) { return x.key === cat; })[0] || { key: cat }; var i = R.categoryInfo(c); setMeta(i.title, i.description); }
+      else { var c = siteCategories().filter(function (x) { return x.key === cat; })[0] || { key: cat }; var i = R.categoryInfo(c, LANG); setMeta(i.title, i.description); }
     };
   }
 
@@ -101,17 +103,17 @@
     window.openViewModal = function () {
       var r = origOpen.apply(this, arguments);
       var kind = arguments[11], id = arguments[12];
-      if (kind && id && R.KIND_DIRS[kind]) {
+      if (kind && id && R.KIND_DIRS[LANG][kind]) {
         var here = R.parse(location.pathname);
         // Close returns to where the card was opened: a cake or a strawberry set
         // belongs to its own block, a bouquet to the current catalog address.
-        if (here.type !== 'product') listPath = kind === 'c' ? '/bento-torty/' : kind === 's' ? '/klubnika-v-shokolade/' : location.pathname;
+        if (here.type !== 'product') listPath = kind === 'c' ? R.sectionPath('cakes', LANG) : kind === 's' ? R.sectionPath('berries', LANG) : location.pathname;
         productOpen = true;
         var name = productName(kind, id) || arguments[3];
-        if (name) setMeta(String(name).replace(/<[^>]*>/g, '') + ' — купить в Астане с доставкой | FLOMART', document.querySelector('meta[name="description"]').content);
-        if (location.pathname !== R.productPath(kind, id)) {
-          if (here.type === 'product') history.replaceState({ flomartProduct: 1 }, '', R.productPath(kind, id));
-          else history.pushState({ flomartProduct: 1 }, '', R.productPath(kind, id));
+        if (name) setMeta(String(name).replace(/<[^>]*>/g, '') + (LANG === 'en' ? ' — buy in Astana with delivery | FLOMART' : ' — купить в Астане с доставкой | FLOMART'), document.querySelector('meta[name="description"]').content);
+        if (location.pathname !== R.productPath(kind, id, LANG)) {
+          if (here.type === 'product') history.replaceState({ flomartProduct: 1 }, '', R.productPath(kind, id, LANG));
+          else history.pushState({ flomartProduct: 1 }, '', R.productPath(kind, id, LANG));
         }
       }
       return r;
@@ -126,42 +128,42 @@
         if (history.state && history.state.flomartProduct) { closingProduct = true; history.back(); }
         else {
           // Opened straight from a product link: show the product's section.
-          history.replaceState(null, '', listPath || '/');
-          var back = R.parse(listPath || '/', siteCategories());
+          history.replaceState(null, '', listPath || HOME);
+          var back = R.parse(listPath || HOME, siteCategories());
           if (back.type === 'category' && typeof origFilter === 'function') {
             applyingRoute = true;
             try { origFilter(back.key); showCategoryHeading(back.key); catalogPath = listPath; } finally { applyingRoute = false; }
           } else if (back.type === 'section') scrollToId(back.anchor);
         }
-        restoreMetaFor(listPath || '/');
+        restoreMetaFor(listPath || HOME);
       }
       return r;
     };
   }
   function restoreMetaFor(path) {
     var r = R.parse(path, siteCategories());
-    if (r.type === 'category') { var c = siteCategories().filter(function (x) { return x.key === r.key; })[0] || { key: r.key }; var i = R.categoryInfo(c); setMeta(i.title, i.description); }
-    else if (r.type === 'section') setMeta(R.SECTIONS[r.slug].title, R.SECTIONS[r.slug].description);
+    if (r.type === 'category') { var c = siteCategories().filter(function (x) { return x.key === r.key; })[0] || { key: r.key }; var i = R.categoryInfo(c, LANG); setMeta(i.title, i.description); }
+    else if (r.type === 'section') { var si = R.sectionInfo(r.section, LANG); setMeta(si.title, si.description); }
     else setMeta(HOME_TITLE, HOME_DESC);
   }
 
   // ── menu links to blocks that have their own address ──────────────────
-  var anchorToSlug = {};
-  Object.keys(R.SECTIONS).forEach(function (slug) { anchorToSlug[R.SECTIONS[slug].anchor] = slug; });
+  var anchorToSection = {};
+  Object.keys(R.SECTIONS).forEach(function (sec) { anchorToSection[R.SECTIONS[sec].anchor] = sec; });
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
     var id = a.getAttribute('href').slice(1);
-    var slug = anchorToSlug[id];
+    var sec = anchorToSection[id];
     var target = id && document.getElementById(id);
     if (!target || id === 'catalog') return; // catalog keeps the current category address
     e.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (slug) {
-      go('/' + slug + '/');
-      setMeta(R.SECTIONS[slug].title, R.SECTIONS[slug].description);
+    if (sec) {
+      go(R.sectionPath(sec, LANG));
+      setMeta(R.sectionInfo(sec, LANG).title, R.sectionInfo(sec, LANG).description);
     } else if (R.parse(location.pathname).type !== 'home') {
-      go('/'); // "О нас", "Контакты", "Акции" belong to the home page
+      go(HOME); // "О нас", "Контакты", "Акции" belong to the home page
       setMeta(HOME_TITLE, HOME_DESC);
     }
   });
@@ -186,7 +188,7 @@
     applyingRoute = true;
     try {
       if (r.type === 'category') { window.filterBouquets(r.key); catalogPath = location.pathname; }
-      else if (r.type === 'home' && typeof origFilter === 'function') { origFilter('all'); showCategoryHeading('all'); catalogPath = '/'; }
+      else if (r.type === 'home' && typeof origFilter === 'function') { origFilter('all'); showCategoryHeading('all'); catalogPath = HOME; }
       else if (r.type === 'section') scrollToId(r.anchor);
     } finally { applyingRoute = false; }
     restoreMetaFor(location.pathname);
@@ -196,8 +198,8 @@
   // Scrolling down to the cakes / strawberries / delivery blocks shows their
   // address; anywhere else shows the catalog address (the chosen category or
   // the home page). Uses replaceState, so it adds nothing to "Back".
-  var catalogPath = '/';
-  var SPY = Object.keys(R.SECTIONS).map(function (slug) { return [R.SECTIONS[slug].anchor, '/' + slug + '/']; });
+  var catalogPath = HOME;
+  var SPY = Object.keys(R.SECTIONS).map(function (sec) { return [R.SECTIONS[sec].anchor, R.sectionPath(sec, LANG)]; });
   function followScroll() {
     if (productOpen || applyingRoute || spyPaused) return;
     if (R.parse(location.pathname).type === 'product') return;
@@ -219,6 +221,24 @@
     if (spyTimer) return;
     spyTimer = setTimeout(function () { spyTimer = null; followScroll(); }, 150);
   }, { passive: true });
+
+  // ── language switch keeps the place (/rozy/ ↔ /en/roses/) ──────────────
+  var origSetLang = window.setLang;
+  if (typeof origSetLang === 'function') {
+    window.setLang = function (lang) {
+      var target = lang === 'en' ? 'en' : 'ru';
+      if (target !== LANG) {
+        var path = R.counterpart(location.pathname, target, siteCategories());
+        // The other language's address for a category the admin added later
+        // is known only to that page; land on its home page then.
+        var r = R.parse(location.pathname, siteCategories());
+        if (r.type === 'category' && !R.CATEGORIES[r.key]) path = R.homePath(target);
+        location.href = path;
+        return;
+      }
+      return origSetLang.apply(this, arguments);
+    };
+  }
 
   // ── landing directly on an address ─────────────────────────────────────
   function whenCatalogReady(cb) {
@@ -257,8 +277,8 @@
         var b = window.rawBouquets.filter(function (x) { return x.id === start.id; })[0];
         var cats = b ? ((b.categories && b.categories.length) ? b.categories : [b.category]) : [];
         if (cats[0]) listPath = categoryPath(cats[0]);
-      } else if (start.kind === 'c') listPath = '/bento-torty/';
-      else if (start.kind === 's') listPath = '/klubnika-v-shokolade/';
+      } else if (start.kind === 'c') listPath = R.sectionPath('cakes', LANG);
+      else if (start.kind === 's') listPath = R.sectionPath('berries', LANG);
     });
   }
 })();

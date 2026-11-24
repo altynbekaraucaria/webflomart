@@ -1,40 +1,654 @@
 {
-  "categories": [
-    {"name":"categories/roses","fields":{"key":{"stringValue":"roses"},"label":{"stringValue":"Розы"},"enabled":{"booleanValue":true},"order":{"integerValue":"0"}}},
-    {"name":"categories/mixed","fields":{"key":{"stringValue":"mixed"},"label":{"stringValue":"Сборные"},"enabled":{"booleanValue":true},"order":{"integerValue":"1"}}},
-    {"name":"categories/spray","fields":{"key":{"stringValue":"spray"},"label":{"stringValue":"Кустовые розы"},"enabled":{"booleanValue":true},"order":{"integerValue":"2"}}},
-    {"name":"categories/premium","fields":{"key":{"stringValue":"premium"},"label":{"stringValue":"Премиум"},"enabled":{"booleanValue":true},"order":{"integerValue":"4"}}},
-    {"name":"categories/compositions","fields":{"key":{"stringValue":"compositions"},"label":{"stringValue":"Цветочная композиция"},"enabled":{"booleanValue":true},"order":{"integerValue":"5"}}},
-    {"name":"categories/peonies","fields":{"key":{"stringValue":"peonies"},"label":{"stringValue":"Пионы"},"enabled":{"booleanValue":true},"order":{"integerValue":"8"}}},
-    {"name":"categories/tulips","fields":{"key":{"stringValue":"tulips"},"label":{"stringValue":"Тюльпаны"},"enabled":{"booleanValue":false},"order":{"integerValue":"7"}}},
-    {"name":"categories/newcat","fields":{"key":{"stringValue":"newcat"},"label":{"stringValue":"Ромашки"},"enabled":{"booleanValue":true},"order":{"integerValue":"9"}}}
-  ],
-  "flowers": [
-    {"name":"flowers/f1","fields":{"price":{"integerValue":"1800"},"markup":{"integerValue":"0"}}},
-    {"name":"flowers/fh","fields":{"price":{"integerValue":"900"},"hidden":{"booleanValue":true}}}
-  ],
-  "settings": [
-    {"name":"settings/prices","fields":{"bentoPrice":{"integerValue":"5000"},"berryPrice":{"integerValue":"1000"}}},
-    {"name":"settings/watermark","fields":{"watermarkText":{"stringValue":"FLOMART"},"watermarkSize":{"integerValue":"20"},"watermarkPosition":{"stringValue":"south"},"watermarkOpacity":{"integerValue":"45"},"watermarkOffset":{"integerValue":"120"}}}
-  ],
-  "bouquets": [
-    {"name":"bouquets/1womcupsmw87niln","fields":{"code":{"stringValue":"К10"},"name":{"stringValue":"Букет из ярких кустовых роз, 10 веток"},"photos":{"arrayValue":{"values":[{"mapValue":{"fields":{"url":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1794165228/flomart/bouquets/fboaalsy55vksvcjmflg.jpg"}}}}]}},"photoZoom":{"doubleValue":1.08},"comboLabel":{"stringValue":"Букет по специальной цене"},"salePrice":{"integerValue":"15000"},"desc":{"stringValue":""},"price":{"integerValue":"20000"},"order":{"integerValue":"96"},"category":{"stringValue":"spray"},"categories":{"arrayValue":{"values":[{"stringValue":"spray"}]}},"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1794165228/flomart/bouquets/fboaalsy55vksvcjmflg.jpg"}}},
-    {"name":"bouquets/3mts0ro7muk2s4y3","fields":{"category":{"stringValue":"premium"},"categories":{"arrayValue":{"values":[{"stringValue":"premium"},{"stringValue":"mixed"}]}},"order":{"integerValue":"84"},"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790529075/flomart/bouquets/pjrkycwk3zsxxsdymrqs.jpg"},"salePrice":{"integerValue":"95000"},"comboLabel":{"stringValue":"Мега акция на мега букет"},"price":{"integerValue":"122000"},"name":{"stringValue":"Мега гигант букет"}}},
-    {"name":"bouquets/0hsl7rcumuk2i8ax","fields":{"name":{"stringValue":"Дофаминовая цветочная композиция в корзине"},"category":{"stringValue":"premium"},"photoPosY":{"integerValue":"94"},"price":{"integerValue":"85600"},"photoPosX":{"integerValue":"66"},"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790888839/flomart/bouquets/oo6hgocx5bzuu7emifx8.jpg"},"photos":{"arrayValue":{"values":[{"mapValue":{"fields":{"url":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790888839/flomart/bouquets/oo6hgocx5bzuu7emifx8.jpg"}}}},{"mapValue":{"fields":{"url":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790529075/flomart/bouquets/pjrkycwk3zsxxsdymrqs.jpg"}}}}]}},"salePrice":{"integerValue":"0"},"order":{"integerValue":"52"},"categories":{"arrayValue":{"values":[{"stringValue":"premium"},{"stringValue":"compositions"}]}}}},
-    {"name":"bouquets/0p879m2zmudvuc5u","fields":{"desc":{"stringValue":"Яркий букет <для> настроения"},"order":{"integerValue":"11"},"name":{"stringValue":"Дофаминовый букет"},"price":{"integerValue":"30400"},"category":{"stringValue":"mixed"},"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790154622/flomart/bouquets/zdvhok3siirtq4yfw1le.jpg"},"categories":{"arrayValue":{"values":[{"stringValue":"mixed"}]}},"hidden":{"booleanValue":false}}},
-    {"name":"bouquets/4u1at3esmubc28lr","fields":{"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790000467/flomart/bouquets/kxu9w0cmdpwzdutuoknh.jpg"},"hidden":{"booleanValue":true},"price":{"integerValue":"16500"},"name":{"stringValue":"15 розовых французских роз в коробке"},"category":{"stringValue":"roses"},"order":{"integerValue":"13"}}},
-    {"name":"bouquets/rosevisible","fields":{"price":{"integerValue":"14500"},"name":{"stringValue":"Букет 25 роз"},"category":{"stringValue":"roses"},"order":{"integerValue":"2"},"ingredients":{"arrayValue":{"values":[{"mapValue":{"fields":{"flowerId":{"stringValue":"f1"},"qty":{"integerValue":"25"}}}}]}}}},
-    {"name":"bouquets/rosehiddenflower","fields":{"price":{"integerValue":"9000"},"name":{"stringValue":"Скрытый из-за цветка"},"category":{"stringValue":"roses"},"order":{"integerValue":"3"},"ingredients":{"arrayValue":{"values":[{"mapValue":{"fields":{"flowerId":{"stringValue":"fh"},"qty":{"integerValue":"3"}}}}]}}}},
-    {"name":"bouquets/tulipsonly","fields":{"price":{"integerValue":"9000"},"name":{"stringValue":"Тюльпаны 25"},"category":{"stringValue":"tulips"},"order":{"integerValue":"4"}}},
-    {"name":"bouquets/3k5g4ijgmujz95nt","fields":{"category":{"stringValue":"peonies"},"order":{"integerValue":"43"},"name":{"stringValue":"Букет из пионов, 7 шт"},"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790523151/flomart/bouquets/c4qlskzkak2llrpbbxoj.jpg"},"photoPosY":{"integerValue":"84"},"price":{"integerValue":"33500"}}},
-    {"name":"bouquets/nocatphoto","fields":{"category":{"stringValue":"newcat"},"order":{"integerValue":"60"},"name":{"stringValue":"Ромашковое поле"},"price":{"integerValue":"12000"}}}
-  ],
-  "cakes": [
-    {"name":"cakes/1m4Zh8OXZPKl1MLWhdaD","fields":{"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1791640868/1118.png"},"filling":{"stringValue":"Вупи Пай"},"name":{"stringValue":"Бенто-торт - Без паники, ты не старенькая!"},"order":{"integerValue":"26"},"desc":{"stringValue":"Авторский бенто-торт ручной работы"},"price":{"integerValue":"5000"},"autoPrice":{"booleanValue":false}}},
-    {"name":"cakes/autoprice","fields":{"name":{"stringValue":"Бенто авто"},"order":{"integerValue":"1"},"autoPrice":{"booleanValue":true},"ingredients":{"arrayValue":{"values":[{"mapValue":{"fields":{"flowerId":{"stringValue":"f1"},"qty":{"integerValue":"3"}}}}]}}}}
-  ],
-  "berries": [
-    {"name":"berries/0bdv8dpqmuhfkolk","fields":{"order":{"integerValue":"4"},"subtitle":{"stringValue":"Клубника в белом и розовом шоколаде с розочками и бантиками"},"price":{"integerValue":"9000"},"name":{"stringValue":"Розовые розы"},"photoUrl":{"stringValue":"https://res.cloudinary.com/jeg47a8m/image/upload/v1790369164/flomart/berries/phohl7n4ocrc60zruhyr.png"},"desc":{"stringValue":"Изящный набор: клубника в белом шоколаде украшена нежными розочками."}}},
-    {"name":"berries/noprice","fields":{"order":{"integerValue":"5"},"name":{"stringValue":"Набор без цены"}}}
-  ]
+ "categories": [
+  {
+   "name": "categories/roses",
+   "fields": {
+    "key": {
+     "stringValue": "roses"
+    },
+    "label": {
+     "stringValue": "Розы"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "0"
+    }
+   }
+  },
+  {
+   "name": "categories/mixed",
+   "fields": {
+    "key": {
+     "stringValue": "mixed"
+    },
+    "label": {
+     "stringValue": "Сборные"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "1"
+    }
+   }
+  },
+  {
+   "name": "categories/spray",
+   "fields": {
+    "key": {
+     "stringValue": "spray"
+    },
+    "label": {
+     "stringValue": "Кустовые розы"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "2"
+    }
+   }
+  },
+  {
+   "name": "categories/premium",
+   "fields": {
+    "key": {
+     "stringValue": "premium"
+    },
+    "label": {
+     "stringValue": "Премиум"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "4"
+    }
+   }
+  },
+  {
+   "name": "categories/compositions",
+   "fields": {
+    "key": {
+     "stringValue": "compositions"
+    },
+    "label": {
+     "stringValue": "Цветочная композиция"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "5"
+    }
+   }
+  },
+  {
+   "name": "categories/peonies",
+   "fields": {
+    "key": {
+     "stringValue": "peonies"
+    },
+    "label": {
+     "stringValue": "Пионы"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "8"
+    }
+   }
+  },
+  {
+   "name": "categories/tulips",
+   "fields": {
+    "key": {
+     "stringValue": "tulips"
+    },
+    "label": {
+     "stringValue": "Тюльпаны"
+    },
+    "enabled": {
+     "booleanValue": false
+    },
+    "order": {
+     "integerValue": "7"
+    }
+   }
+  },
+  {
+   "name": "categories/newcat",
+   "fields": {
+    "key": {
+     "stringValue": "newcat"
+    },
+    "label": {
+     "stringValue": "Ромашки"
+    },
+    "enabled": {
+     "booleanValue": true
+    },
+    "order": {
+     "integerValue": "9"
+    },
+    "labelEn": {
+     "stringValue": "Daisies"
+    }
+   }
+  }
+ ],
+ "flowers": [
+  {
+   "name": "flowers/f1",
+   "fields": {
+    "price": {
+     "integerValue": "1800"
+    },
+    "markup": {
+     "integerValue": "0"
+    }
+   }
+  },
+  {
+   "name": "flowers/fh",
+   "fields": {
+    "price": {
+     "integerValue": "900"
+    },
+    "hidden": {
+     "booleanValue": true
+    }
+   }
+  }
+ ],
+ "settings": [
+  {
+   "name": "settings/prices",
+   "fields": {
+    "bentoPrice": {
+     "integerValue": "5000"
+    },
+    "berryPrice": {
+     "integerValue": "1000"
+    }
+   }
+  },
+  {
+   "name": "settings/watermark",
+   "fields": {
+    "watermarkText": {
+     "stringValue": "FLOMART"
+    },
+    "watermarkSize": {
+     "integerValue": "20"
+    },
+    "watermarkPosition": {
+     "stringValue": "south"
+    },
+    "watermarkOpacity": {
+     "integerValue": "45"
+    },
+    "watermarkOffset": {
+     "integerValue": "120"
+    }
+   }
+  }
+ ],
+ "bouquets": [
+  {
+   "name": "bouquets/1womcupsmw87niln",
+   "fields": {
+    "code": {
+     "stringValue": "К10"
+    },
+    "name": {
+     "stringValue": "Букет из ярких кустовых роз, 10 веток"
+    },
+    "photos": {
+     "arrayValue": {
+      "values": [
+       {
+        "mapValue": {
+         "fields": {
+          "url": {
+           "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1794165228/flomart/bouquets/fboaalsy55vksvcjmflg.jpg"
+          }
+         }
+        }
+       }
+      ]
+     }
+    },
+    "photoZoom": {
+     "doubleValue": 1.08
+    },
+    "comboLabel": {
+     "stringValue": "Букет по специальной цене"
+    },
+    "salePrice": {
+     "integerValue": "15000"
+    },
+    "desc": {
+     "stringValue": ""
+    },
+    "price": {
+     "integerValue": "20000"
+    },
+    "order": {
+     "integerValue": "96"
+    },
+    "category": {
+     "stringValue": "spray"
+    },
+    "categories": {
+     "arrayValue": {
+      "values": [
+       {
+        "stringValue": "spray"
+       }
+      ]
+     }
+    },
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1794165228/flomart/bouquets/fboaalsy55vksvcjmflg.jpg"
+    },
+    "nameEn": {
+     "stringValue": "EN Букет из ярких кусто"
+    }
+   }
+  },
+  {
+   "name": "bouquets/3mts0ro7muk2s4y3",
+   "fields": {
+    "category": {
+     "stringValue": "premium"
+    },
+    "categories": {
+     "arrayValue": {
+      "values": [
+       {
+        "stringValue": "premium"
+       },
+       {
+        "stringValue": "mixed"
+       }
+      ]
+     }
+    },
+    "order": {
+     "integerValue": "84"
+    },
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790529075/flomart/bouquets/pjrkycwk3zsxxsdymrqs.jpg"
+    },
+    "salePrice": {
+     "integerValue": "95000"
+    },
+    "comboLabel": {
+     "stringValue": "Мега акция на мега букет"
+    },
+    "price": {
+     "integerValue": "122000"
+    },
+    "name": {
+     "stringValue": "Мега гигант букет"
+    },
+    "nameEn": {
+     "stringValue": "EN Мега гигант букет"
+    }
+   }
+  },
+  {
+   "name": "bouquets/0hsl7rcumuk2i8ax",
+   "fields": {
+    "name": {
+     "stringValue": "Дофаминовая цветочная композиция в корзине"
+    },
+    "category": {
+     "stringValue": "premium"
+    },
+    "photoPosY": {
+     "integerValue": "94"
+    },
+    "price": {
+     "integerValue": "85600"
+    },
+    "photoPosX": {
+     "integerValue": "66"
+    },
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790888839/flomart/bouquets/oo6hgocx5bzuu7emifx8.jpg"
+    },
+    "photos": {
+     "arrayValue": {
+      "values": [
+       {
+        "mapValue": {
+         "fields": {
+          "url": {
+           "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790888839/flomart/bouquets/oo6hgocx5bzuu7emifx8.jpg"
+          }
+         }
+        }
+       },
+       {
+        "mapValue": {
+         "fields": {
+          "url": {
+           "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790529075/flomart/bouquets/pjrkycwk3zsxxsdymrqs.jpg"
+          }
+         }
+        }
+       }
+      ]
+     }
+    },
+    "salePrice": {
+     "integerValue": "0"
+    },
+    "order": {
+     "integerValue": "52"
+    },
+    "categories": {
+     "arrayValue": {
+      "values": [
+       {
+        "stringValue": "premium"
+       },
+       {
+        "stringValue": "compositions"
+       }
+      ]
+     }
+    },
+    "nameEn": {
+     "stringValue": "EN Дофаминовая цветочна"
+    }
+   }
+  },
+  {
+   "name": "bouquets/0p879m2zmudvuc5u",
+   "fields": {
+    "desc": {
+     "stringValue": "Яркий букет <для> настроения"
+    },
+    "order": {
+     "integerValue": "11"
+    },
+    "name": {
+     "stringValue": "Дофаминовый букет"
+    },
+    "price": {
+     "integerValue": "30400"
+    },
+    "category": {
+     "stringValue": "mixed"
+    },
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790154622/flomart/bouquets/zdvhok3siirtq4yfw1le.jpg"
+    },
+    "categories": {
+     "arrayValue": {
+      "values": [
+       {
+        "stringValue": "mixed"
+       }
+      ]
+     }
+    },
+    "hidden": {
+     "booleanValue": false
+    }
+   }
+  },
+  {
+   "name": "bouquets/4u1at3esmubc28lr",
+   "fields": {
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790000467/flomart/bouquets/kxu9w0cmdpwzdutuoknh.jpg"
+    },
+    "hidden": {
+     "booleanValue": true
+    },
+    "price": {
+     "integerValue": "16500"
+    },
+    "name": {
+     "stringValue": "15 розовых французских роз в коробке"
+    },
+    "category": {
+     "stringValue": "roses"
+    },
+    "order": {
+     "integerValue": "13"
+    }
+   }
+  },
+  {
+   "name": "bouquets/rosevisible",
+   "fields": {
+    "price": {
+     "integerValue": "14500"
+    },
+    "name": {
+     "stringValue": "Букет 25 роз"
+    },
+    "category": {
+     "stringValue": "roses"
+    },
+    "order": {
+     "integerValue": "2"
+    },
+    "ingredients": {
+     "arrayValue": {
+      "values": [
+       {
+        "mapValue": {
+         "fields": {
+          "flowerId": {
+           "stringValue": "f1"
+          },
+          "qty": {
+           "integerValue": "25"
+          }
+         }
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "bouquets/rosehiddenflower",
+   "fields": {
+    "price": {
+     "integerValue": "9000"
+    },
+    "name": {
+     "stringValue": "Скрытый из-за цветка"
+    },
+    "category": {
+     "stringValue": "roses"
+    },
+    "order": {
+     "integerValue": "3"
+    },
+    "ingredients": {
+     "arrayValue": {
+      "values": [
+       {
+        "mapValue": {
+         "fields": {
+          "flowerId": {
+           "stringValue": "fh"
+          },
+          "qty": {
+           "integerValue": "3"
+          }
+         }
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "bouquets/tulipsonly",
+   "fields": {
+    "price": {
+     "integerValue": "9000"
+    },
+    "name": {
+     "stringValue": "Тюльпаны 25"
+    },
+    "category": {
+     "stringValue": "tulips"
+    },
+    "order": {
+     "integerValue": "4"
+    }
+   }
+  },
+  {
+   "name": "bouquets/3k5g4ijgmujz95nt",
+   "fields": {
+    "category": {
+     "stringValue": "peonies"
+    },
+    "order": {
+     "integerValue": "43"
+    },
+    "name": {
+     "stringValue": "Букет из пионов, 7 шт"
+    },
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790523151/flomart/bouquets/c4qlskzkak2llrpbbxoj.jpg"
+    },
+    "photoPosY": {
+     "integerValue": "84"
+    },
+    "price": {
+     "integerValue": "33500"
+    }
+   }
+  },
+  {
+   "name": "bouquets/nocatphoto",
+   "fields": {
+    "category": {
+     "stringValue": "newcat"
+    },
+    "order": {
+     "integerValue": "60"
+    },
+    "name": {
+     "stringValue": "Ромашковое поле"
+    },
+    "price": {
+     "integerValue": "12000"
+    }
+   }
+  }
+ ],
+ "cakes": [
+  {
+   "name": "cakes/1m4Zh8OXZPKl1MLWhdaD",
+   "fields": {
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1791640868/1118.png"
+    },
+    "filling": {
+     "stringValue": "Вупи Пай"
+    },
+    "name": {
+     "stringValue": "Бенто-торт - Без паники, ты не старенькая!"
+    },
+    "order": {
+     "integerValue": "26"
+    },
+    "desc": {
+     "stringValue": "Авторский бенто-торт ручной работы"
+    },
+    "price": {
+     "integerValue": "5000"
+    },
+    "autoPrice": {
+     "booleanValue": false
+    }
+   }
+  },
+  {
+   "name": "cakes/autoprice",
+   "fields": {
+    "name": {
+     "stringValue": "Бенто авто"
+    },
+    "order": {
+     "integerValue": "1"
+    },
+    "autoPrice": {
+     "booleanValue": true
+    },
+    "ingredients": {
+     "arrayValue": {
+      "values": [
+       {
+        "mapValue": {
+         "fields": {
+          "flowerId": {
+           "stringValue": "f1"
+          },
+          "qty": {
+           "integerValue": "3"
+          }
+         }
+        }
+       }
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "berries": [
+  {
+   "name": "berries/0bdv8dpqmuhfkolk",
+   "fields": {
+    "order": {
+     "integerValue": "4"
+    },
+    "subtitle": {
+     "stringValue": "Клубника в белом и розовом шоколаде с розочками и бантиками"
+    },
+    "price": {
+     "integerValue": "9000"
+    },
+    "name": {
+     "stringValue": "Розовые розы"
+    },
+    "photoUrl": {
+     "stringValue": "https://res.cloudinary.com/jeg47a8m/image/upload/v1790369164/flomart/berries/phohl7n4ocrc60zruhyr.png"
+    },
+    "desc": {
+     "stringValue": "Изящный набор: клубника в белом шоколаде украшена нежными розочками."
+    }
+   }
+  },
+  {
+   "name": "berries/noprice",
+   "fields": {
+    "order": {
+     "integerValue": "5"
+    },
+    "name": {
+     "stringValue": "Набор без цены"
+    }
+   }
+  }
+ ]
 }

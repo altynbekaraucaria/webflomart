@@ -3022,7 +3022,7 @@ window.addEventListener('flomart-rate-ready', () => {
       // Product's own address (flomart.kz/buket/<id>/), see assets/flomart-routes.js;
       // falls back to the older ?item= link if that file didn't load.
       text += '\n' + window.location.origin + (window.FlomartRoutes
-        ? window.FlomartRoutes.productPath(itemType, itemId)
+        ? window.FlomartRoutes.productPath(itemType, itemId, window.currentLang)
         : window.location.pathname + '?item=' + itemType + '-' + itemId);
     }
     const msg = encodeURIComponent(text);

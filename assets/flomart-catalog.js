@@ -24,14 +24,14 @@
 
   // Only the fields the pages need — keeps each visitor's download small.
   var MASKS = {
-    categories: ['key', 'label', 'enabled', 'order', 'emoji'],
+    categories: ['key', 'label', 'labelEn', 'enabled', 'order', 'emoji'],
     flowers: ['price', 'markup', 'hidden'],
     settings: [],
-    bouquets: ['name', 'desc', 'price', 'salePrice', 'category', 'categories', 'photoUrl', 'photos',
+    bouquets: ['name', 'nameEn', 'desc', 'descEn', 'price', 'salePrice', 'category', 'categories', 'photoUrl', 'photos',
       'photoZoom', 'photoPosX', 'photoPosY', 'hidden', 'order', 'code', 'ingredients', 'comboLabel'],
-    cakes: ['name', 'desc', 'price', 'photoUrl', 'photoZoom', 'photoPosX', 'photoPosY', 'hidden', 'order',
+    cakes: ['name', 'nameEn', 'desc', 'descEn', 'price', 'photoUrl', 'photoZoom', 'photoPosX', 'photoPosY', 'hidden', 'order',
       'ingredients', 'autoPrice', 'filling'],
-    berries: ['name', 'desc', 'price', 'photoUrl', 'photoZoom', 'photoPosX', 'photoPosY', 'hidden', 'order',
+    berries: ['name', 'nameEn', 'desc', 'descEn', 'subtitleEn', 'price', 'photoUrl', 'photoZoom', 'photoPosX', 'photoPosY', 'hidden', 'order',
       'ingredients', 'autoPrice', 'subtitle', 'badge', 'qty']
   };
 

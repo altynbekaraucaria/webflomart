@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 /*
  * Gives every catalog category, block and product of flomart.kz its own
- * address — flomart.kz/rozy/, /klubnika-v-shokolade/, /buket/<id>/ … — by
- * writing a copy of the normal site (index.html) at each address with its own
- * <title>, description and structured data for search engines. The page itself
- * is the same site; assets/flomart-router.js selects the category / opens the
- * product and keeps the address bar in sync while people browse.
+ * address, in Russian and English — flomart.kz/rozy/ ↔ /en/roses/,
+ * /buket/<id>/ ↔ /en/bouquet/<id>/ … — by writing a copy of the normal site
+ * (index.html) at each address with its own <title>, description, language
+ * links and structured data for search engines. The page itself is the same
+ * site; assets/flomart-router.js selects the category / opens the product and
+ * keeps the address bar in sync while people browse.
+ *
+ * The English home page (en/index.html) is also built here from index.html, so
+ * any change to the site reaches the English version on the next run.
  *
  *   node tools/build-pages.js                  # catalog from Firestore
  *   node tools/build-pages.js --fixture f.json # catalog from a saved REST dump
@@ -13,7 +17,7 @@
  * Runs from .github/workflows/build-pages.yml (every 3 hours and whenever
  * index.html changes). It makes sure index.html loads the two route scripts
  * (adds them back if a re-uploaded index.html lacks them) and otherwise leaves
- * index.html, care.html and en/ alone. Folders it writes carry a ".generated"
+ * index.html and care.html alone. Folders it writes carry a ".generated"
  * marker and are rebuilt from scratch each run.
  */
 'use strict';
@@ -26,17 +30,27 @@ const R = require('../assets/flomart-routes.js');
 const ROOT = path.resolve(__dirname, '..');
 const SITE = C.SITE;
 const esc = C.esc;
+const LANGS = ['ru', 'en'];
+
+// English home page texts (index.html carries the Russian ones).
+const EN_HOME = {
+  title: 'Buy Flowers & Bouquets in Astana with Delivery — FLOMART',
+  description: 'Buy flowers and bouquets in Astana with delivery from FLOMART — fresh bouquets, cakes and chocolate-covered strawberries. City-wide delivery, online payment, fresh flowers every day.',
+  ogDescription: 'Fresh bouquets, cakes and chocolate-covered strawberries delivered across Astana. Browse the catalog and order online.',
+  twitterDescription: 'Fresh bouquets, cakes and chocolate-covered strawberries delivered across Astana.',
+  ldDescription: 'Buy flowers and bouquets in Astana with delivery. Fresh flowers, cakes and chocolate-covered strawberries.',
+};
 
 // ── index.html hooks ───────────────────────────────────────────────────────
 const HEAD_HOOK = `<!-- flomart-routes:head -->
 <script src="/assets/flomart-routes.js"></script>
 <script>
-  // flomart.kz/buket/<id>/ (and /bento-tort/, /nabor-klubniki/) → open that
-  // product: hand it to the site's existing ?item= link before the catalog loads.
+  // flomart.kz/buket/<id>/, /en/bouquet/<id>/ … → open that product: hand it to
+  // the site's existing ?item= link before the catalog loads.
   (function () {
-    var m = /^\\/(buket|bento-tort|nabor-klubniki)\\/([^\\/]+)\\/?$/.exec(location.pathname);
+    var m = /^(?:\\/en)?\\/(buket|bento-tort|nabor-klubniki|bouquet|bento-cake|strawberry-set)\\/([^\\/]+)\\/?$/.exec(location.pathname);
     if (!m || /[?&]item=/.test(location.search)) return;
-    var t = { 'buket': 'b', 'bento-tort': 'c', 'nabor-klubniki': 's' }[m[1]];
+    var t = { 'buket': 'b', 'bento-tort': 'c', 'nabor-klubniki': 's', 'bouquet': 'b', 'bento-cake': 'c', 'strawberry-set': 's' }[m[1]];
     history.replaceState(null, '', location.pathname + (location.search ? location.search + '&' : '?') + 'item=' + t + '-' + m[2] + location.hash);
   })();
 </script>
@@ -58,11 +72,11 @@ function ensureIndexHooks() {
   return html;
 }
 
-// ── copy template ──────────────────────────────────────────────────────────
-// Copies live one or two folders deep, so relative links (care.html, the hero
+// ── templates ──────────────────────────────────────────────────────────────
+// Copies live one or more folders deep, so relative links (care.html, the hero
 // video …) become absolute, and the large embedded pictures move to files so
-// that ~200 copies don't each carry ~400 KB of them.
-function makeTemplate(indexHtml) {
+// that the ~400 copies don't each carry ~400 KB of them.
+function makeTemplates(indexHtml) {
   const inlineDir = path.join(ROOT, 'assets', 'inline');
   fs.rmSync(inlineDir, { recursive: true, force: true });
   fs.mkdirSync(inlineDir, { recursive: true });
@@ -74,10 +88,22 @@ function makeTemplate(indexHtml) {
     return '/assets/inline/' + name;
   });
   html = html.replace(/\b(href|src|poster)="(?!https?:|\/|#|data:|mailto:|tel:|javascript:|\$\{)([^"]+)"/g, '$1="/$2"');
-  // Each copy is the Russian page for one address: drop the language
-  // alternates, which point at the home page.
-  html = html.replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*">\n?/g, '');
-  return html;
+  // Fixed literals used in JS strings, e.g. the footer's care.html link.
+  html = html.replace(/href="care\.html"/g, 'href="/care.html"');
+
+  const ru = html;
+  let en = html.replace('<html lang="ru">', '<html lang="en">')
+    .replace(/<meta property="og:locale" content="ru_RU">/, '<meta property="og:locale" content="en_US">')
+    .replace(/<meta property="og:locale:alternate" content="en_US">/, '<meta property="og:locale:alternate" content="ru_RU">');
+  en = setHead(en, { title: EN_HOME.title, description: EN_HOME.description, url: SITE + '/en/' });
+  en = en.replace(/(<meta property="og:description" content=")[^"]*(">)/, (m, a, b) => a + esc(EN_HOME.ogDescription) + b)
+    .replace(/(<meta name="twitter:description" content=")[^"]*(">)/, (m, a, b) => a + esc(EN_HOME.twitterDescription) + b);
+  // The shop's structured data block in <head>.
+  en = en.replace(/("description":\s*")Купить цветы и букеты в Астане с доставкой[^"]*(")/, (m, a, b) => a + EN_HOME.ldDescription + b)
+    .replace(/("name":\s*")Астана(")/, '$1Astana$2')
+    .replace(/("addressLocality":\s*")Астана(")/, '$1Astana$2')
+    .replace(/("url":\s*"https:\/\/flomart\.kz\/)(")/, '$1en/$2');
+  return { ru, en };
 }
 
 function setHead(html, { title, description, url, image }) {
@@ -97,6 +123,12 @@ function setHead(html, { title, description, url, image }) {
   }
   return html;
 }
+// Language links: the same place on the Russian and English site.
+function setAlternates(html, ruPath, enPath) {
+  html = html.replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*">\n?/g, '');
+  const links = `<link rel="alternate" hreflang="ru" href="${SITE}${ruPath}">\n<link rel="alternate" hreflang="en" href="${SITE}${enPath}">\n<link rel="alternate" hreflang="x-default" href="${SITE}${ruPath}">\n`;
+  return html.replace(/(<link rel="canonical" href="[^"]*">\n?)/, m => m + links);
+}
 function addLd(html, objs) {
   const tags = objs.map(o => '<script type="application/ld+json">' + JSON.stringify(o).replace(/</g, '\\u003c') + '</script>').join('\n');
   const i = html.indexOf('</head>');
@@ -110,39 +142,60 @@ function setCatalogHeading(html, info) {
     (m, a, b) => a + esc(info.h1) + b + (info.intro ? `<p id="cat-route-intro" style="margin-top:12px;max-width:560px;font-size:14px;line-height:1.6;color:var(--text-muted,#8A6E8A);">${esc(info.intro)}</p>` : ''));
 }
 
-function writeCopy(rel, html) {
-  const dir = path.join(ROOT, rel);
+function writeCopy(urlPath, html) {
+  const dir = path.join(ROOT, urlPath.replace(/^\/|\/$/g, ''));
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, '.generated'), 'Создано tools/build-pages.js — не редактировать вручную.\n');
   fs.writeFileSync(path.join(dir, 'index.html'), html);
 }
 function cleanGenerated() {
-  for (const top of fs.readdirSync(ROOT, { withFileTypes: true })) {
-    if (!top.isDirectory() || top.name.startsWith('.') || ['assets', 'tools', 'en'].includes(top.name)) continue;
-    const p = path.join(ROOT, top.name);
-    if (fs.existsSync(path.join(p, '.generated')) || Object.values(R.KIND_DIRS).includes(top.name)) fs.rmSync(p, { recursive: true, force: true });
-  }
+  const productDirs = [...Object.values(R.KIND_DIRS.ru), ...Object.values(R.KIND_DIRS.en)];
+  const sweep = (base, isTop) => {
+    for (const e of fs.readdirSync(base, { withFileTypes: true })) {
+      if (!e.isDirectory() || e.name.startsWith('.') || (isTop && ['assets', 'tools', 'en'].includes(e.name))) continue;
+      const p = path.join(base, e.name);
+      if (fs.existsSync(path.join(p, '.generated')) || productDirs.includes(e.name)) fs.rmSync(p, { recursive: true, force: true });
+    }
+  };
+  sweep(ROOT, true);
+  const en = path.join(ROOT, 'en');
+  if (fs.existsSync(en)) sweep(en, false);
 }
 
 const crumbsLd = list => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: list.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[0], item: SITE + c[1] })) });
-const itemListLd = (name, items) => ({ '@context': 'https://schema.org', '@type': 'ItemList', name,
-  itemListElement: items.slice(0, 100).map((it, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + R.productPath(it.kind, it.id), name: it.name })) });
+const itemListLd = (name, items, lang) => ({ '@context': 'https://schema.org', '@type': 'ItemList', name,
+  itemListElement: items.slice(0, 100).map((it, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + R.productPath(it.kind, it.id, lang), name: nameOf(it, lang) })) });
 
-function productDescription(item) {
+function nameOf(item, lang) { return (lang === 'en' && item.nameEn) ? item.nameEn : item.name; }
+function catLabel(cat, lang) { return (lang === 'en' && cat.labelEn) ? cat.labelEn : (cat.label || cat.key); }
+
+function productDescription(item, lang) {
+  const name = nameOf(item, lang);
+  if (lang === 'en') {
+    if (item.descEn && item.descEn.trim()) return item.descEn.trim();
+    if (item.kind === 'b') return `${name} from FLOMART flower shop in Astana. Hand-arranged by our florist; delivery across Astana from 1 hour or pick-up at 45 Kenesary St.`;
+    if (item.kind === 'c') return `${name}. Bento cake delivered across Astana — on its own or with a bouquet.`;
+    return `${name}${item.subtitleEn ? ' — ' + item.subtitleEn : ''}. Chocolate-covered strawberries delivered across Astana — on their own or with a bouquet.`;
+  }
   if (item.desc && item.desc.trim()) return item.desc.trim();
-  if (item.kind === 'b') return `${item.name} от цветочного салона FLOMART в Астане. Флорист собирает букет вручную; доставка по Астане от 1 часа или самовывоз с ул. Кенесары 45.`;
-  if (item.kind === 'c') return `${item.name}. Начинка: ${item.filling}. Бенто-торт с доставкой по Астане — отдельно или вместе с букетом.`;
-  return `${item.name}${item.subtitle ? ' — ' + item.subtitle.toLowerCase() : ''}. Клубника в шоколаде с доставкой по Астане — отдельно или вместе с букетом.`;
+  if (item.kind === 'b') return `${name} от цветочного салона FLOMART в Астане. Флорист собирает букет вручную; доставка по Астане от 1 часа или самовывоз с ул. Кенесары 45.`;
+  if (item.kind === 'c') return `${name}. Начинка: ${item.filling}. Бенто-торт с доставкой по Астане — отдельно или вместе с букетом.`;
+  return `${name}${item.subtitle ? ' — ' + item.subtitle.toLowerCase() : ''}. Клубника в шоколаде с доставкой по Астане — отдельно или вместе с букетом.`;
 }
 
 function writeSitemap(paths) {
-  const entry = (loc, freq, prio) => `  <url>\n    <loc>${SITE}${loc}</loc>\n    <changefreq>${freq}</changefreq>\n    <priority>${prio}</priority>\n  </url>`;
-  const lines = [entry('/', 'daily', '1.0'), entry('/en/', 'weekly', '0.5'), entry('/care.html', 'monthly', '0.6')];
-  paths.sections.forEach(p => lines.push(entry(p, 'daily', '0.9')));
-  paths.products.forEach(p => lines.push(entry(p, 'weekly', '0.7')));
+  // Each address lists its other-language twin, so search engines pair them.
+  const entry = (pair, freq, prio) => [pair.ru, pair.en].map(loc => `  <url>\n    <loc>${SITE}${loc}</loc>\n` +
+    `    <xhtml:link rel="alternate" hreflang="ru" href="${SITE}${pair.ru}"/>\n` +
+    `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${pair.en}"/>\n` +
+    `    <changefreq>${freq}</changefreq>\n    <priority>${loc === pair.ru ? prio : (prio - 0.1).toFixed(1)}</priority>\n  </url>`).join('\n');
+  const lines = [entry({ ru: '/', en: '/en/' }, 'daily', 1.0),
+    `  <url>\n    <loc>${SITE}/care.html</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`];
+  paths.sections.forEach(p => lines.push(entry(p, 'daily', 0.9)));
+  paths.products.forEach(p => lines.push(entry(p, 'weekly', 0.7)));
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
-    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + lines.join('\n') + '\n</urlset>\n');
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + lines.join('\n') + '\n</urlset>\n');
 }
 
 async function main() {
@@ -160,66 +213,83 @@ async function main() {
 
   const indexHtml = ensureIndexHooks();
   cleanGenerated();
-  const tpl = makeTemplate(indexHtml);
+  const tpl = makeTemplates(indexHtml);
   const out = { sections: [], products: [] };
-  const homeOf = {}; // category key → its page
 
+  // English home page, rebuilt from index.html every run.
+  fs.mkdirSync(path.join(ROOT, 'en'), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, 'en', 'index.html'), setAlternates(tpl.en, '/', '/en/'));
+
+  const homeOf = { ru: {}, en: {} }; // category key → its page, per language
   for (const cat of state.categories) {
     if (cat.enabled === false) continue;
     const items = C.itemsFor(state, { type: 'category', key: cat.key });
     if (!items.length) continue;
-    const info = R.categoryInfo(cat);
-    const p = '/' + info.slug + '/';
-    homeOf[cat.key] = { path: p, name: cat.label || info.h1 };
-    let html = setHead(tpl, { title: info.title, description: info.description, url: SITE + p,
-      image: C.photosOf(items[0])[0] ? C.cldUrl(C.photosOf(items[0])[0], 1200) : null });
-    html = setCatalogHeading(html, info);
-    html = addLd(html, [crumbsLd([['Главная', '/'], [cat.label || info.h1, p]]), itemListLd(info.h1, items)]);
-    writeCopy(info.slug, html);
-    out.sections.push(p);
+    const pair = {};
+    for (const lang of LANGS) pair[lang] = R.categoryPath({ key: cat.key, label: catLabel(cat, lang) }, lang);
+    for (const lang of LANGS) {
+      const info = R.categoryInfo({ key: cat.key, label: catLabel(cat, lang) }, lang);
+      const p = pair[lang];
+      homeOf[lang][cat.key] = { path: p, name: catLabel(cat, lang) };
+      let html = setHead(tpl[lang], { title: info.title, description: info.description, url: SITE + p,
+        image: C.photosOf(items[0])[0] ? C.cldUrl(C.photosOf(items[0])[0], 1200) : null });
+      html = setAlternates(html, pair.ru, pair.en);
+      html = setCatalogHeading(html, info);
+      html = addLd(html, [crumbsLd([[lang === 'en' ? 'Home' : 'Главная', R.homePath(lang)], [catLabel(cat, lang), p]]), itemListLd(info.h1, items, lang)]);
+      writeCopy(p, html);
+    }
+    out.sections.push(pair);
   }
 
-  const sectionItems = { 'klubnika-v-shokolade': C.itemsFor(state, { type: 'berries' }), 'bento-torty': C.itemsFor(state, { type: 'cakes' }) };
-  const sectionNames = { 'klubnika-v-shokolade': 'Клубника в шоколаде', 'bento-torty': 'Бенто-торты', 'dostavka-cvetov': 'Доставка цветов' };
-  for (const slug of Object.keys(R.SECTIONS)) {
-    const s = R.SECTIONS[slug];
-    const items = sectionItems[slug] || [];
-    const p = '/' + slug + '/';
-    const html = setHead(tpl, { title: s.title, description: s.description, url: SITE + p,
-      image: items[0] && C.photosOf(items[0])[0] ? C.cldUrl(C.photosOf(items[0])[0], 1200) : null });
-    const ld = [crumbsLd([['Главная', '/'], [sectionNames[slug] || slug, p]])];
-    if (items.length) ld.push(itemListLd(sectionNames[slug], items));
-    writeCopy(slug, addLd(html, ld));
-    out.sections.push(p);
+  const sectionItems = { berries: C.itemsFor(state, { type: 'berries' }), cakes: C.itemsFor(state, { type: 'cakes' }), delivery: [] };
+  for (const sec of Object.keys(R.SECTIONS)) {
+    const items = sectionItems[sec] || [];
+    const pair = { ru: R.sectionPath(sec, 'ru'), en: R.sectionPath(sec, 'en') };
+    for (const lang of LANGS) {
+      const s = R.sectionInfo(sec, lang);
+      let html = setHead(tpl[lang], { title: s.title, description: s.description, url: SITE + pair[lang],
+        image: items[0] && C.photosOf(items[0])[0] ? C.cldUrl(C.photosOf(items[0])[0], 1200) : null });
+      html = setAlternates(html, pair.ru, pair.en);
+      const ld = [crumbsLd([[lang === 'en' ? 'Home' : 'Главная', R.homePath(lang)], [s.name, pair[lang]]])];
+      if (items.length) ld.push(itemListLd(s.name, items, lang));
+      writeCopy(pair[lang], addLd(html, ld));
+    }
+    out.sections.push(pair);
   }
 
   const visible = [...state.bouquets, ...state.cakes, ...state.berries].filter(x => x.visible);
   for (const item of visible) {
-    const p = R.productPath(item.kind, item.id);
-    let parent;
-    if (item.kind === 'b') parent = item.cats.map(k => homeOf[k]).find(Boolean) || null;
-    else if (item.kind === 'c') parent = { path: '/bento-torty/', name: 'Бенто-торты' };
-    else parent = { path: '/klubnika-v-shokolade/', name: 'Клубника в шоколаде' };
+    const pair = { ru: R.productPath(item.kind, item.id, 'ru'), en: R.productPath(item.kind, item.id, 'en') };
     const photos = C.photosOf(item);
-    const desc = productDescription(item);
-    const price = item.finalPrice ? C.money(item.finalPrice).replace(/ /g, ' ') + ' тг' : '';
-    const title = `${item.name} — купить в Астане с доставкой${price ? ', ' + price : ''} | FLOMART`;
-    const html = setHead(tpl, { title, description: `${item.name}${price ? ' за ' + price : ''}. ${desc}`.slice(0, 300),
-      url: SITE + p, image: photos[0] ? C.cldUrl(photos[0], 1200) : null });
-    const product = { '@context': 'https://schema.org', '@type': 'Product', name: item.name, description: desc,
-      sku: item.kind === 'b' ? item.displayCode : item.id, brand: { '@type': 'Brand', name: 'FLOMART' },
-      image: photos.slice(0, 5).map(ph => C.cldUrl(ph, 1200)), url: SITE + p };
-    if (item.finalPrice) product.offers = { '@type': 'Offer', priceCurrency: 'KZT', price: item.finalPrice,
-      availability: 'https://schema.org/InStock', url: SITE + p };
-    const trail = [['Главная', '/']];
-    if (parent) trail.push([parent.name, parent.path]);
-    trail.push([item.name, p]);
-    writeCopy(p.replace(/^\/|\/$/g, ''), addLd(html, [crumbsLd(trail), product]));
-    out.products.push(p);
+    for (const lang of LANGS) {
+      const p = pair[lang];
+      let parent;
+      if (item.kind === 'b') parent = item.cats.map(k => homeOf[lang][k]).find(Boolean) || null;
+      else { const sec = item.kind === 'c' ? 'cakes' : 'berries'; parent = { path: R.sectionPath(sec, lang), name: R.sectionInfo(sec, lang).name }; }
+      const name = nameOf(item, lang);
+      const desc = productDescription(item, lang);
+      const price = item.finalPrice ? C.money(item.finalPrice).replace(/ /g, ' ') + (lang === 'en' ? ' ₸' : ' тг') : '';
+      const title = lang === 'en'
+        ? `${name} — buy in Astana with delivery${price ? ', ' + price : ''} | FLOMART`
+        : `${name} — купить в Астане с доставкой${price ? ', ' + price : ''} | FLOMART`;
+      const metaDesc = `${name}${price ? (lang === 'en' ? ' for ' : ' за ') + price : ''}. ${desc}`.slice(0, 300);
+      let html = setHead(tpl[lang], { title, description: metaDesc, url: SITE + p, image: photos[0] ? C.cldUrl(photos[0], 1200) : null });
+      html = setAlternates(html, pair.ru, pair.en);
+      const product = { '@context': 'https://schema.org', '@type': 'Product', name, description: desc,
+        sku: item.kind === 'b' ? item.displayCode : item.id, brand: { '@type': 'Brand', name: 'FLOMART' },
+        image: photos.slice(0, 5).map(ph => C.cldUrl(ph, 1200)), url: SITE + p };
+      if (item.finalPrice) product.offers = { '@type': 'Offer', priceCurrency: 'KZT', price: item.finalPrice,
+        availability: 'https://schema.org/InStock', url: SITE + p };
+      const trail = [[lang === 'en' ? 'Home' : 'Главная', R.homePath(lang)]];
+      if (parent) trail.push([parent.name, parent.path]);
+      trail.push([name, p]);
+      writeCopy(p, addLd(html, [crumbsLd(trail), product]));
+    }
+    out.products.push(pair);
   }
 
   writeSitemap(out);
-  console.log(`Готово: ${out.sections.length} разделов, ${out.products.length} страниц товаров.`);
+  console.log(`Готово: ${out.sections.length} разделов и ${out.products.length} товаров × 2 языка.`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

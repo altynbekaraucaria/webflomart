@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://flomart.kz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/"/>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
   </url>
   <url>
     <loc>https://flomart.kz/en/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://flomart.kz/care.html</loc>
@@ -17,887 +21,2480 @@
   </url>
   <url>
     <loc>https://flomart.kz/rozy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/rozy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/roses/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/roses/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/rozy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/roses/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/sbornye-bukety/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/sbornye-bukety/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/mixed-bouquets/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/mixed-bouquets/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/sbornye-bukety/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/mixed-bouquets/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/kustovye-rozy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/kustovye-rozy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/spray-roses/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/spray-roses/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/kustovye-rozy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/spray-roses/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/hrizantemy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/hrizantemy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/chrysanthemums/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/chrysanthemums/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/hrizantemy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/chrysanthemums/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/premium-bukety/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/premium-bukety/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/premium-bouquets/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/premium-bouquets/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/premium-bukety/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/premium-bouquets/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/cvetochnye-kompozicii/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/cvetochnye-kompozicii/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/flower-arrangements/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/flower-arrangements/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/cvetochnye-kompozicii/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/flower-arrangements/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/gortenzii/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/gortenzii/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/hydrangeas/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/hydrangeas/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/gortenzii/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/hydrangeas/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/piony/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/piony/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/peonies/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/peonies/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/piony/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/peonies/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/klubnika-v-shokolade/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/klubnika-v-shokolade/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/chocolate-strawberries/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/chocolate-strawberries/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/klubnika-v-shokolade/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/chocolate-strawberries/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-torty/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-torty/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cakes/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cakes/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-torty/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cakes/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://flomart.kz/dostavka-cvetov/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/dostavka-cvetov/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/flower-delivery/"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://flomart.kz/en/flower-delivery/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/dostavka-cvetov/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/flower-delivery/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://flomart.kz/buket/a6lweuubmubc6cfn/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/a6lweuubmubc6cfn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/a6lweuubmubc6cfn/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/a6lweuubmubc6cfn/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/a6lweuubmubc6cfn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/a6lweuubmubc6cfn/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/5zwdgfvvmujzri40/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/5zwdgfvvmujzri40/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/5zwdgfvvmujzri40/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/5zwdgfvvmujzri40/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/5zwdgfvvmujzri40/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/5zwdgfvvmujzri40/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/j0cb6lgxmuk0gntc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/j0cb6lgxmuk0gntc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/j0cb6lgxmuk0gntc/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/j0cb6lgxmuk0gntc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/j0cb6lgxmuk0gntc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/j0cb6lgxmuk0gntc/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/xo552x7qmubcgpah/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/xo552x7qmubcgpah/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/xo552x7qmubcgpah/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/xo552x7qmubcgpah/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/xo552x7qmubcgpah/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/xo552x7qmubcgpah/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/mv26a47vmubbi7vc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/mv26a47vmubbi7vc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/mv26a47vmubbi7vc/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/mv26a47vmubbi7vc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/mv26a47vmubbi7vc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/mv26a47vmubbi7vc/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/i5eim6edmuqxnwj4/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/i5eim6edmuqxnwj4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/i5eim6edmuqxnwj4/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/i5eim6edmuqxnwj4/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/i5eim6edmuqxnwj4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/i5eim6edmuqxnwj4/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/qib5vbs6mubclz5w/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/qib5vbs6mubclz5w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/qib5vbs6mubclz5w/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/qib5vbs6mubclz5w/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/qib5vbs6mubclz5w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/qib5vbs6mubclz5w/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/13bl1cwvmudvm5zu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/13bl1cwvmudvm5zu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/13bl1cwvmudvm5zu/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/13bl1cwvmudvm5zu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/13bl1cwvmudvm5zu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/13bl1cwvmudvm5zu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/7x7lrf7omuptfj2h/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/7x7lrf7omuptfj2h/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/7x7lrf7omuptfj2h/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/7x7lrf7omuptfj2h/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/7x7lrf7omuptfj2h/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/7x7lrf7omuptfj2h/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/56thkj7ymubc9zo8/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/56thkj7ymubc9zo8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/56thkj7ymubc9zo8/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/56thkj7ymubc9zo8/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/56thkj7ymubc9zo8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/56thkj7ymubc9zo8/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/0p879m2zmudvuc5u/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/0p879m2zmudvuc5u/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/0p879m2zmudvuc5u/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/0p879m2zmudvuc5u/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/0p879m2zmudvuc5u/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/0p879m2zmudvuc5u/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/y6ngfokvmw887d24/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/y6ngfokvmw887d24/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/y6ngfokvmw887d24/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/y6ngfokvmw887d24/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/y6ngfokvmw887d24/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/y6ngfokvmw887d24/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/6dc9hqtsmubbwxo5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/6dc9hqtsmubbwxo5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/6dc9hqtsmubbwxo5/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/6dc9hqtsmubbwxo5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/6dc9hqtsmubbwxo5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/6dc9hqtsmubbwxo5/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/930nlu50mubbbmr3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/930nlu50mubbbmr3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/930nlu50mubbbmr3/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/930nlu50mubbbmr3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/930nlu50mubbbmr3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/930nlu50mubbbmr3/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/8clm8ek4mubbsemw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/8clm8ek4mubbsemw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/8clm8ek4mubbsemw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/8clm8ek4mubbsemw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/8clm8ek4mubbsemw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/8clm8ek4mubbsemw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/exbg4marmubboebm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/exbg4marmubboebm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/exbg4marmubboebm/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/exbg4marmubboebm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/exbg4marmubboebm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/exbg4marmubboebm/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/9rnua93mmue0c2bw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/9rnua93mmue0c2bw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/9rnua93mmue0c2bw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/9rnua93mmue0c2bw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/9rnua93mmue0c2bw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/9rnua93mmue0c2bw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/hboh89lzmubctb8a/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hboh89lzmubctb8a/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hboh89lzmubctb8a/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/hboh89lzmubctb8a/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hboh89lzmubctb8a/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hboh89lzmubctb8a/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/by5xmh0smubcptdf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/by5xmh0smubcptdf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/by5xmh0smubcptdf/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/by5xmh0smubcptdf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/by5xmh0smubcptdf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/by5xmh0smubcptdf/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/ahisvxihmubcrg6r/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/ahisvxihmubcrg6r/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/ahisvxihmubcrg6r/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/ahisvxihmubcrg6r/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/ahisvxihmubcrg6r/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/ahisvxihmubcrg6r/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/i6llmjdymubd1kms/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/i6llmjdymubd1kms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/i6llmjdymubd1kms/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/i6llmjdymubd1kms/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/i6llmjdymubd1kms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/i6llmjdymubd1kms/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/q2igow8smue055yb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/q2igow8smue055yb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/q2igow8smue055yb/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/q2igow8smue055yb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/q2igow8smue055yb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/q2igow8smue055yb/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/tjz286k6mue03mc6/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/tjz286k6mue03mc6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/tjz286k6mue03mc6/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/tjz286k6mue03mc6/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/tjz286k6mue03mc6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/tjz286k6mue03mc6/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/5b7kr4n8mue076am/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/5b7kr4n8mue076am/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/5b7kr4n8mue076am/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/5b7kr4n8mue076am/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/5b7kr4n8mue076am/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/5b7kr4n8mue076am/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/m948gs87mue093mj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/m948gs87mue093mj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/m948gs87mue093mj/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/m948gs87mue093mj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/m948gs87mue093mj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/m948gs87mue093mj/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/xkf3kxjrmuk18twb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/xkf3kxjrmuk18twb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/xkf3kxjrmuk18twb/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/xkf3kxjrmuk18twb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/xkf3kxjrmuk18twb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/xkf3kxjrmuk18twb/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/hssxctl0mujsvbwi/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hssxctl0mujsvbwi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hssxctl0mujsvbwi/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/hssxctl0mujsvbwi/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hssxctl0mujsvbwi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hssxctl0mujsvbwi/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/manxrqsxmujvpqz4/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/manxrqsxmujvpqz4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/manxrqsxmujvpqz4/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/manxrqsxmujvpqz4/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/manxrqsxmujvpqz4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/manxrqsxmujvpqz4/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/kxwtmx8hmujue68a/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/kxwtmx8hmujue68a/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/kxwtmx8hmujue68a/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/kxwtmx8hmujue68a/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/kxwtmx8hmujue68a/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/kxwtmx8hmujue68a/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/cmg9ax2hmujurv9z/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/cmg9ax2hmujurv9z/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/cmg9ax2hmujurv9z/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/cmg9ax2hmujurv9z/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/cmg9ax2hmujurv9z/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/cmg9ax2hmujurv9z/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/olk244acmubcvkfm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/olk244acmubcvkfm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/olk244acmubcvkfm/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/olk244acmubcvkfm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/olk244acmubcvkfm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/olk244acmubcvkfm/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/nuatod0amujuu4pw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/nuatod0amujuu4pw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/nuatod0amujuu4pw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/nuatod0amujuu4pw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/nuatod0amujuu4pw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/nuatod0amujuu4pw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/cz5odvkrmwopy0mj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/cz5odvkrmwopy0mj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/cz5odvkrmwopy0mj/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/cz5odvkrmwopy0mj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/cz5odvkrmwopy0mj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/cz5odvkrmwopy0mj/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/1nw5e5onmw87e2tv/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/1nw5e5onmw87e2tv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/1nw5e5onmw87e2tv/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/1nw5e5onmw87e2tv/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/1nw5e5onmw87e2tv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/1nw5e5onmw87e2tv/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/3k5g4ijgmujz95nt/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/3k5g4ijgmujz95nt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/3k5g4ijgmujz95nt/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/3k5g4ijgmujz95nt/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/3k5g4ijgmujz95nt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/3k5g4ijgmujz95nt/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/7g3tn18umubcysek/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/7g3tn18umubcysek/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/7g3tn18umubcysek/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/7g3tn18umubcysek/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/7g3tn18umubcysek/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/7g3tn18umubcysek/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/kfl8l7lfmuk0q8yw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/kfl8l7lfmuk0q8yw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/kfl8l7lfmuk0q8yw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/kfl8l7lfmuk0q8yw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/kfl8l7lfmuk0q8yw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/kfl8l7lfmuk0q8yw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/yun5377kmudzyqap/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/yun5377kmudzyqap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/yun5377kmudzyqap/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/yun5377kmudzyqap/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/yun5377kmudzyqap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/yun5377kmudzyqap/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/lxa3y569muk1imgu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/lxa3y569muk1imgu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/lxa3y569muk1imgu/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/lxa3y569muk1imgu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/lxa3y569muk1imgu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/lxa3y569muk1imgu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/pcegt67bmujubiix/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/pcegt67bmujubiix/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/pcegt67bmujubiix/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/pcegt67bmujubiix/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/pcegt67bmujubiix/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/pcegt67bmujubiix/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/z90xzqwdmujvb9c0/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/z90xzqwdmujvb9c0/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/z90xzqwdmujvb9c0/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/z90xzqwdmujvb9c0/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/z90xzqwdmujvb9c0/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/z90xzqwdmujvb9c0/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/vnrhregqmujzo2vf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/vnrhregqmujzo2vf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/vnrhregqmujzo2vf/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/vnrhregqmujzo2vf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/vnrhregqmujzo2vf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/vnrhregqmujzo2vf/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/jue9f1ylmuk0u35r/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/jue9f1ylmuk0u35r/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/jue9f1ylmuk0u35r/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/jue9f1ylmuk0u35r/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/jue9f1ylmuk0u35r/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/jue9f1ylmuk0u35r/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/0hsl7rcumuk2i8ax/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/0hsl7rcumuk2i8ax/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/0hsl7rcumuk2i8ax/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/0hsl7rcumuk2i8ax/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/0hsl7rcumuk2i8ax/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/0hsl7rcumuk2i8ax/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/kt04bzq5mujzw09e/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/kt04bzq5mujzw09e/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/kt04bzq5mujzw09e/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/kt04bzq5mujzw09e/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/kt04bzq5mujzw09e/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/kt04bzq5mujzw09e/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/nc95y14vmuk1657g/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/nc95y14vmuk1657g/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/nc95y14vmuk1657g/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/nc95y14vmuk1657g/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/nc95y14vmuk1657g/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/nc95y14vmuk1657g/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/anxoe4tnmubccyph/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/anxoe4tnmubccyph/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/anxoe4tnmubccyph/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/anxoe4tnmubccyph/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/anxoe4tnmubccyph/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/anxoe4tnmubccyph/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/wlcwj5a4murexevl/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/wlcwj5a4murexevl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/wlcwj5a4murexevl/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/wlcwj5a4murexevl/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/wlcwj5a4murexevl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/wlcwj5a4murexevl/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/1nmha9aemw87c0om/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/1nmha9aemw87c0om/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/1nmha9aemw87c0om/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/1nmha9aemw87c0om/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/1nmha9aemw87c0om/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/1nmha9aemw87c0om/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/g0aym294mwff4t52/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/g0aym294mwff4t52/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/g0aym294mwff4t52/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/g0aym294mwff4t52/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/g0aym294mwff4t52/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/g0aym294mwff4t52/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/lwh8kavimufn1r9t/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/lwh8kavimufn1r9t/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/lwh8kavimufn1r9t/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/lwh8kavimufn1r9t/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/lwh8kavimufn1r9t/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/lwh8kavimufn1r9t/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/d5r5i2u0mug1tgxw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/d5r5i2u0mug1tgxw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/d5r5i2u0mug1tgxw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/d5r5i2u0mug1tgxw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/d5r5i2u0mug1tgxw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/d5r5i2u0mug1tgxw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/bkuy4tw9mujsrwbb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/bkuy4tw9mujsrwbb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/bkuy4tw9mujsrwbb/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/bkuy4tw9mujsrwbb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/bkuy4tw9mujsrwbb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/bkuy4tw9mujsrwbb/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/tjq10dzymujtawl2/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/tjq10dzymujtawl2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/tjq10dzymujtawl2/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/tjq10dzymujtawl2/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/tjq10dzymujtawl2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/tjq10dzymujtawl2/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/gs0okhplmujtq5yd/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/gs0okhplmujtq5yd/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/gs0okhplmujtq5yd/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/gs0okhplmujtq5yd/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/gs0okhplmujtq5yd/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/gs0okhplmujtq5yd/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/8ng8vottmupdboir/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/8ng8vottmupdboir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/8ng8vottmupdboir/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/8ng8vottmupdboir/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/8ng8vottmupdboir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/8ng8vottmupdboir/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/49h8huufmujty7s7/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/49h8huufmujty7s7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/49h8huufmujty7s7/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/49h8huufmujty7s7/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/49h8huufmujty7s7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/49h8huufmujty7s7/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/9803hfzkmuju4poh/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/9803hfzkmuju4poh/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/9803hfzkmuju4poh/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/9803hfzkmuju4poh/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/9803hfzkmuju4poh/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/9803hfzkmuju4poh/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/ink3pxmfmuju7md1/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/ink3pxmfmuju7md1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/ink3pxmfmuju7md1/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/ink3pxmfmuju7md1/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/ink3pxmfmuju7md1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/ink3pxmfmuju7md1/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/9au8cqafmuk02f50/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/9au8cqafmuk02f50/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/9au8cqafmuk02f50/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/9au8cqafmuk02f50/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/9au8cqafmuk02f50/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/9au8cqafmuk02f50/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/fkcvtaaamujv3c7m/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/fkcvtaaamujv3c7m/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/fkcvtaaamujv3c7m/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/fkcvtaaamujv3c7m/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/fkcvtaaamujv3c7m/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/fkcvtaaamujv3c7m/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/96ulpxgbmujzca3h/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/96ulpxgbmujzca3h/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/96ulpxgbmujzca3h/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/96ulpxgbmujzca3h/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/96ulpxgbmujzca3h/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/96ulpxgbmujzca3h/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/ch1dtbqemuk04xw5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/ch1dtbqemuk04xw5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/ch1dtbqemuk04xw5/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/ch1dtbqemuk04xw5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/ch1dtbqemuk04xw5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/ch1dtbqemuk04xw5/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/4bt8fo2imujvfavq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/4bt8fo2imujvfavq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/4bt8fo2imujvfavq/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/4bt8fo2imujvfavq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/4bt8fo2imujvfavq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/4bt8fo2imujvfavq/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/15gurvetmujzho5p/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/15gurvetmujzho5p/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/15gurvetmujzho5p/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/15gurvetmujzho5p/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/15gurvetmujzho5p/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/15gurvetmujzho5p/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/wyc6b6w2muk0s20y/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/wyc6b6w2muk0s20y/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/wyc6b6w2muk0s20y/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/wyc6b6w2muk0s20y/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/wyc6b6w2muk0s20y/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/wyc6b6w2muk0s20y/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/bgagl0ckmuk0xxor/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/bgagl0ckmuk0xxor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/bgagl0ckmuk0xxor/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/bgagl0ckmuk0xxor/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/bgagl0ckmuk0xxor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/bgagl0ckmuk0xxor/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/elrgonosmujttfiw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/elrgonosmujttfiw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/elrgonosmujttfiw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/elrgonosmujttfiw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/elrgonosmujttfiw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/elrgonosmujttfiw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/hhwzqgaamupfhyds/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hhwzqgaamupfhyds/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hhwzqgaamupfhyds/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/hhwzqgaamupfhyds/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hhwzqgaamupfhyds/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hhwzqgaamupfhyds/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/o3xr5n96muk0digx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/o3xr5n96muk0digx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/o3xr5n96muk0digx/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/o3xr5n96muk0digx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/o3xr5n96muk0digx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/o3xr5n96muk0digx/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/n9nvcsz7mw5l2vpl/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/n9nvcsz7mw5l2vpl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/n9nvcsz7mw5l2vpl/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/n9nvcsz7mw5l2vpl/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/n9nvcsz7mw5l2vpl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/n9nvcsz7mw5l2vpl/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/10c9s4kdmuk0kaa6/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/10c9s4kdmuk0kaa6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/10c9s4kdmuk0kaa6/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/10c9s4kdmuk0kaa6/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/10c9s4kdmuk0kaa6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/10c9s4kdmuk0kaa6/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/chk4bnanmuk0b8iv/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/chk4bnanmuk0b8iv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/chk4bnanmuk0b8iv/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/chk4bnanmuk0b8iv/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/chk4bnanmuk0b8iv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/chk4bnanmuk0b8iv/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/taxursmwmuk271x9/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/taxursmwmuk271x9/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/taxursmwmuk271x9/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/taxursmwmuk271x9/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/taxursmwmuk271x9/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/taxursmwmuk271x9/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/46dojuwpmupdkakn/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/46dojuwpmupdkakn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/46dojuwpmupdkakn/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/46dojuwpmupdkakn/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/46dojuwpmupdkakn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/46dojuwpmupdkakn/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/3mts0ro7muk2s4y3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/3mts0ro7muk2s4y3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/3mts0ro7muk2s4y3/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/3mts0ro7muk2s4y3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/3mts0ro7muk2s4y3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/3mts0ro7muk2s4y3/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/fwrwkz1omupd1xf5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/fwrwkz1omupd1xf5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/fwrwkz1omupd1xf5/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/fwrwkz1omupd1xf5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/fwrwkz1omupd1xf5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/fwrwkz1omupd1xf5/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/w5jbplnkmupd3te4/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/w5jbplnkmupd3te4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/w5jbplnkmupd3te4/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/w5jbplnkmupd3te4/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/w5jbplnkmupd3te4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/w5jbplnkmupd3te4/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/fbk9rxuqmupdghfm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/fbk9rxuqmupdghfm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/fbk9rxuqmupdghfm/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/fbk9rxuqmupdghfm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/fbk9rxuqmupdghfm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/fbk9rxuqmupdghfm/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/onjvtnwcmuk1kxrj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/onjvtnwcmuk1kxrj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/onjvtnwcmuk1kxrj/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/onjvtnwcmuk1kxrj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/onjvtnwcmuk1kxrj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/onjvtnwcmuk1kxrj/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/4v6gxehzmupdid19/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/4v6gxehzmupdid19/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/4v6gxehzmupdid19/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/4v6gxehzmupdid19/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/4v6gxehzmupdid19/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/4v6gxehzmupdid19/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/sdf0s7h3mvh4jgh3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/sdf0s7h3mvh4jgh3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/sdf0s7h3mvh4jgh3/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/sdf0s7h3mvh4jgh3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/sdf0s7h3mvh4jgh3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/sdf0s7h3mvh4jgh3/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/cmr6rzehmuk2eavc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/cmr6rzehmuk2eavc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/cmr6rzehmuk2eavc/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/cmr6rzehmuk2eavc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/cmr6rzehmuk2eavc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/cmr6rzehmuk2eavc/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/jag6m42umw879smf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/jag6m42umw879smf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/jag6m42umw879smf/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/jag6m42umw879smf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/jag6m42umw879smf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/jag6m42umw879smf/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/aq71tlmhmw87fzzw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/aq71tlmhmw87fzzw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/aq71tlmhmw87fzzw/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/aq71tlmhmw87fzzw/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/aq71tlmhmw87fzzw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/aq71tlmhmw87fzzw/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/01q694etmuqqewy9/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/01q694etmuqqewy9/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/01q694etmuqqewy9/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/01q694etmuqqewy9/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/01q694etmuqqewy9/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/01q694etmuqqewy9/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/tym9wdvkmuk2abht/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/tym9wdvkmuk2abht/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/tym9wdvkmuk2abht/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/tym9wdvkmuk2abht/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/tym9wdvkmuk2abht/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/tym9wdvkmuk2abht/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/1womcupsmw87niln/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/1womcupsmw87niln/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/1womcupsmw87niln/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/1womcupsmw87niln/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/1womcupsmw87niln/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/1womcupsmw87niln/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/aa8j12t8mv0rwf97/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/aa8j12t8mv0rwf97/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/aa8j12t8mv0rwf97/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/aa8j12t8mv0rwf97/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/aa8j12t8mv0rwf97/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/aa8j12t8mv0rwf97/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/4us969y8muk1t1ey/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/4us969y8muk1t1ey/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/4us969y8muk1t1ey/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/4us969y8muk1t1ey/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/4us969y8muk1t1ey/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/4us969y8muk1t1ey/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/qqlyr5qpmw87jn8n/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/qqlyr5qpmw87jn8n/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/qqlyr5qpmw87jn8n/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/qqlyr5qpmw87jn8n/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/qqlyr5qpmw87jn8n/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/qqlyr5qpmw87jn8n/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/qbw6cl63mw87lo7b/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/qbw6cl63mw87lo7b/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/qbw6cl63mw87lo7b/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/qbw6cl63mw87lo7b/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/qbw6cl63mw87lo7b/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/qbw6cl63mw87lo7b/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/wdiwxabrmw87psrd/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/wdiwxabrmw87psrd/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/wdiwxabrmw87psrd/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/wdiwxabrmw87psrd/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/wdiwxabrmw87psrd/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/wdiwxabrmw87psrd/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/k34h49agmw87u4qu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/k34h49agmw87u4qu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/k34h49agmw87u4qu/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/k34h49agmw87u4qu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/k34h49agmw87u4qu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/k34h49agmw87u4qu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/buket/hxzb5qetmw8778to/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hxzb5qetmw8778to/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hxzb5qetmw8778to/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bouquet/hxzb5qetmw8778to/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/buket/hxzb5qetmw8778to/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bouquet/hxzb5qetmw8778to/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/nFCuxm5TPctPmHinZBaz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/nFCuxm5TPctPmHinZBaz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/nFCuxm5TPctPmHinZBaz/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/nFCuxm5TPctPmHinZBaz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/nFCuxm5TPctPmHinZBaz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/nFCuxm5TPctPmHinZBaz/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/EHFfanHLUjCpUHxG3Vji/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/EHFfanHLUjCpUHxG3Vji/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/EHFfanHLUjCpUHxG3Vji/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/EHFfanHLUjCpUHxG3Vji/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/EHFfanHLUjCpUHxG3Vji/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/EHFfanHLUjCpUHxG3Vji/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/saKuaq4eYyF2gCImd8MQ/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/saKuaq4eYyF2gCImd8MQ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/saKuaq4eYyF2gCImd8MQ/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/saKuaq4eYyF2gCImd8MQ/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/saKuaq4eYyF2gCImd8MQ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/saKuaq4eYyF2gCImd8MQ/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/jwT4i7jNgSZD5FSwH7Ib/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/jwT4i7jNgSZD5FSwH7Ib/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/jwT4i7jNgSZD5FSwH7Ib/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/jwT4i7jNgSZD5FSwH7Ib/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/jwT4i7jNgSZD5FSwH7Ib/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/jwT4i7jNgSZD5FSwH7Ib/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/5mywOsG6p9qezDR1F4vR/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/5mywOsG6p9qezDR1F4vR/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/5mywOsG6p9qezDR1F4vR/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/5mywOsG6p9qezDR1F4vR/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/5mywOsG6p9qezDR1F4vR/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/5mywOsG6p9qezDR1F4vR/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/i7QlO7F4lgapVnyixSeY/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/i7QlO7F4lgapVnyixSeY/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/i7QlO7F4lgapVnyixSeY/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/i7QlO7F4lgapVnyixSeY/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/i7QlO7F4lgapVnyixSeY/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/i7QlO7F4lgapVnyixSeY/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/9noRGb4q9WKKuiwlMZjz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/9noRGb4q9WKKuiwlMZjz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/9noRGb4q9WKKuiwlMZjz/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/9noRGb4q9WKKuiwlMZjz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/9noRGb4q9WKKuiwlMZjz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/9noRGb4q9WKKuiwlMZjz/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/64ty44vaZKV6XvWEyaT5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/64ty44vaZKV6XvWEyaT5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/64ty44vaZKV6XvWEyaT5/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/64ty44vaZKV6XvWEyaT5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/64ty44vaZKV6XvWEyaT5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/64ty44vaZKV6XvWEyaT5/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/ZTNE0hmQBtVtFYYRbw3K/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/ZTNE0hmQBtVtFYYRbw3K/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/ZTNE0hmQBtVtFYYRbw3K/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/ZTNE0hmQBtVtFYYRbw3K/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/ZTNE0hmQBtVtFYYRbw3K/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/ZTNE0hmQBtVtFYYRbw3K/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/BjTt604GAKRYuCgvGZqC/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/BjTt604GAKRYuCgvGZqC/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/BjTt604GAKRYuCgvGZqC/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/BjTt604GAKRYuCgvGZqC/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/BjTt604GAKRYuCgvGZqC/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/BjTt604GAKRYuCgvGZqC/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/9z0FoDzvwW0QAuC7kXDP/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/9z0FoDzvwW0QAuC7kXDP/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/9z0FoDzvwW0QAuC7kXDP/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/9z0FoDzvwW0QAuC7kXDP/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/9z0FoDzvwW0QAuC7kXDP/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/9z0FoDzvwW0QAuC7kXDP/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/gPhitS5wblQiwU4LgR8k/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/gPhitS5wblQiwU4LgR8k/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/gPhitS5wblQiwU4LgR8k/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/gPhitS5wblQiwU4LgR8k/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/gPhitS5wblQiwU4LgR8k/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/gPhitS5wblQiwU4LgR8k/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/fBS7Y7vpdi2VQqxM6WaB/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/fBS7Y7vpdi2VQqxM6WaB/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/fBS7Y7vpdi2VQqxM6WaB/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/fBS7Y7vpdi2VQqxM6WaB/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/fBS7Y7vpdi2VQqxM6WaB/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/fBS7Y7vpdi2VQqxM6WaB/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/4QYWsu7be0Du2jLMc6do/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/4QYWsu7be0Du2jLMc6do/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/4QYWsu7be0Du2jLMc6do/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/4QYWsu7be0Du2jLMc6do/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/4QYWsu7be0Du2jLMc6do/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/4QYWsu7be0Du2jLMc6do/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/j6lHf7OjXR37LxRbrx5e/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/j6lHf7OjXR37LxRbrx5e/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/j6lHf7OjXR37LxRbrx5e/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/j6lHf7OjXR37LxRbrx5e/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/j6lHf7OjXR37LxRbrx5e/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/j6lHf7OjXR37LxRbrx5e/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/UJXduce6TRjrEUhCEsOG/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/UJXduce6TRjrEUhCEsOG/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/UJXduce6TRjrEUhCEsOG/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/UJXduce6TRjrEUhCEsOG/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/UJXduce6TRjrEUhCEsOG/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/UJXduce6TRjrEUhCEsOG/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/L03us3dhy6sgdzIJ1B1w/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/L03us3dhy6sgdzIJ1B1w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/L03us3dhy6sgdzIJ1B1w/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/L03us3dhy6sgdzIJ1B1w/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/L03us3dhy6sgdzIJ1B1w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/L03us3dhy6sgdzIJ1B1w/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/KAhGCb7Jagi075aumidA/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/KAhGCb7Jagi075aumidA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/KAhGCb7Jagi075aumidA/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/KAhGCb7Jagi075aumidA/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/KAhGCb7Jagi075aumidA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/KAhGCb7Jagi075aumidA/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/rOCRkmWnNPZuYGVLjKvs/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/rOCRkmWnNPZuYGVLjKvs/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/rOCRkmWnNPZuYGVLjKvs/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/rOCRkmWnNPZuYGVLjKvs/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/rOCRkmWnNPZuYGVLjKvs/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/rOCRkmWnNPZuYGVLjKvs/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/4Tvru8z5ECrU9V0EyhWx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/4Tvru8z5ECrU9V0EyhWx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/4Tvru8z5ECrU9V0EyhWx/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/4Tvru8z5ECrU9V0EyhWx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/4Tvru8z5ECrU9V0EyhWx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/4Tvru8z5ECrU9V0EyhWx/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/4NpsFCQsbr9pMT4O35Is/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/4NpsFCQsbr9pMT4O35Is/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/4NpsFCQsbr9pMT4O35Is/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/4NpsFCQsbr9pMT4O35Is/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/4NpsFCQsbr9pMT4O35Is/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/4NpsFCQsbr9pMT4O35Is/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/owwcymmy1Ni37bmENKIm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/owwcymmy1Ni37bmENKIm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/owwcymmy1Ni37bmENKIm/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/owwcymmy1Ni37bmENKIm/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/owwcymmy1Ni37bmENKIm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/owwcymmy1Ni37bmENKIm/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/rCZTNRuw7yRMYlbIV9WV/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/rCZTNRuw7yRMYlbIV9WV/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/rCZTNRuw7yRMYlbIV9WV/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/rCZTNRuw7yRMYlbIV9WV/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/rCZTNRuw7yRMYlbIV9WV/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/rCZTNRuw7yRMYlbIV9WV/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/F0coC6ecufG5hmCS8trF/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/F0coC6ecufG5hmCS8trF/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/F0coC6ecufG5hmCS8trF/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/F0coC6ecufG5hmCS8trF/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/F0coC6ecufG5hmCS8trF/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/F0coC6ecufG5hmCS8trF/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/62F7GrbV98FTqKevNkkc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/62F7GrbV98FTqKevNkkc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/62F7GrbV98FTqKevNkkc/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/62F7GrbV98FTqKevNkkc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/62F7GrbV98FTqKevNkkc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/62F7GrbV98FTqKevNkkc/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/1m4Zh8OXZPKl1MLWhdaD/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/1m4Zh8OXZPKl1MLWhdaD/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/1m4Zh8OXZPKl1MLWhdaD/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/1m4Zh8OXZPKl1MLWhdaD/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/1m4Zh8OXZPKl1MLWhdaD/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/1m4Zh8OXZPKl1MLWhdaD/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/r59W8DApA4KBy2dV4Heg/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/r59W8DApA4KBy2dV4Heg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/r59W8DApA4KBy2dV4Heg/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/r59W8DApA4KBy2dV4Heg/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/r59W8DApA4KBy2dV4Heg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/r59W8DApA4KBy2dV4Heg/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/CdTvXbynAvfehNF62S6i/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/CdTvXbynAvfehNF62S6i/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/CdTvXbynAvfehNF62S6i/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/CdTvXbynAvfehNF62S6i/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/CdTvXbynAvfehNF62S6i/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/CdTvXbynAvfehNF62S6i/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/feTpCDznxz4LyKNwvAao/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/feTpCDznxz4LyKNwvAao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/feTpCDznxz4LyKNwvAao/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/feTpCDznxz4LyKNwvAao/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/feTpCDznxz4LyKNwvAao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/feTpCDznxz4LyKNwvAao/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/jVVvAWrxHlZySwkmXsJ2/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/jVVvAWrxHlZySwkmXsJ2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/jVVvAWrxHlZySwkmXsJ2/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/jVVvAWrxHlZySwkmXsJ2/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/jVVvAWrxHlZySwkmXsJ2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/jVVvAWrxHlZySwkmXsJ2/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/aXdGHkg9yQnJ7jZ5EXDC/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/aXdGHkg9yQnJ7jZ5EXDC/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/aXdGHkg9yQnJ7jZ5EXDC/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/aXdGHkg9yQnJ7jZ5EXDC/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/aXdGHkg9yQnJ7jZ5EXDC/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/aXdGHkg9yQnJ7jZ5EXDC/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/ItkQol6HflQuEPYBpz5O/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/ItkQol6HflQuEPYBpz5O/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/ItkQol6HflQuEPYBpz5O/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/ItkQol6HflQuEPYBpz5O/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/ItkQol6HflQuEPYBpz5O/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/ItkQol6HflQuEPYBpz5O/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/9zfl0L6RiM2KFsSLlkKC/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/9zfl0L6RiM2KFsSLlkKC/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/9zfl0L6RiM2KFsSLlkKC/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/9zfl0L6RiM2KFsSLlkKC/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/9zfl0L6RiM2KFsSLlkKC/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/9zfl0L6RiM2KFsSLlkKC/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/6Ivhg4oSSTlN26IdwBZr/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/6Ivhg4oSSTlN26IdwBZr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/6Ivhg4oSSTlN26IdwBZr/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/6Ivhg4oSSTlN26IdwBZr/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/6Ivhg4oSSTlN26IdwBZr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/6Ivhg4oSSTlN26IdwBZr/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/Y7vqSlFwY7SRRqQ4TnDP/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/Y7vqSlFwY7SRRqQ4TnDP/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/Y7vqSlFwY7SRRqQ4TnDP/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/Y7vqSlFwY7SRRqQ4TnDP/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/Y7vqSlFwY7SRRqQ4TnDP/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/Y7vqSlFwY7SRRqQ4TnDP/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/aK4gG5LitoJSQv7kldHz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/aK4gG5LitoJSQv7kldHz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/aK4gG5LitoJSQv7kldHz/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/aK4gG5LitoJSQv7kldHz/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/aK4gG5LitoJSQv7kldHz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/aK4gG5LitoJSQv7kldHz/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/fOuvw6ATpJ5CmKyMNPkZ/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/fOuvw6ATpJ5CmKyMNPkZ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/fOuvw6ATpJ5CmKyMNPkZ/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/fOuvw6ATpJ5CmKyMNPkZ/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/fOuvw6ATpJ5CmKyMNPkZ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/fOuvw6ATpJ5CmKyMNPkZ/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/8gK5Wpk3cWjTo103gxbs/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/8gK5Wpk3cWjTo103gxbs/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/8gK5Wpk3cWjTo103gxbs/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/8gK5Wpk3cWjTo103gxbs/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/8gK5Wpk3cWjTo103gxbs/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/8gK5Wpk3cWjTo103gxbs/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/pANWgkNFoMT2rLS6pxwA/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/pANWgkNFoMT2rLS6pxwA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/pANWgkNFoMT2rLS6pxwA/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/pANWgkNFoMT2rLS6pxwA/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/pANWgkNFoMT2rLS6pxwA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/pANWgkNFoMT2rLS6pxwA/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/hvgLxPi8rffN0bowa2Ir/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/hvgLxPi8rffN0bowa2Ir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/hvgLxPi8rffN0bowa2Ir/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/hvgLxPi8rffN0bowa2Ir/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/hvgLxPi8rffN0bowa2Ir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/hvgLxPi8rffN0bowa2Ir/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/YHDxBhyT3JtQ4Ygc83Lj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/YHDxBhyT3JtQ4Ygc83Lj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/YHDxBhyT3JtQ4Ygc83Lj/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/YHDxBhyT3JtQ4Ygc83Lj/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/YHDxBhyT3JtQ4Ygc83Lj/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/YHDxBhyT3JtQ4Ygc83Lj/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/bento-tort/T1hFsumbgJumXzGz4XoQ/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/T1hFsumbgJumXzGz4XoQ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/T1hFsumbgJumXzGz4XoQ/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/bento-cake/T1hFsumbgJumXzGz4XoQ/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/T1hFsumbgJumXzGz4XoQ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/T1hFsumbgJumXzGz4XoQ/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/mf7ncg35muhfluvf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/mf7ncg35muhfluvf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/mf7ncg35muhfluvf/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/mf7ncg35muhfluvf/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/mf7ncg35muhfluvf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/mf7ncg35muhfluvf/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/vyl561yfmua596aq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/vyl561yfmua596aq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/vyl561yfmua596aq/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/vyl561yfmua596aq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/vyl561yfmua596aq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/vyl561yfmua596aq/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/1w3jhqhamugqfngx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/1w3jhqhamugqfngx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/1w3jhqhamugqfngx/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/1w3jhqhamugqfngx/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/1w3jhqhamugqfngx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/1w3jhqhamugqfngx/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/t50o76ormuhflrjo/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/t50o76ormuhflrjo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/t50o76ormuhflrjo/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/t50o76ormuhflrjo/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/t50o76ormuhflrjo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/t50o76ormuhflrjo/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/0bdv8dpqmuhfkolk/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/0bdv8dpqmuhfkolk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/0bdv8dpqmuhfkolk/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/0bdv8dpqmuhfkolk/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/0bdv8dpqmuhfkolk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/0bdv8dpqmuhfkolk/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/3yutvrccmuhflojr/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/3yutvrccmuhflojr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/3yutvrccmuhflojr/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/3yutvrccmuhflojr/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/3yutvrccmuhflojr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/3yutvrccmuhflojr/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/pxestkjrmuhfm8st/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/pxestkjrmuhfm8st/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/pxestkjrmuhfm8st/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/pxestkjrmuhfm8st/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/pxestkjrmuhfm8st/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/pxestkjrmuhfm8st/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/544ag6ffmugqpgb7/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/544ag6ffmugqpgb7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/544ag6ffmugqpgb7/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/544ag6ffmugqpgb7/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/544ag6ffmugqpgb7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/544ag6ffmugqpgb7/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/j2bzxfdbmugphmp2/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/j2bzxfdbmugphmp2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/j2bzxfdbmugphmp2/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/j2bzxfdbmugphmp2/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/j2bzxfdbmugphmp2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/j2bzxfdbmugphmp2/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/5vzhxm2tmuhfjs3w/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/5vzhxm2tmuhfjs3w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/5vzhxm2tmuhfjs3w/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/5vzhxm2tmuhfjs3w/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/5vzhxm2tmuhfjs3w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/5vzhxm2tmuhfjs3w/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/bpwxcnokmugo6t2y/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/bpwxcnokmugo6t2y/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/bpwxcnokmugo6t2y/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/bpwxcnokmugo6t2y/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/bpwxcnokmugo6t2y/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/bpwxcnokmugo6t2y/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/digoqt8dmuhfjxxc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/digoqt8dmuhfjxxc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/digoqt8dmuhfjxxc/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/digoqt8dmuhfjxxc/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/digoqt8dmuhfjxxc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/digoqt8dmuhfjxxc/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/9093rh64mugqmmwe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/9093rh64mugqmmwe/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/9093rh64mugqmmwe/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/9093rh64mugqmmwe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/9093rh64mugqmmwe/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/9093rh64mugqmmwe/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/c06lnre4muhfkkom/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/c06lnre4muhfkkom/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/c06lnre4muhfkkom/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/c06lnre4muhfkkom/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/c06lnre4muhfkkom/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/c06lnre4muhfkkom/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/ofrm7sk9mugp1gkn/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/ofrm7sk9mugp1gkn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/ofrm7sk9mugp1gkn/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/ofrm7sk9mugp1gkn/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/ofrm7sk9mugp1gkn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/ofrm7sk9mugp1gkn/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/jhp5le3jmuhflxrh/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/jhp5le3jmuhflxrh/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/jhp5le3jmuhflxrh/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/jhp5le3jmuhflxrh/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/jhp5le3jmuhflxrh/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/jhp5le3jmuhflxrh/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/51jzdrs3mugqoz2c/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/51jzdrs3mugqoz2c/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/51jzdrs3mugqoz2c/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/51jzdrs3mugqoz2c/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/51jzdrs3mugqoz2c/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/51jzdrs3mugqoz2c/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/d9slmlqpmuhfk496/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/d9slmlqpmuhfk496/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/d9slmlqpmuhfk496/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/d9slmlqpmuhfk496/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/d9slmlqpmuhfk496/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/d9slmlqpmuhfk496/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/yl67l2v4mugqolmg/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/yl67l2v4mugqolmg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/yl67l2v4mugqolmg/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/yl67l2v4mugqolmg/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/yl67l2v4mugqolmg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/yl67l2v4mugqolmg/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/n367ee41mug20r1j/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/n367ee41mug20r1j/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/n367ee41mug20r1j/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/n367ee41mug20r1j/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/n367ee41mug20r1j/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/n367ee41mug20r1j/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/82690y29mugidjvv/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/82690y29mugidjvv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/82690y29mugidjvv/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/82690y29mugidjvv/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/82690y29mugidjvv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/82690y29mugidjvv/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/ffsmwtbxmuhfl7k6/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/ffsmwtbxmuhfl7k6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/ffsmwtbxmuhfl7k6/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/ffsmwtbxmuhfl7k6/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/ffsmwtbxmuhfl7k6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/ffsmwtbxmuhfl7k6/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/rrlj20f6mugr6ydq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/rrlj20f6mugr6ydq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/rrlj20f6mugr6ydq/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/rrlj20f6mugr6ydq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/rrlj20f6mugr6ydq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/rrlj20f6mugr6ydq/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/0g27yb4vmugpvbv8/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/0g27yb4vmugpvbv8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/0g27yb4vmugpvbv8/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/0g27yb4vmugpvbv8/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/0g27yb4vmugpvbv8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/0g27yb4vmugpvbv8/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/6twfkedqmugpp75j/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/6twfkedqmugpp75j/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/6twfkedqmugpp75j/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/6twfkedqmugpp75j/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/6twfkedqmugpp75j/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/6twfkedqmugpp75j/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/pqmkl0vwmugq7qv1/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/pqmkl0vwmugq7qv1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/pqmkl0vwmugq7qv1/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/pqmkl0vwmugq7qv1/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/pqmkl0vwmugq7qv1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/pqmkl0vwmugq7qv1/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/a6hvgwdumuhfk186/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/a6hvgwdumuhfk186/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/a6hvgwdumuhfk186/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/a6hvgwdumuhfk186/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/a6hvgwdumuhfk186/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/a6hvgwdumuhfk186/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://flomart.kz/nabor-klubniki/uxko2qwomug2ku3n/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/uxko2qwomug2ku3n/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/uxko2qwomug2ku3n/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://flomart.kz/en/strawberry-set/uxko2qwomug2ku3n/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/uxko2qwomug2ku3n/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/uxko2qwomug2ku3n/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flomart.kz/nabor-klubniki/7154705amuhfks33/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/7154705amuhfks33/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/7154705amuhfks33/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flomart.kz/en/strawberry-set/7154705amuhfks33/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://flomart.kz/nabor-klubniki/7154705amuhfks33/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flomart.kz/en/strawberry-set/7154705amuhfks33/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

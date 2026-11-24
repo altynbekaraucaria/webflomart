@@ -4,12 +4,12 @@
 <!-- flomart-routes:head -->
 <script src="/assets/flomart-routes.js"></script>
 <script>
-  // flomart.kz/buket/<id>/ (and /bento-tort/, /nabor-klubniki/) → open that
-  // product: hand it to the site's existing ?item= link before the catalog loads.
+  // flomart.kz/buket/<id>/, /en/bouquet/<id>/ … → open that product: hand it to
+  // the site's existing ?item= link before the catalog loads.
   (function () {
-    var m = /^\/(buket|bento-tort|nabor-klubniki)\/([^\/]+)\/?$/.exec(location.pathname);
+    var m = /^(?:\/en)?\/(buket|bento-tort|nabor-klubniki|bouquet|bento-cake|strawberry-set)\/([^\/]+)\/?$/.exec(location.pathname);
     if (!m || /[?&]item=/.test(location.search)) return;
-    var t = { 'buket': 'b', 'bento-tort': 'c', 'nabor-klubniki': 's' }[m[1]];
+    var t = { 'buket': 'b', 'bento-tort': 'c', 'nabor-klubniki': 's', 'bouquet': 'b', 'bento-cake': 'c', 'strawberry-set': 's' }[m[1]];
     history.replaceState(null, '', location.pathname + (location.search ? location.search + '&' : '?') + 'item=' + t + '-' + m[2] + location.hash);
   })();
 </script>
@@ -126,6 +126,9 @@
 <title>Бенто-торт - Я попросила убрать отсюда лук — купить в Астане с доставкой, 5 000 тг | FLOMART</title>
 <meta name="description" content="Бенто-торт - Я попросила убрать отсюда лук за 5 000 тг. Авторский бенто-торт ручной работы">
 <link rel="canonical" href="https://flomart.kz/bento-tort/rOCRkmWnNPZuYGVLjKvs/">
+<link rel="alternate" hreflang="ru" href="https://flomart.kz/bento-tort/rOCRkmWnNPZuYGVLjKvs/">
+<link rel="alternate" hreflang="en" href="https://flomart.kz/en/bento-cake/rOCRkmWnNPZuYGVLjKvs/">
+<link rel="alternate" hreflang="x-default" href="https://flomart.kz/bento-tort/rOCRkmWnNPZuYGVLjKvs/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -3019,7 +3022,7 @@ window.addEventListener('flomart-rate-ready', () => {
       // Product's own address (flomart.kz/buket/<id>/), see assets/flomart-routes.js;
       // falls back to the older ?item= link if that file didn't load.
       text += '\n' + window.location.origin + (window.FlomartRoutes
-        ? window.FlomartRoutes.productPath(itemType, itemId)
+        ? window.FlomartRoutes.productPath(itemType, itemId, window.currentLang)
         : window.location.pathname + '?item=' + itemType + '-' + itemId);
     }
     const msg = encodeURIComponent(text);

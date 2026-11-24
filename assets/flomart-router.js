@@ -96,7 +96,7 @@
   function productName(kind, id) {
     var list = kind === 'b' ? window.rawBouquets : kind === 'c' ? window.rawCakes : window.rawBerries;
     var it = (list || []).filter(function (x) { return x.id === id; })[0];
-    return it && it.name;
+    return it && ((LANG === 'en' && it.nameEn) || it.name);
   }
   var origOpen = window.openViewModal;
   if (typeof origOpen === 'function') {
